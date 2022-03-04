@@ -2,7 +2,7 @@
   margin: 0;
 }
 
-body {
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -14,4 +14,236 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+} */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+html {
+    font-size: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "avenir next", avenir,
+        "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial,
+        sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --dark-900: #1f1f1f;
+    --dark-800: #303030;
+    --gray-700: #5a5a5a;
+    --gray-500: #b9b9b9;
+    --green-focused: #65eccb;
+    --white: white;
+    --text-color: var(--dark-800);
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-weight: 400;
+    color: var(--text-color);
+    caret-color: var(--text-color);
+    line-height: 1.563;
+}
+
+h1 {
+  font-size: 3.3rem;
+  letter-spacing: -0.15rem;
+  line-height: 1;
+}
+
+/* Form
+____________________________ */
+
+.formContainer {
+  width: 400px;
+  padding: 1rem 1.5rem;
+}
+
+label {
+  font-weight: bold;
+  display: flex;
+  margin-top: 1rem;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="number"] {
+  padding: 0.65rem 0.5rem;
+  font-size: 1rem;
+  border: 1px solid var(--gray-500);
+  border-radius: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+input[type="email"]::placeholder,
+input[type="text"]::placeholder,
+input[type="number"]::placeholder,
+input[type="password"]::placeholder,
+select,
+textarea {
+    color: var(--gray-700);
+}
+
+input[type="email"],
+input[type="text"],
+input[type="number"],
+input[type="password"],
+select,
+textarea {
+  width: 100%;
+}
+
+select {
+  margin: 0;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  padding: 0.65rem 0.5rem;
+  font-size: 1rem;
+  border: 1px solid var(--gray-500);
+  border-radius: 10px;
+  color: var(--text-color);
+  height: auto;
+  background-color: var(--white);
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 125.304 125.304"><path d="M62.652 103.895L0 21.41h125.304" fill="%23303030"/></svg>');
+  background-repeat: no-repeat;
+  background-size: 1rem;
+  background-position: center right 0.5rem;
+}
+
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 1rem;
+  border: 1px solid var(--gray-500);
+  border-radius: 10px;
+  resize: vertical;
+  box-sizing: border-box;
+  padding: 0.65rem 0.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "avenir next", avenir,
+    "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial,
+    sans-serif;
+}
+
+input[type="email"]:focus,
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border: 2px solid var(--green-focused);
+  padding: 0.5875rem 0.4375rem;
+}
+
+.MyCheckbox {
+  margin-top: 1rem;
+  position: relative;
+  height: 35px;
+  padding-top: 15px;
+}
+
+input[type="checkbox"] {
+  position: absolute;
+  top: 0px;
+}
+
+.checkboxLabel {
+  position: absolute;
+  bottom: 15px;
+  left: 30px;
+}
+
+input[type="checkbox"] {
+  display: inline-block;
+  height: 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid var(--gray-500);
+  width: 1rem;
+  align-self: center;
+  margin-right: 0.5rem;
+}
+
+input[type="checkbox"]:hover {
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="78.369" height="78.369" viewBox="0 0 78.369 78.369"><path fill="black" d="M78.05 19.015l-48.592 48.59c-.428.43-1.12.43-1.548 0L.32 40.016c-.427-.426-.427-1.12 0-1.547l6.704-6.704c.428-.427 1.12-.427 1.548 0l20.113 20.112 41.113-41.113c.43-.427 1.12-.427 1.548 0l6.703 6.704c.427.427.427 1.12 0 1.548z"/></svg>');
+  background-size: contain;
+}
+
+.error {
+  font-size: 12px;
+  margin-top: 0.25rem;
+}
+
+Form > button {
+  padding: 0.5rem 1.25rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  background-color: var(--dark-900);
+  border: 1px solid var(--dark-900);
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: inline-block;
+  line-height: initial;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+Form > button[type="submit"] {
+  margin-top: 1rem;
+}
+
+Form > button:hover {
+    cursor: pointer;
+}
+
+.error {
+    color: rgb(31, 31, 31);
+}
+
+label.checkbox {
+  font-weight: normal;
+}
+
+.PasswordInput {
+  position: relative;
+}
+
+.showPassword {
+  margin-top: 0px;
+  border-radius: 5px;
+  position: absolute;
+  top: 37px;
+  right: 9px;
+}
+
+.showPassword > svg {
+  font-size: 1rem;
+}
+
+.showPassword:hover {
+  cursor: pointer;
 }

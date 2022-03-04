@@ -1,9 +1,12 @@
 import "./App.css";
+import Navbar from "./components/Navbar";
+import RootNavigation from "./RootNavigation";
 
 function App() {
   return (
     <div className="App">
-      <h1>platy</h1>
+      <Navbar />
+      <RootNavigation />
     </div>
   );
 }
