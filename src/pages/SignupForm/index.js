@@ -2,7 +2,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { TextInput, PasswordInput } from "../../components";
 import { signupWs } from "../../services/auth-ws";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const SignupForm = () => {
   const navigate = useNavigate();
@@ -36,8 +36,8 @@ const SignupForm = () => {
         onSubmit={async (values, { setSubmitting }) => {
           try {
             const response = await signupWs(values);
-            if(response.status) {
-              navigate('/login');
+            if (response.status) {
+              navigate("/login");
             } else {
               // create a toaster
               console.log(response);
@@ -56,6 +56,9 @@ const SignupForm = () => {
           <button type="submit">Submit</button>
         </Form>
       </Formik>
+      <p>
+        Already have an account? <Link to="/login">Log in</Link>
+      </p>
     </div>
   );
 };

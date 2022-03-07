@@ -1,0 +1,17 @@
+.addlocationmap-container {
+  width: 100vw;
+  height: 40vh;
+}
+
+.mapboxgl-popup-content {
+  background-color: rgba(0, 0, 0, 0.83);
+  color: aliceblue;
+}
+.mapboxgl-popup-close-button {
+  color: aliceblue;
+}
+
+.mapboxgl-popup-tip, .mapboxgl-popup-anchor-top {
+  border-top-color: rgba(0, 0, 0, 0.83) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.83) !important;
+}

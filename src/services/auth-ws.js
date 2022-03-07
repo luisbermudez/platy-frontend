@@ -21,3 +21,6 @@ export const accountRemoval = (credentials) =>
     .post("/auth/accountremoval", credentials)
     .then(serverSuccessRes)
     .catch(serverFailRes);
+
+export const authVerifyWs = () =>
+  api.post("/auth/verifyauth").then(serverSuccessRes).catch(serverFailRes);
