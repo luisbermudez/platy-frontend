@@ -10,7 +10,7 @@ function IsAnon({ children }) {
   const hasVerified = useRef(false);
 
   useEffect(() => {
-    if (!hasVerified) {
+    if (!hasVerified.current) {
       dispatch(authverifyProcess());
       hasVerified.current = true;
     }
