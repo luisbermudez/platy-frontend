@@ -2,17 +2,18 @@ import { loginWs, logoutWs, authVerifyWs } from "../services/auth-ws";
 
 const LOADING = "platy/user/LOADING";
 const LOGIN_SUCCESS = "platy/user/LOGIN_SUCCESS";
-const LOGIN_ERROR = "platy/user/LOGIN_ERROR";
+const LOGIN_FAIL = "platy/user/LOGIN_FAIL";
 const CLEAN_LOGIN_ERROR = "platy/user/CLEAN_LOGIN_ERROR";
 const ERROR = "platy/user/ERROR";
 const LOGOUT = "platy/user/LOGOUT";
 const VERIFYAUTH = "platy/user/VERIFYAUTH";
+const VERIFYAUTH_FAIL = "platy/user/VERIFYAUTH_FAIL";
 
 const initialState = {
   user: null,
   loading: false,
   isLoggedIn: false,
-  loginError: undefined,
+  displayError: undefined,
   errorMessage: undefined,
   successMessage: undefined,
 };
@@ -20,23 +21,24 @@ const initialState = {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case LOADING:
-      return { ...state, loading: true };
+      return { ...state, loading: !state.loading };
     case LOGIN_SUCCESS:
       return {
         ...state,
-        loading: false,
         successMessage: action.payload,
+        errorMessage: undefined,
+        displayError: undefined,
       };
-    case LOGIN_ERROR:
-      return { ...state, loading: false, loginError: action.payload };
+    case LOGIN_FAIL:
+      return { ...state, displayError: action.payload };
     case CLEAN_LOGIN_ERROR:
-      return { ...state, loginError: undefined };
+      return { ...state, displayError: undefined };
     case ERROR:
-      return { ...state, loading: false, errorMessage: action.payload };
+      return { ...state, errorMessage: action.payload };
     case LOGOUT:
       return {
         ...state,
-        loading: false,
+        user: null,
         isLoggedIn: false,
         successMessage: action.payload,
       };
@@ -44,8 +46,14 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         user: action.payload,
-        loading: false,
         isLoggedIn: true,
+      };
+    case VERIFYAUTH_FAIL:
+      return {
+        ...state,
+        user: null,
+        isLoggedIn: false,
+        errorMessage: action.payload,
       };
     default:
       return state;
@@ -53,28 +61,33 @@ export default function reducer(state = initialState, action) {
 }
 
 export const getLoading = () => ({ type: LOADING });
-export const getLogin = (payload) => ({ type: LOGIN_SUCCESS, payload });
-export const getLoginError = (payload) => ({ type: LOGIN_ERROR, payload });
+export const getLoginSuccess = (payload) => ({ type: LOGIN_SUCCESS, payload });
+export const getLoginFail = (payload) => ({ type: LOGIN_FAIL, payload });
 export const getCleanLoginError = () => ({ type: CLEAN_LOGIN_ERROR });
 export const getError = (payload) => ({ type: ERROR, payload });
 export const getLogout = (payload) => ({ type: LOGOUT, payload });
 export const getVerifyAuth = (payload) => ({ type: VERIFYAUTH, payload });
+export const getVerifyAuthFail = (payload) => ({
+  type: VERIFYAUTH_FAIL,
+  payload,
+});
 
 export const loginProcess = (credentials, navigate) => async (dispatch) => {
   try {
-    await dispatch(getLoading());
+    dispatch(getLoading());
     const res = await loginWs(credentials);
     const { data, errorMessage, status } = res;
 
     if (status) {
-      await dispatch(getLogin(data));
-      dispatch(authverifyProcess());
-      navigate("/");
+      dispatch(getLoginSuccess(data));
+      await dispatch(authverifyProcess());
+      dispatch(getLoading());
+      return navigate("/");
     } else {
-      dispatch(getLoginError(errorMessage));
+      return dispatch(getLoginFail(errorMessage));
     }
   } catch (error) {
-    dispatch(getError(error));
+    return dispatch(getError(error));
   }
 };
 
@@ -86,26 +99,27 @@ export const logoutProcess = (navigate) => (dispatch) => {
 
     if (status) {
       dispatch(getLogout(data));
+      dispatch(getLoading());
       navigate("/");
     } else {
       dispatch(getError(errorMessage));
+      dispatch(getLoading());
     }
   });
 };
 
 export const authverifyProcess = () => async (dispatch) => {
   try {
-    await dispatch(getLoading());
     const res = await authVerifyWs();
     const { data, errorMessage, status } = res;
 
     if (status) {
-      dispatch(getVerifyAuth(data.user));
+      return dispatch(getVerifyAuth(data.user));
     } else {
-      dispatch(getError(errorMessage));
+      return dispatch(getVerifyAuthFail(errorMessage));
     }
   } catch (error) {
-    dispatch(getError(error));
+    return dispatch(getVerifyAuthFail(error));
   }
 };
 

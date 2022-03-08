@@ -1,13 +1,12 @@
-import { useEffect, useRef } from "react";
 import { authverifyProcess } from "../../redux/UserDuck";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import { useRef, useEffect } from "react";
 
 function IsPrivate({ children }) {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
-  const loading = useSelector((state) => state.user.loading);
-  const dispatch = useDispatch();
   const hasVerified = useRef(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!hasVerified.current) {
@@ -15,8 +14,6 @@ function IsPrivate({ children }) {
       hasVerified.current = true;
     }
   });
-
-  if (loading) return;
 
   if (!isLoggedIn) {
     return <Navigate to="/login" />;

@@ -5,17 +5,53 @@ import {
   MapLocations,
   MapAddLocation,
   Profile,
+  Home,
 } from "./pages";
-import { IsPrivate, IsAnon } from "./components";
+import { IsPrivate, IsAnon, CallAuthVerify } from "./components";
 
-function RootNavigation() {
+function RootNavigation({ hasVerified }) {
   return (
     <Routes>
-      <Route path="/" element={<h2>Home</h2>} />
-      <Route path="/map" element={<MapLocations />} />
-      <Route path="/discover" element={<h1>Discover</h1>} />
-      <Route path="/add-location" element={<MapAddLocation />} />
-      <Route path="/events" element={<h1>Events</h1>} />
+      <Route
+        path="/"
+        element={
+          <CallAuthVerify>
+            <Home />
+          </CallAuthVerify>
+        }
+      />
+      <Route
+        path="/map"
+        element={
+          <CallAuthVerify>
+            <MapLocations />
+          </CallAuthVerify>
+        }
+      />
+      <Route
+        path="/discover"
+        element={
+          <CallAuthVerify>
+            <h1>Discover</h1>
+          </CallAuthVerify>
+        }
+      />
+      <Route
+        path="/add-location"
+        element={
+          <CallAuthVerify>
+            <MapAddLocation />
+          </CallAuthVerify>
+        }
+      />
+      <Route
+        path="/events"
+        element={
+          <CallAuthVerify>
+            <h1>Events</h1>
+          </CallAuthVerify>
+        }
+      />
 
       {/* Private routes */}
       <Route

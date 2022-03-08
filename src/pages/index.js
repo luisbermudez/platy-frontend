@@ -3,3 +3,4 @@ export { default as LoginForm } from "./LoginForm";
 export { default as MapLocations } from "./MapLocations";
 export { default as MapAddLocation } from "./MapAddLocation";
 export { default as Profile } from "./Profile";
+export { default as Home } from "./Home";

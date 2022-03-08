@@ -1,25 +1,37 @@
 import "./App.css";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { authverifyProcess } from "./redux/UserDuck";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Navbar, Sidebar } from "./components";
 import RootNavigation from "./RootNavigation";
 
 function App() {
   const dispatch = useDispatch();
-  const loading = useSelector((state) => state.user.loading);
   const hasVerified = useRef(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if(!hasVerified.current) {
+    if (!hasVerified.current) {
       dispatch(authverifyProcess());
       hasVerified.current = true;
     }
   });
 
+  useEffect(() => {
+    const id = setTimeout(() => {
+      setLoading(false);
+    }, 800);
+
+    return () => {
+      clearTimeout(id);
+    };
+  });
+
   return (
     <div className="App">
-      {!loading && (
+      {loading ? (
+        <h2>Loading ...</h2>
+      ) : (
         <>
           <Navbar />
           <Sidebar />
