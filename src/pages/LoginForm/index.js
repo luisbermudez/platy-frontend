@@ -9,7 +9,7 @@ import { useEffect, useRef } from "react";
 const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const loginError = useSelector((state) => state.user.loginError);
+  const displayError = useSelector((state) => state.user.displayError);
   const errorDisplayed = useRef(false);
 
   useEffect(() => () => {
@@ -49,7 +49,7 @@ const LoginForm = () => {
           <button type="submit">Submit</button>
         </Form>
       </Formik>
-      {loginError && <h4>{loginError}</h4>}
+      {displayError && <h4>{displayError}</h4>}
       <br />
       <br />
       <p>
