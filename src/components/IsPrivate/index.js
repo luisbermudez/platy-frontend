@@ -9,10 +9,10 @@ function IsPrivate({ children }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!hasVerified.current) {
+    // if (!hasVerified.current) {
       dispatch(authverifyProcess());
-      hasVerified.current = true;
-    }
+      // hasVerified.current = true;
+  //   }
   });
 
   if (!isLoggedIn) {
