@@ -2,22 +2,12 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { TextInput, PasswordInput } from "../../components";
 import { Link, useNavigate } from "react-router-dom";
-import { loginProcess, cleanLoginErrorProcess } from "../../redux/UserDuck";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useRef } from "react";
+import { loginWs } from "../../services/auth-ws";
+import { useState } from "react";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const displayError = useSelector((state) => state.user.displayError);
-  const errorDisplayed = useRef(false);
-
-  useEffect(() => () => {
-    if (!errorDisplayed.current) {
-      dispatch(cleanLoginErrorProcess());
-      errorDisplayed.current = true;
-    }
-  });
+  const [loginError, setLoginError] = useState(null);
 
   return (
     <div className="formContainer">
@@ -38,8 +28,19 @@ const LoginForm = () => {
             )
             .required("This field is required."),
         })}
-        onSubmit={(values, { setSubmitting }) => {
-          dispatch(loginProcess(values, navigate));
+        onSubmit={async (values, { setSubmitting }) => {
+          try {
+            const res = await loginWs(values);
+            const { errorMessage, status } = res;
+            if (status) {
+              navigate("/");
+            } else {
+              setLoginError(errorMessage);
+            }
+          } catch (error) {
+            // evetually, add some general error handler
+            console.log(error);
+          }
         }}
       >
         <Form autoComplete="off">
@@ -49,7 +50,7 @@ const LoginForm = () => {
           <button type="submit">Submit</button>
         </Form>
       </Formik>
-      {displayError && <h4>{displayError}</h4>}
+      {loginError && <h4>{loginError}</h4>}
       <br />
       <br />
       <p>
