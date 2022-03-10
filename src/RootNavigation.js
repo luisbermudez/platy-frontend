@@ -8,8 +8,10 @@ import {
   Home,
 } from "./pages";
 import { IsPrivate, IsAnon, CallAuthVerify } from "./components";
+import { Navigate } from "react-router-dom";
 
-function RootNavigation({ hasVerified }) {
+function RootNavigation() {
+  
   return (
     <Routes>
       <Route
@@ -96,6 +98,8 @@ function RootNavigation({ hasVerified }) {
           </IsAnon>
         }
       />
+
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 }

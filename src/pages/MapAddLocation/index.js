@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
+import { videolocationCreateWs } from "../../services/videolocation-ws";
 import './mapAddLocation.css'
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 
@@ -54,10 +55,21 @@ function Map() {
 }
 
 function MapAddLocation() {
+
+  const handleCall = async () => {
+    try {
+      const res = await videolocationCreateWs();
+      console.log(res);
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
   return (
     <>
       <h1>Add A New Location</h1>
       <Map />
+      <button onClick={handleCall}>Call server</button>
     </>
   );
 }

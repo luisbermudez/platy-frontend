@@ -1,20 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import { logoutProcess } from "../../redux/UserDuck";
 import { useDispatch } from "react-redux";
+import { logout } from "../../redux/authSlice";
 
 const Logout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const logoutExecute = () => {
-    dispatch(logoutProcess(navigate));
-  };
-
-  return (
-    <>
-      <button onClick={logoutExecute}>Logout</button>
-    </>
-  );
+  return <button onClick={() => dispatch(logout(navigate))}>Logout</button>;
 };
 
 export default Logout;
