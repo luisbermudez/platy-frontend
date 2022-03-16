@@ -10,6 +10,9 @@ export const authSlice = createSlice({
     user: null,
   },
   reducers: {
+    setError: (state, action) => {
+      state.errorMessage = action.payload;
+    },
     setAuthorized: (state, action) => {
       state.isLoggedIn = true;
       state.user = action.payload;
@@ -29,17 +32,21 @@ export const authSlice = createSlice({
   },
 });
 
-export const { setAuthorized, setUnauthorized, logoutSuccess, logoutFail } =
-  authSlice.actions;
+export const {
+  setError,
+  setAuthorized,
+  setUnauthorized,
+  logoutSuccess,
+  logoutFail,
+} = authSlice.actions;
 
-export const authVerify = () => async (dispatch, getState) => {
+export const authVerify = () => async (dispatch) => {
   try {
     const res = await authVerifyWs();
     const { data, errorMessage, status } = res;
-    status
+    return status
       ? dispatch(setAuthorized(data.user))
       : dispatch(setUnauthorized(errorMessage));
-      return getState();
   } catch (error) {
     return dispatch(setUnauthorized(error));
   }
@@ -49,9 +56,11 @@ export const logout = () => async (dispatch) => {
   try {
     const res = await logoutWs();
     const { status, errorMessage } = res;
-    status ? dispatch(logoutSuccess()) : dispatch(logoutFail(errorMessage));
+    return status
+      ? dispatch(logoutSuccess())
+      : dispatch(logoutFail(errorMessage));
   } catch (error) {
-    dispatch(logoutFail(error));
+    return dispatch(logoutFail(error));
   }
 };
 

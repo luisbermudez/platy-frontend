@@ -1,0 +1,29 @@
+.small-modal .modal-dialog {
+  max-width: 350px;
+  text-align: center;
+}
+
+.small-modal .modal-delete {
+    color: rgb(255, 0, 64) !important;
+}
+
+.small-modal .modal-content {
+  border: none;
+  border-radius: 12px;
+}
+
+.small-modal .modal-content h6:hover {
+  cursor: pointer;
+}
+
+.small-modal .modal-container {
+  height: 80vh;
+}
+
+.small-modal .divided-container {
+  display: flex;
+}
+
+.small-modal .divided-container > div {
+  width: 50%;
+}

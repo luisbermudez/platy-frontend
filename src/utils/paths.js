@@ -1,0 +1,12 @@
+export const HOMEPAGE = "/";
+export const MAP = "/map";
+export const DISCOVER = "/discover";
+export const ADDLOCATION = "/add-location";
+export const EVENTS = "/events";
+export const PROFILE = "/profile";
+export const MYLOCATIONS = "/mylocations";
+export const FAVORITES = "/favorites";
+export const SIGNUP = "/signup";
+export const LOGIN = "/login";
+export const DETAILS = "/details/:_id"
+export const EDIT = "/edit/:_idToEdit"
