@@ -13,11 +13,11 @@ function Sidebar() {
       {isLoggedIn && (
         <>
           <Link to="/mylocations">My Locations | </Link>
-          <Link to="/favorites">Favs | </Link>
+          <Link to="/favorites">Favorites</Link>
         </>
       )}
 
-      <Link to="/events">Events</Link>
+      {/* <Link to="/events">Events</Link> */}
     </nav>
   );
 }

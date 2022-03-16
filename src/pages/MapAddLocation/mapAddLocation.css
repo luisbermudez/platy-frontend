@@ -4,14 +4,31 @@
 }
 
 .mapboxgl-popup-content {
-  background-color: rgba(0, 0, 0, 0.83);
-  color: aliceblue;
+  background-color: rgba(0, 0, 0, 0.82);
+  color: white;
+}
+.mapboxgl-popup-content > h3 {
+  margin: 4px 5px 0;
 }
 .mapboxgl-popup-close-button {
   color: aliceblue;
+  font-size: 1rem;
+  margin: 2px 5px 0 0;
 }
 
-.mapboxgl-popup-tip, .mapboxgl-popup-anchor-top {
-  border-top-color: rgba(0, 0, 0, 0.83) !important;
-  border-bottom-color: rgba(0, 0, 0, 0.83) !important;
+.mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
+  border-bottom-color: rgba(0, 0, 0, 0.82);
+}
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
+  border-top-color: rgba(0, 0, 0, 0.82);
+}
+.mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+  border-right-color: rgba(0, 0, 0, 0.82);
+}
+.mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+  border-left-color: rgba(0, 0, 0, 0.82);
 }

@@ -1,0 +1,20 @@
+.videolocations-modal .modal-dialog {
+  max-width: 80vw;
+}
+
+.videolocations-modal .modal-content {
+  border: none;
+  border-radius: 12px;
+}
+
+.videolocations-modal .modal-container {
+  height: 80vh;
+}
+
+.videolocations-modal .divided-container {
+  display: flex;
+}
+
+.videolocations-modal .divided-container > div {
+  width: 50%;
+}

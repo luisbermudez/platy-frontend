@@ -30,7 +30,7 @@ const SignupForm = () => {
             )
             .required("This field is required."),
           confirmPassword: Yup.string()
-            .oneOf([Yup.ref("password"), null], "Passwords must match")
+            .oneOf([Yup.ref("password"), null], "Passwords does not match")
             .required("This field is required."),
         })}
         onSubmit={async (values, { setSubmitting }) => {

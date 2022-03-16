@@ -1,37 +1,38 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 html {
-    font-size: 16px;
-    font-family: -apple-system, BlinkMacSystemFont, "avenir next", avenir,
-        "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial,
-        sans-serif;
-    margin: 0;
-    padding: 0;
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, "avenir next", avenir,
+    "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial,
+    sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 :root {
-    --dark-900: #1f1f1f;
-    --dark-800: #303030;
-    --gray-700: #5a5a5a;
-    --gray-500: #b9b9b9;
-    --green-focused: #65eccb;
-    --white: white;
-    --text-color: var(--dark-800);
+  --dark-900: #1f1f1f;
+  --dark-800: #303030;
+  --gray-700: #5a5a5a;
+  --gray-500: #b9b9b9;
+  --green-focused: #65eccb;
+  /* --green-focused: #dc65ec; */
+  --white: white;
+  --text-color: var(--dark-800);
 }
 
 body {
-    padding: 0;
-    margin: 0;
-    font-weight: 400;
-    color: var(--text-color);
-    caret-color: var(--text-color);
-    line-height: 1.563;
+  padding: 0;
+  margin: 0;
+  font-weight: 400;
+  color: var(--text-color);
+  caret-color: var(--text-color);
+  line-height: 1.563;
 }
 
 h1 {
@@ -54,10 +55,12 @@ label {
   margin-top: 1rem;
 }
 
-input[type="email"],
+Form > input[type="email"],
 input[type="password"],
-input[type="text"],
-input[type="number"] {
+Form input[type="text"],
+Form > input[type="number"],
+Form > input[type="file"],
+.form-control {
   padding: 0.65rem 0.5rem;
   font-size: 1rem;
   border: 1px solid var(--gray-500);
@@ -67,22 +70,24 @@ input[type="number"] {
   appearance: none;
 }
 
-input[type="email"]::placeholder,
-input[type="text"]::placeholder,
-input[type="number"]::placeholder,
+Form > input[type="email"]::placeholder,
+Form input[type="text"]::placeholder,
+Form > input[type="number"]::placeholder,
 input[type="password"]::placeholder,
 select,
 textarea {
-    color: var(--gray-700);
+  color: var(--gray-700);
 }
 
-input[type="email"],
-input[type="text"],
-input[type="number"],
+Form > input[type="email"],
+Form input[type="text"],
+Form > input[type="number"],
 input[type="password"],
+Form > input[type="file"],
 select,
 textarea {
   width: 100%;
+  color: var(--gray-800);
 }
 
 select {
@@ -117,12 +122,14 @@ textarea {
     sans-serif;
 }
 
-input[type="email"]:focus,
-input[type="text"]:focus,
-input[type="number"]:focus,
+Form > input[type="email"]:focus,
+Form input[type="text"]:focus,
+Form > input[type="number"]:focus,
 input[type="password"]:focus,
+Form > input[type="file"]:focus,
 select:focus,
-textarea:focus {
+textarea:focus,
+.form-control:focus {
   outline: none;
   border: 2px solid var(--green-focused);
   padding: 0.5875rem 0.4375rem;
@@ -199,11 +206,11 @@ Form > button[type="submit"] {
 }
 
 Form > button:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .error {
-    color: rgb(31, 31, 31);
+  color: rgb(31, 31, 31);
 }
 
 label.checkbox {
@@ -218,7 +225,7 @@ label.checkbox {
   margin-top: 0px;
   border-radius: 5px;
   position: absolute;
-  top: 37px;
+  top: 40px;
   right: 9px;
 }
 
@@ -235,5 +242,9 @@ ____________________*/
 
 .locationmap-container {
   width: 100vw;
-  height: 80vh;
+  height: 90vh;
+}
+
+.upload-file-disabled {
+  pointer-events: none;
 }

@@ -4,3 +4,6 @@ export { default as MapLocations } from "./MapLocations";
 export { default as MapAddLocation } from "./MapAddLocation";
 export { default as Profile } from "./Profile";
 export { default as Home } from "./Home";
+export { default as MyLocations } from "./MyLocations";
+export { default as VideolocationDetails } from "./VideolocationDetails";
+export { default as EditVideolocation } from "./EditVideolocation";
