@@ -10,10 +10,14 @@ function MapAddLocation() {
   const mapContainer = useRef(null);
   const mapAddLocation = useRef(null);
   const geocoder = useRef(null);
+  const navControl = useRef(null);
+  const marker = useRef(null);
 
   const [lng, setLng] = useState(-73.9615);
   const [lat, setLat] = useState(40.7801);
   const [zoom, setZoom] = useState(12.15);
+  const [bearing, setBearing] = useState(0);
+  // const [pitch, setPitch] = useState(62);
   const [lngPop, setLngPop] = useState(null);
   const [latPop, setLatPop] = useState(null);
 
@@ -23,7 +27,14 @@ function MapAddLocation() {
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/streets-v11",
       center: [lng, lat],
+      around: [lng, lat],
+      // pitch: [pitch],
+      bearing: [bearing],
       zoom: zoom,
+    });
+
+    navControl.current = new mapboxgl.NavigationControl({
+      visualizePitch: true,
     });
 
     geocoder.current = new MapboxGeocoder({
@@ -32,7 +43,24 @@ function MapAddLocation() {
       mapboxgl: mapboxgl,
     });
 
-    mapAddLocation.current.addControl(geocoder.current);
+    marker.current = new mapboxgl.Marker({
+      color: "#ec127f",
+    });
+
+    mapAddLocation.current.addControl(geocoder.current, "top-left");
+    mapAddLocation.current.addControl(navControl.current, "bottom-right");
+    mapAddLocation.current.addControl(new mapboxgl.FullscreenControl());
+
+    mapAddLocation.current.on("style.load", () => {
+      mapAddLocation.current.on("click", (e) => {
+        const longitude = e.lngLat.lng.toFixed(4);
+        const latitude = e.lngLat.lat.toFixed(4);
+        const coordinates = e.lngLat;
+        marker.current.setLngLat(coordinates).addTo(mapAddLocation.current);
+        setLngPop(longitude);
+        setLatPop(latitude);
+      });
+    });
   });
 
   useEffect(() => {
@@ -41,28 +69,32 @@ function MapAddLocation() {
       setLng(mapAddLocation.current.getCenter().lng.toFixed(4));
       setLat(mapAddLocation.current.getCenter().lat.toFixed(4));
       setZoom(mapAddLocation.current.getZoom().toFixed(2));
+      setBearing(mapAddLocation.current.getBearing());
+      // setPitch(mapAddLocation.current.getPitch());
       // setLngPop(lng);
       // setLatPop(lat);
     });
 
-    mapAddLocation.current.on("style.load", () => {
-      mapAddLocation.current.on("click", (e) => {
-        const longitude = e.lngLat.lng.toFixed(4);
-        const latitude = e.lngLat.lat.toFixed(4);
-        const coordinates = e.lngLat;
-        new mapboxgl.Popup()
-          .setLngLat(coordinates)
-          .setHTML(`<h3>New location 😎</h3>`)
-          .addTo(mapAddLocation.current);
-        setLngPop(longitude);
-        setLatPop(latitude);
-      });
-    });
+    // marker.current = new mapboxgl.Marker();
+
+    // mapAddLocation.current.on("style.load", () => {
+    //   mapAddLocation.current.on("click", (e) => {
+    //     const longitude = e.lngLat.lng.toFixed(4);
+    //     const latitude = e.lngLat.lat.toFixed(4);
+    //     const coordinates = e.lngLat;
+    //     // new mapboxgl.Popup()
+    //     //   .setLngLat(coordinates)
+    //     //   .setHTML(`<h3>New location 😎</h3>`)
+    //     //   .addTo(mapAddLocation.current);
+    //     marker.current.setLngLat(coordinates).addTo(mapAddLocation.current);
+    //     setLngPop(longitude);
+    //     setLatPop(latitude);
+    //   });
+    // });
   });
 
   return (
     <div>
-      <h1>Add A New Location</h1>
       <div ref={mapContainer} className="addlocationmap-container" />
       <p>
         Use the map to locate the spot you want to add and click on it, a popup

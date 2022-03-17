@@ -1,25 +1,40 @@
 import { Button, Modal } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { videolocationDeleteWs } from "../../services/videolocation-ws";
+import { deleteVideolocationProcess } from "../../redux/videolocationSlice";
+import { useDispatch } from "react-redux";
 import "./SmallCustomizedModal.css";
 
 const EditVideolocationModal = ({ locationId, publicId }) => {
+  const dispatch = useDispatch();
   const [modalShow, setModalShow] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const timeoutId = useRef(null);
   const navigate = useNavigate();
-  let timeoutId;
 
   const handleDelete = () => {
-    videolocationDeleteWs({ _id: locationId, public_id: publicId });
-    timeoutId = setTimeout(() => {
-      return navigate("/mylocations");
-    }, 2e3);
+    setIsDeleting(true);
+    dispatch(
+      deleteVideolocationProcess(
+        {
+          _id: locationId,
+          public_id: publicId,
+        },
+        navigate
+      )
+    );
+    timeoutId.current = setTimeout(() => {
+      navigate("/mylocations");
+    }, 1.5e3);
   };
 
-  useEffect(() => () => {
-    clearTimeout(timeoutId);
-  });
+  useEffect(
+    () => () => {
+      clearTimeout(timeoutId.current);
+    },
+    []
+  );
 
   return (
     <>
@@ -34,7 +49,13 @@ const EditVideolocationModal = ({ locationId, publicId }) => {
         className="small-modal"
       >
         <Modal.Body>
-          {showDeleteModal ? (
+          {isDeleting ? (
+            <>
+              <hr />
+              <h4>Deleting location ...</h4>
+              <hr />
+            </>
+          ) : showDeleteModal ? (
             <>
               <h4>Delete Post?</h4>
               <p>Are you sure you want to delete this post?</p>

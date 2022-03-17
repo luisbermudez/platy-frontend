@@ -5,6 +5,7 @@
 
 .mapboxgl-popup-content {
   background-color: rgba(0, 0, 0, 0.82);
+  color: rgb(236, 18, 127);
   color: white;
 }
 .mapboxgl-popup-content > h3 {
