@@ -1,3 +1,49 @@
-.container {
- height: 100vh;
+.videos-container {
+  padding: 30px;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-around;
+}
+
+.videocard-container {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 260px;
+  height: 370px;
+  border-radius: 0 0 20px 20px;
+  box-shadow: rgba(149, 157, 165, 0.18) 0px 8px 24px;
+}
+
+.videos-container .videocard-container video {
+  width: 100%;
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  object-fit: cover;
+  border-radius: 20px 20px 0 0;
+  height: 230px;
+  transition: height 0.15s ease-out;
+}
+
+.videos-container .videocard-container video:hover {
+  height: 270px;
+  transition: height 0.25s ease-in;
+}
+
+.video-description {
+  background-color: transparent;
+  color: rgba(8, 8, 8, 0.877);
+  margin: 0;
+  padding: 15px;
+  border-top: none;
+}
+
+.video-description h6 {
+  margin: 0;
+  padding: 0;
+}
+
+.video-description p {
+  color: rgb(168, 168, 168);
 }

@@ -4,16 +4,21 @@
 }
 
 .small-modal .modal-delete {
-    color: rgb(255, 0, 64) !important;
+    color: rgb(255, 0, 64);
 }
 
 .small-modal .modal-content {
   border: none;
   border-radius: 12px;
+  padding: 10px 0px;
 }
 
 .small-modal .modal-content h6:hover {
   cursor: pointer;
+}
+
+.small-modal .modal-content h6 {
+  margin: 0;
 }
 
 .small-modal .modal-container {
@@ -26,4 +31,9 @@
 
 .small-modal .divided-container > div {
   width: 50%;
+}
+
+.removing-h4 {
+  margin: 0;
+  margin-top: 20px;
 }

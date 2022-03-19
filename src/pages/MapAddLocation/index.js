@@ -17,7 +17,7 @@ function MapAddLocation() {
   const [lat, setLat] = useState(40.7801);
   const [zoom, setZoom] = useState(12.15);
   const [bearing, setBearing] = useState(0);
-  // const [pitch, setPitch] = useState(62);
+  const [pitch, setPitch] = useState(62);
   const [lngPop, setLngPop] = useState(null);
   const [latPop, setLatPop] = useState(null);
 
@@ -28,7 +28,7 @@ function MapAddLocation() {
       style: "mapbox://styles/mapbox/streets-v11",
       center: [lng, lat],
       around: [lng, lat],
-      // pitch: [pitch],
+      pitch: [pitch],
       bearing: [bearing],
       zoom: zoom,
     });
@@ -70,7 +70,7 @@ function MapAddLocation() {
       setLat(mapAddLocation.current.getCenter().lat.toFixed(4));
       setZoom(mapAddLocation.current.getZoom().toFixed(2));
       setBearing(mapAddLocation.current.getBearing());
-      // setPitch(mapAddLocation.current.getPitch());
+      setPitch(mapAddLocation.current.getPitch());
       // setLngPop(lng);
       // setLatPop(lat);
     });
@@ -94,13 +94,17 @@ function MapAddLocation() {
   });
 
   return (
-    <div>
-      <div ref={mapContainer} className="addlocationmap-container" />
-      <p>
-        Use the map to locate the spot you want to add and click on it, a popup
-        will appear.
-      </p>
-      <AddLocationForm coordinateLng={lngPop} coordinateLat={latPop} />
+    <div className="MapAddLocation">
+      <div>
+        <AddLocationForm coordinateLng={lngPop} coordinateLat={latPop} />
+      </div>
+      <div className="map-div">
+        <div ref={mapContainer} className="addlocationmap-container" />
+        <p>
+          Use the map to locate the spot you want to add and click on it, a
+          pin will appear.
+        </p>
+      </div>
     </div>
   );
 }

@@ -42,6 +42,7 @@ const AddLocationForm = ({ coordinateLng, coordinateLat }) => {
 
   return (
     <div className="formContainer">
+    <h2>Upload your video</h2>
       <Formik
         initialValues={{
           title: "",
@@ -94,7 +95,7 @@ const AddLocationForm = ({ coordinateLng, coordinateLat }) => {
               {uploadError && <h2>{uploadError}</h2>}
               <TextInput label="Title" name="title" type="text" />
               <TextArea label="Description" name="description" />
-              <button type="submit">Add Location</button>
+              <button type="submit">Upload</button>
             </>
           )}
         </Form>

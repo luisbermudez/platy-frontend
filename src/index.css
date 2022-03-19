@@ -60,7 +60,9 @@ input[type="password"],
 Form input[type="text"],
 Form > input[type="number"],
 Form > input[type="file"],
-.form-control {
+.form-control,
+.MainSearchBar {
+  background-color: white;
   padding: 0.65rem 0.5rem;
   font-size: 1rem;
   border: 1px solid var(--gray-500);
@@ -229,8 +231,9 @@ label.checkbox {
   right: 9px;
 }
 
-.showPassword > svg {
-  font-size: 1rem;
+.Eye-EyeLash {
+  font-size: 1.2rem;
+  color: #727272;
 }
 
 .showPassword:hover {
@@ -241,10 +244,26 @@ label.checkbox {
 ____________________*/
 
 .locationmap-container {
-  width: 100vw;
-  height: 80vh;
+  width: 88vw;
+  height: 92vh;
 }
 
 .upload-file-disabled {
   pointer-events: none;
+}
+
+/* Buttons
+____________________ */
+
+button {
+  text-align: center;
+  border: none;
+  border-radius: 12px;
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  width: 120px;
+  height: 40px;
+  margin: 5px 6px;
+  box-sizing: border-box;
 }

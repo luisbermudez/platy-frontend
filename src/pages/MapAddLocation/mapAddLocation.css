@@ -1,6 +1,15 @@
+.MapAddLocation {
+  display: flex;
+}
+
 .addlocationmap-container {
-  width: 100vw;
-  height: 40vh;
+  width: 58vw;
+  height: 52vh;
+}
+
+.map-div {
+  width: 58vw;
+  padding-top: 70px;
 }
 
 .mapboxgl-popup-content {

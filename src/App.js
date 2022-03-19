@@ -19,25 +19,31 @@ function App() {
 
   useEffect(() => {
     const id = setTimeout(() => {
-      setLoading(false)
-    }, 1e3)
+      setLoading(false);
+    }, 1e3);
     return () => {
-      clearTimeout(id)
-    }
-  }, [])
+      clearTimeout(id);
+    };
+  }, []);
 
   return (
-    <>
+    <div className="App">
       {loading ? (
         <h2>Loading ...</h2>
       ) : (
-        <div className="App">
+        <>
           <Navbar />
-          <Sidebar />
-          <RootNavigation />
-        </div>
+          <div className="sidebar-rootnav-container">
+            <div className="sidebar-container" sm={1}>
+              <Sidebar />
+            </div>
+            <div className="rootnav-container" sm={11}>
+              <RootNavigation />
+            </div>
+          </div>
+        </>
       )}
-    </>
+    </div>
   );
 }
 

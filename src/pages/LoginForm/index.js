@@ -9,6 +9,21 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState(null);
 
+  const handleSubmit = async (values) => {
+    try {
+      const res = await loginWs(values);
+      const { errorMessage, status } = res;
+      if (status) {
+        navigate("/");
+      } else {
+        setLoginError(errorMessage);
+      }
+    } catch (error) {
+      // evetually, add some general error handler
+      console.log(error);
+    }
+  };
+
   return (
     <div className="formContainer">
       <h1>Log In</h1>
@@ -28,19 +43,8 @@ const LoginForm = () => {
             )
             .required("This field is required."),
         })}
-        onSubmit={async (values, { setSubmitting }) => {
-          try {
-            const res = await loginWs(values);
-            const { errorMessage, status } = res;
-            if (status) {
-              navigate("/");
-            } else {
-              setLoginError(errorMessage);
-            }
-          } catch (error) {
-            // evetually, add some general error handler
-            console.log(error);
-          }
+        onSubmit={async (values) => {
+          handleSubmit(values);
         }}
       >
         <Form autoComplete="off">

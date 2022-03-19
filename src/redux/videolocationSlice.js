@@ -42,6 +42,9 @@ export const videolocationSlice = createSlice({
     setVideolocationDetails: (state, action) => {
       state.videolocationDetails = action.payload;
     },
+    clearVideolocationDetails: (state) => {
+      state.videolocationDetails = null;
+    }
   },
 });
 
@@ -53,6 +56,7 @@ export const {
   setCurrentUserVideolocations,
   clearCurrentUserVideolocations,
   setVideolocationDetails,
+  clearVideolocationDetails,
 } = videolocationSlice.actions;
 
 export const videolocationsCall = () => async (dispatch, getGlobal) => {
@@ -81,13 +85,15 @@ export const currentUserVideolocationCall = (user) => async (dispatch) => {
   }
 };
 
-export const videolocationDetailsProcess = (_id) => async (dispatch) => {
+export const videolocationDetailsProcess = (_id, navigate) => async (dispatch) => {
   try {
     const res = await videolocationDetailsWs({ _id });
     const { data, errorMessage, status } = res;
-    return status
-      ? dispatch(setVideolocationDetails(data.dbLocation))
-      : dispatch(setError(errorMessage));
+    if (status) {
+      return dispatch(setVideolocationDetails(data.dbLocation));
+    }
+    dispatch(setError(errorMessage));
+    return navigate("/")
   } catch (error) {
     return dispatch(setError(error));
   }
@@ -103,6 +109,8 @@ export const deleteVideolocationProcess =
       });
       if (status) {
         dispatch(deleteVideolocation(_id));
+        dispatch(clearVideolocationDetails());
+        return navigate("/mylocations");
       }
       return dispatch(setError(errorMessage));
     } catch (error) {

@@ -100,7 +100,6 @@ function Map() {
 function MapLocations() {
   return (
     <>
-      <h1>Locations</h1>
       <Map mapName={"locations"} />
     </>
   );
