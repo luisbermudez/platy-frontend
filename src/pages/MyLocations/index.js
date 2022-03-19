@@ -2,8 +2,7 @@ import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { currentUserVideolocationCall } from "../../redux/videolocationSlice";
 // import VideolocationModalDetails from "../../components/VideolocationModalDetails";
-import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const MyLocations = () => {
   const user = useSelector((state) => state.auth.user);
@@ -11,6 +10,7 @@ const MyLocations = () => {
     (state) => state.videolocation.currentUserVideolocations
   );
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const hasVerified = useRef(false);
 
   useEffect(() => {
@@ -28,12 +28,11 @@ const MyLocations = () => {
           currentUserVideolocations.map((e) => (
             <div key={e._id}>
               <h2>{e.title}</h2>
-              <video src={e.videoUrl} height="300" />
+              <p>{e.description}</p>
+              <video src={e.videoUrl} controls height="300" />
               <br />
               {/* <VideolocationModalDetails _id={e._id} /> */}
-              <Link to={`/details/${e._id}`}>
-                <Button>Details</Button>
-              </Link>
+              <button onClick={() => navigate(`/edit/${e._id}`)}>Edit</button>
             </div>
           ))}
       </div>

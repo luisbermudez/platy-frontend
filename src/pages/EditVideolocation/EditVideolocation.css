@@ -1,3 +1,73 @@
-.form-control:focus{
-    box-shadow: none;
+.form-control:focus {
+  box-shadow: none;
+}
+
+.TrashFill {
+  color: rgb(240, 64, 93);
+  font-size: 1.4rem;
+}
+
+.PencilSquare {
+  margin-left: 50px;
+}
+
+.editSection {
+  display: flex;
+}
+
+.editSection div:nth-child(1) {
+  padding: 10px 30px;
+  border-right: 1px solid rgb(212, 212, 212);
+  line-height: 100%;
+}
+
+.editMainContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.CopyIcon {
+  font-size: 1.5rem;
+  margin: 0 20px;
+  color: rgb(95, 95, 95);
+}
+
+.CopyIcon:hover {
+  color: black;
+  cursor: pointer;
+}
+.tooltipEdit {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltipEdit span {
+    font-size: 12px;
+}
+
+.tooltipEdit .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgba(49, 49, 49, 0.877);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 2px;
+  position: absolute;
+  z-index: 1;
+  bottom: 120%;
+  left: 70%;
+  margin-left: -75px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltipEdit:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.urlHT {
+    font-size: 15px;
+    font-weight: 300;
 }

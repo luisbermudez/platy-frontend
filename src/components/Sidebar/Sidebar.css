@@ -1,0 +1,22 @@
+.sidebar {
+  padding: 30px 10px 0;
+  height: 100vh;
+  background-color: white;
+  box-shadow: 2px 0 8px -4px rgba(0, 0, 0, 0.075);
+
+}
+
+.sidebar div a {
+  color: black;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.sidebar div svg {
+  color: black;
+  width: 35px;
+  height: 35px;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 15px 18px 20px 0;
+}

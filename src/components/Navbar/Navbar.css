@@ -1,0 +1,184 @@
+@import url("https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Yanone+Kaffeesatz:wght@700&display=swap");
+
+/* Navbar */
+.Navbar {
+  width: 100vw;
+  height: 70px;
+  position: fixed;
+  top: 0;
+  display: flex;
+  background-color: white;
+  z-index: 1;
+  border-bottom: 1px solid rgba(223, 223, 223, 0.575);
+}
+
+/* Navbar components */
+/* Platy */
+.platy-nav-container {
+  width: 12vw;
+  text-align: center;
+  line-height: 60px;
+}
+
+.platy {
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 2.6rem;
+  font-family: "Yanone Kaffeesatz", sans-serif;
+  font-family: "Shadows Into Light", cursive;
+}
+
+.platy:hover {
+  color: black;
+}
+
+/* Searchbar */
+.searchbar-nav-container {
+  width: 66vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.MainSearchBar::placeholder {
+  color: rgb(156, 156, 156);
+}
+
+.MainSearchBar {
+  visibility: hidden;
+  width: 30vw;
+  border: 1px solid rgb(121, 121, 121);
+}
+
+.MainSearchBar:focus {
+  outline: none;
+  border: 2px solid var(--green-focused);
+  padding: 0.5875rem 0.4375rem;
+}
+
+.Search {
+  visibility: hidden;
+  color: rgb(156, 156, 156);
+  position: absolute;
+  right: 22vw;
+}
+
+/* Profile */
+.nav-avatar {
+  height: 34px;
+  position: absolute;
+  top: 19px;
+  right: 74px;
+  border: 2px solid rgba(0, 0, 0, 0.76);
+  padding: 2px;
+  border-radius: 50%;
+}
+
+.profile-container {
+  width: 22vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ShareSvg {
+  font-size: 1.6rem;
+}
+
+.Navbar button {
+  padding: 0 0 0 30px;
+  background-color: white;
+  border: none;
+  border-radius: 12px;
+  color: black;
+  width: 100px;
+  height: 40px;
+  margin: 0 6px;
+  box-sizing: border-box;
+}
+
+.PersonFill-Nav {
+  font-size: 1.8rem;
+  color: rgb(34, 34, 34);
+  position: absolute;
+  right: 65px;
+  top: 20px;
+}
+
+.share-flow {
+  background-color: #65eccb;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.share-flow svg {
+  color: black;
+}
+
+.share-flow a {
+  color: black;
+  text-decoration: none;
+  padding: 10px 10px;
+}
+
+/* Dropdown */
+/* All you'll need if you need to personalize a dropdown menu */
+/* .signup {
+  background-color: rgb(37, 37, 37) !important;
+  color: white !important;
+  font-weight: 500;
+} */
+
+/* .Navbar .btn-primary {
+  text-align: end;
+  margin-right: 30px;
+  width: 50px;
+} */
+
+/* .Navbar .btn-primary:active,
+.Navbar .btn-primary:active:focus,
+.Navbar .btn-primary:focus-within,
+.Navbar .btn-primary:hover,
+.Navbar .show > .btn-primary.dropdown-toggle,
+.Navbar .show > .btn-primary.dropdown-toggle:focus {
+  background-color: transparent;
+  border: none;
+  color: black;
+  box-shadow: none;
+} */
+
+/* .DropdownToggle-Nav {
+  position: relative;
+} */
+
+/* .dropdown-menu {
+  border: none;
+  min-width: 100px;
+  text-align: start;
+  padding: 0;
+  z-index: 5;
+  background-color: white;
+  padding: 16px 0px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+} */
+
+/* .dropdown-item {
+  line-height: 25px;
+  padding: 9px 16px;
+  background-color: transparent;
+  color: black;
+  font-size: 1rem;
+} */
+
+/* .dropdown-item:active,
+.dropdown-item:focus-within {
+  color: rgb(0, 0, 0);
+} */
+
+/* .dropdown-item:hover {
+  background-color: rgba(0, 0, 0, 0.027);
+  border-left: 2px solid #65eccb;
+  padding-left: 14px;
+} */

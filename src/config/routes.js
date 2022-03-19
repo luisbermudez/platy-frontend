@@ -32,7 +32,11 @@ export const gralRoutes = () => {
     {
       path: PATHS.EVENTS,
       element: <h1>Events</h1>,
-    }
+    },
+    {
+      path: PATHS.DETAILS,
+      element: <VideolocationDetails />,
+    },
   ];
 };
 
@@ -49,10 +53,6 @@ export const privateRoutes = () => {
       {
         path: PATHS.FAVORITES,
         element: <h1>My Favorites</h1>,
-      },
-      {
-        path: PATHS.DETAILS,
-        element: <VideolocationDetails />,
       },
       {
         path: PATHS.EDIT,

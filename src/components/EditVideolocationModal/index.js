@@ -1,31 +1,44 @@
-import { Button, Modal } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import { Modal, Spinner } from "react-bootstrap";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { videolocationDeleteWs } from "../../services/videolocation-ws";
+import { deleteVideolocationProcess } from "../../redux/videolocationSlice";
+import { useDispatch } from "react-redux";
+import { TrashFill } from "react-bootstrap-icons";
 import "./SmallCustomizedModal.css";
 
 const EditVideolocationModal = ({ locationId, publicId }) => {
+  const dispatch = useDispatch();
   const [modalShow, setModalShow] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const timeoutId = useRef(null);
   const navigate = useNavigate();
-  let timeoutId;
 
   const handleDelete = () => {
-    videolocationDeleteWs({ _id: locationId, public_id: publicId });
-    timeoutId = setTimeout(() => {
-      return navigate("/mylocations");
-    }, 2e3);
+    setIsDeleting(true);
+    dispatch(
+      deleteVideolocationProcess(
+        {
+          _id: locationId,
+          public_id: publicId,
+        },
+        navigate
+      )
+    );
+    timeoutId.current = setTimeout(() => {
+      navigate("/mylocations");
+    }, 1.5e3);
   };
 
-  useEffect(() => () => {
-    clearTimeout(timeoutId);
-  });
+  useEffect(
+    () => () => {
+      clearTimeout(timeoutId.current);
+    },
+    []
+  );
 
   return (
     <>
-      <Button variant="dark" onClick={() => setModalShow(true)}>
-        Edit
-      </Button>
+      <TrashFill className="TrashFill" onClick={() => setModalShow(true)} />
       <Modal
         show={modalShow}
         onHide={() => setModalShow(false)}
@@ -34,28 +47,18 @@ const EditVideolocationModal = ({ locationId, publicId }) => {
         className="small-modal"
       >
         <Modal.Body>
-          {showDeleteModal ? (
+          {isDeleting ? (
+            <>
+              <Spinner animation="border" variant="info" />
+              <h4 className="removing-h4">Removing location ...</h4>
+            </>
+          ) : (
             <>
               <h4>Delete Post?</h4>
               <p>Are you sure you want to delete this post?</p>
               <hr />
               <h6 className="modal-delete" onClick={() => handleDelete()}>
                 Delete
-              </h6>
-              <hr />
-              <h6 onClick={() => setShowDeleteModal(false)}>Cancel</h6>
-            </>
-          ) : (
-            <>
-              <h6
-                className="modal-delete"
-                onClick={() => setShowDeleteModal(true)}
-              >
-                Delete
-              </h6>
-              <hr />
-              <h6 onClick={() => navigate(`/edit/${locationId}`)}>
-                Update Title & Description
               </h6>
               <hr />
               <h6 onClick={() => setModalShow(false)}>Cancel</h6>
