@@ -15,18 +15,21 @@
 /* Navbar components */
 /* Platy */
 .platy-nav-container {
-  width: 12vw;
+  width: 12.5vw;
   text-align: center;
   line-height: 60px;
 }
 
 .platy {
-  color: black;
   text-decoration: none;
   font-weight: 500;
   font-size: 2.6rem;
-  font-family: "Yanone Kaffeesatz", sans-serif;
   font-family: "Shadows Into Light", cursive;
+  
+}
+
+.platy svg {
+  height: 100%;
 }
 
 .platy:hover {
@@ -35,67 +38,45 @@
 
 /* Searchbar */
 .searchbar-nav-container {
-  width: 66vw;
+  width: 56vw;
   display: flex;
-  justify-content: center;
   align-items: center;
   position: relative;
-}
-
-.MainSearchBar::placeholder {
-  color: rgb(156, 156, 156);
-}
-
-.MainSearchBar {
-  visibility: hidden;
-  width: 30vw;
-  border: 1px solid rgb(121, 121, 121);
-}
-
-.MainSearchBar:focus {
-  outline: none;
-  border: 2px solid var(--green-focused);
-  padding: 0.5875rem 0.4375rem;
-}
-
-.Search {
-  visibility: hidden;
-  color: rgb(156, 156, 156);
-  position: absolute;
-  right: 22vw;
+  padding-left: 30px;
 }
 
 /* Profile */
 .nav-avatar {
-  height: 34px;
+  height: 36px;
+  width: 36px;
   position: absolute;
-  top: 19px;
-  right: 74px;
-  border: 2px solid rgba(0, 0, 0, 0.76);
+  top: 17px;
+  right: 100px;
   padding: 2px;
   border-radius: 50%;
 }
 
 .profile-container {
-  width: 22vw;
+  width: 31.5vw;
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   align-items: center;
+  padding-right: 7px;
 }
 
 .ShareSvg {
   font-size: 1.6rem;
 }
 
-.Navbar button {
+.profileLink button {
   padding: 0 0 0 30px;
   background-color: white;
   border: none;
   border-radius: 12px;
   color: black;
   width: 100px;
-  height: 40px;
-  margin: 0 6px;
+  height: 38px;
+  margin: 0 30px 0 0;
   box-sizing: border-box;
 }
 
@@ -108,19 +89,42 @@
 }
 
 .share-flow {
-  background-color: #65eccb;
+  position: relative;
+  background-color: var(--pink-focused);
+  
+  width: 156px;
   border-radius: 10px;
+  margin-right: 48px;
   padding: 5px;
+  font-weight: 400;
 }
 
 .share-flow svg {
-  color: black;
+  color: white;
 }
 
 .share-flow a {
-  color: black;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background-color: transparent;
   text-decoration: none;
-  padding: 10px 10px;
+  padding: 5px 8px 7px 40px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 2px;
+}
+
+.login {
+  border: none;
+  position: relative;
+}
+
+.login svg {
+  left: 10px;
+  top: 9px;
+  font-size: 1.4rem;
 }
 
 /* Dropdown */

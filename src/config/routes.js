@@ -8,8 +8,9 @@ import {
   Home,
   MyLocations,
   VideolocationDetails,
-  EditVideolocation
+  EditVideolocation,
 } from "../pages";
+import { AddLocationForm } from "../components";
 
 export const gralRoutes = () => {
   return [
@@ -23,7 +24,7 @@ export const gralRoutes = () => {
     },
     {
       path: PATHS.DISCOVER,
-      element: <h1>Discover</h1>,
+      element: <Home />,
     },
     {
       path: PATHS.ADDLOCATION,
@@ -41,35 +42,39 @@ export const gralRoutes = () => {
 };
 
 export const privateRoutes = () => {
-    return [
-      {
-        path: PATHS.PROFILE,
-        element: <Profile />,
-      },
-      {
-        path: PATHS.MYLOCATIONS,
-        element: <MyLocations />,
-      },
-      {
-        path: PATHS.FAVORITES,
-        element: <h1>My Favorites</h1>,
-      },
-      {
-        path: PATHS.EDIT,
-        element: <EditVideolocation />,
-      },
-    ];
-}
+  return [
+    {
+      path: PATHS.PROFILE,
+      element: <Profile />,
+    },
+    {
+      path: PATHS.MYLOCATIONS,
+      element: <MyLocations />,
+    },
+    {
+      path: PATHS.FAVORITES,
+      element: <h1>My Favorites</h1>,
+    },
+    {
+      path: PATHS.EDIT,
+      element: <EditVideolocation />,
+    },
+    {
+      path: PATHS.ADDLOCATION2,
+      element: <AddLocationForm />,
+    },
+  ];
+};
 
 export const anonRoutes = () => {
-    return [
-      {
-        path: PATHS.SIGNUP,
-        element: <SignupForm />,
-      },
-      {
-        path: PATHS.LOGIN,
-        element: <LoginForm />,
-      },
-    ];
-}
+  return [
+    {
+      path: PATHS.SIGNUP,
+      element: <SignupForm />,
+    },
+    {
+      path: PATHS.LOGIN,
+      element: <LoginForm />,
+    },
+  ];
+};

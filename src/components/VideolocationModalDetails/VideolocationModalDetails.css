@@ -1,5 +1,5 @@
 .videolocations-modal .modal-dialog {
-  max-width: 80vw;
+  max-width: 58vw;
 }
 
 .videolocations-modal .modal-content {
@@ -8,7 +8,10 @@
 }
 
 .videolocations-modal .modal-container {
-  height: 80vh;
+  height: 59.9vh;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
 }
 
 .videolocations-modal .divided-container {
@@ -17,4 +20,12 @@
 
 .videolocations-modal .divided-container > div {
   width: 50%;
+}
+
+.infoVideoModal {
+  padding: 10px;
+}
+
+.infoVideoModal:hover {
+  cursor: pointer;
 }

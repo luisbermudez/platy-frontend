@@ -29,7 +29,7 @@ function App() {
   return (
     <div className="App">
       {loading ? (
-        <h2>Loading ...</h2>
+        <h2 className="mainLoading">Loading ...</h2>
       ) : (
         <>
           <Navbar />

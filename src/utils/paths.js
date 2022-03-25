@@ -10,3 +10,4 @@ export const SIGNUP = "/signup";
 export const LOGIN = "/login";
 export const DETAILS = "/details/:_id"
 export const EDIT = "/edit/:_idToEdit"
+export const ADDLOCATION2 = "/add-location-2";

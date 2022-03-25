@@ -3,8 +3,13 @@
 }
 
 .addlocationmap-container {
-  width: 58vw;
-  height: 52vh;
+  width: 82.2vw;
+  height: 71.2vh;
+  border-radius: 10px;
+  z-index: 1;
+  position: absolute;
+  top: 206px;
+  left: 220px;
 }
 
 .map-div {
@@ -41,4 +46,186 @@
 }
 .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
   border-left-color: rgba(0, 0, 0, 0.82);
+}
+
+.mapboxgl-ctrl-geocoder--button {
+  height: fit-content !important;
+  width: fit-content !important;
+}
+
+/* Modal
+_____________ */
+.MapAddLocations-modal .modal-dialog {
+  max-width: 33.5vw;
+}
+
+.MapAddLocations-modal .modal-content {
+  border: none;
+  border-radius: 12px;
+  background-color: var(--background-color);
+}
+
+.MapAddLocations-modal .modal-container {
+  padding: 40px;
+}
+
+.MapAddLocations-modal .divided-container {
+  display: flex;
+}
+
+.MapAddLocations-modal .divided-container > div {
+  width: 50%;
+}
+
+.MapAddLocations-modal h2 {
+  margin-bottom: 10px;
+}
+
+.MapAddLocations-modal a {
+  color: var(--pink-focused);
+  /* color: black; */
+  font-weight: 700;
+}
+
+.MapAddLocations-modal button {
+  background-color: rgb(34, 34, 34);
+  color: white;
+  margin-left: 0;
+}
+
+.MapAddLocations-modal .goback {
+  position: absolute;
+  font-size: 1.2rem;
+  right: 32px;
+  top: 20px;
+  margin: 0;
+}
+
+.MapAddLocations-modal .goback:hover {
+  cursor: pointer;
+}
+
+/* Add video form
+_________________ */
+.addVideoForm {
+  width: 644px;
+  margin-top: 200px;
+}
+
+.addVideoForm h1 {
+  position: absolute;
+  left: 220px;
+  top: 110px;
+}
+
+input[name="videoFile"] {
+  display: none;
+}
+.uploaded {
+  position: absolute;
+  background-color: var(--background-color);
+  width: 100px;
+  height: 100px;
+  padding: 20px;
+  border-radius: 10px;
+  top: 222px;
+}
+
+.cameraVideo {
+  z-index: 2;
+  position: absolute;
+  background-color: rgb(230, 230, 230);
+  border-left: 3px solid #ec127f;
+  width: 100px;
+  height: 100px;
+  padding: 30px;
+  border-radius: 10px;
+  top: 222px;
+}
+
+.cameraVideo:hover {
+  cursor: pointer;
+  background-color: rgb(222, 222, 222);
+}
+
+.uploadLabel {
+  position: absolute;
+  font-weight: 700;
+  left: 340px;
+  top: 244px;
+}
+
+.maxSize {
+  position: absolute;
+  left: 340px;
+  top: 274px;
+  font-size: 0.88rem;
+  color: rgb(146, 146, 146);
+}
+
+.nextButton {
+  background-color: transparent;
+  color: black;
+  text-decoration: none;
+  padding: 0.5rem 1.25rem;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  font-weight: 700;
+  margin-top: 1rem !important;
+  width: 120px;
+  text-align: center;
+}
+
+.nextButton:hover {
+  cursor: pointer;
+}
+
+.dropAPin {
+  margin: 0 40px;
+  position: absolute;
+  top: 110px;
+}
+
+.pinNext {
+  position: absolute;
+  top: 134px;
+  right: 1vw;
+  font-weight: 400;
+}
+
+.map-div > p {
+  margin-left: 40px;
+  margin-top: 30px;
+}
+
+.directions {
+  margin-top: 0px;
+  position: absolute;
+  top: 170px;
+}
+
+.mapAndFormReview {
+  display: flex;
+}
+
+.mapAndFormReview .locationmap-container-videoDetails {
+  margin: 40px;
+  position: absolute;
+  right: 0px;
+  width: 40vw;
+}
+
+.uploadLabel svg {
+  margin: 0 6px 3px 0;
+}
+
+.addVideoForm video {
+  height: 220px;
+  width: 240px;
+  background-color: transparent;
+  position: absolute;
+  top: 110px;
+  left: 37.7vw;
+  border-radius: 10px;
+  border: 1px solid rgba(212, 212, 212, 0.637);
 }

@@ -1,65 +1,70 @@
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { TextInput, PasswordInput } from "../../components";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { loginWs } from "../../services/auth-ws";
 import { useState } from "react";
+import "./LoginForm.css";
+import { ExclamationCircle } from "react-bootstrap-icons";
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const [loginError, setLoginError] = useState(null);
 
   const handleSubmit = async (values) => {
+    setLoginError(null);
     try {
       const res = await loginWs(values);
       const { errorMessage, status } = res;
       if (status) {
-        navigate("/");
+        pathname === "/login" ? navigate("/") : window.location.reload(false);
       } else {
         setLoginError(errorMessage);
       }
     } catch (error) {
-      // evetually, add some general error handler
-      console.log(error);
+      setLoginError("Server error: ");
     }
   };
 
   return (
-    <div className="formContainer">
-      <h1>Log In</h1>
-      <Formik
-        initialValues={{
-          email: "",
-          password: "",
-        }}
-        validationSchema={Yup.object({
-          email: Yup.string()
-            .email("Enter a valid email address")
-            .required("This field is required."),
-          password: Yup.string()
-            .matches(
-              /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/,
-              "Password must be at least 6 characters long and contain at least, one number, one lowercase and one uppercase."
-            )
-            .required("This field is required."),
-        })}
-        onSubmit={async (values) => {
-          handleSubmit(values);
-        }}
-      >
-        <Form autoComplete="off">
-          <TextInput label="Email Address" name="email" type="email" />
-          <PasswordInput label="Password" name="password" />
+    <div className="LoginForm">
+      <div className="formContainer loginForm">
+        <h1>Log in</h1>
+        {loginError && (
+          <p className="loginSignupToaster">
+            <ExclamationCircle />
+            {loginError}
+          </p>
+        )}
+        <Formik
+          initialValues={{
+            email: "",
+            password: "",
+          }}
+          validationSchema={Yup.object({
+            email: Yup.string()
+              .email("Enter a valid email address")
+              .required("This field is required."),
+            password: Yup.string().required("This field is required."),
+          })}
+          onSubmit={async (values) => {
+            handleSubmit(values);
+          }}
+        >
+          <Form autoComplete="off">
+            <TextInput label="Email Address" name="email" type="email" />
+            <PasswordInput label="Password" name="password" />
 
-          <button type="submit">Submit</button>
-        </Form>
-      </Formik>
-      {loginError && <h4>{loginError}</h4>}
-      <br />
-      <br />
-      <p>
-        Don't have an account yet? <Link to="/signup">Sign up</Link>
-      </p>
+            <button type="submit">Log in</button>
+          </Form>
+        </Formik>
+        <br />
+        <br />
+        <p>
+          Don't have an account yet? <Link to="/signup">Sign up</Link>
+        </p>
+      </div>
     </div>
   );
 };

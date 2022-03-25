@@ -1,0 +1,100 @@
+.MyLocations {
+  padding: 40px;
+}
+
+.MyLocations-video-container {
+  position: relative;
+  height: 150px;
+  width: 150px;
+  margin: 0 30px 30px 0;
+  border: 1px solid rgb(206, 206, 206);
+  border-radius: 6px;
+}
+
+.MyLocations-video-container video {
+  background-color: transparent;
+  height: 148px;
+  width: 148px;
+}
+
+.MyLocations-videos-container > div {
+  display: flex;
+}
+
+.MyLocations-videos-container h6 {
+  width: 260px;
+  margin: 2px 20px 8px 0;
+  font-weight: 400;
+  color: black;
+}
+
+.MyLocations-videos-container p {
+  width: 260px;
+  margin: 0 40px 0 0;
+  font-weight: 300;
+  font-size: 0.9rem;
+  color: rgb(110, 110, 110);
+}
+
+.MyLocation-information-container {
+  position: relative;
+  width: 900px;
+}
+
+.MyLocations-edit-button {
+  margin-left: 0;
+  position: absolute;
+  bottom: 60px;
+  display: flex;
+  font-size: 0.9rem;
+  width: 35px;
+  height: 34px;
+  border: none;
+  background-color: transparent;
+  transition: width 0.15s ease-out;
+}
+
+.MyLocations-edit-button:hover {
+  background-color: rgba(0, 0, 0, 0.075);
+  width: 74px;
+  transition: width 0.25s ease-in;
+}
+
+.MyLocations-edit-button span {
+  position: absolute;
+  top: 6px;
+  left: 10px;
+  color: transparent;
+  transition: color 0.15s ease-out;
+}
+
+.pencil-MyLocations {
+  position: absolute;
+  top: 9px;
+  left: 6px;
+  font-size: 0.9rem;
+  transition: left 0.15s ease-out;
+}
+
+.MyLocations-edit-button:hover .pencil-MyLocations {
+  left: 50px;
+  transition: left 0.25s ease-in;
+}
+
+.MyLocations-edit-button:hover span {
+  color: black;
+  transition: color 0.25s ease-in;
+}
+
+.MyLocations-videos-container .date {
+  font-weight: 600;
+  color: rgb(99, 99, 99);
+}
+
+.MyLocations-videos-container .date i {
+  font-weight: 300;
+}
+
+.MyLocations-videos-container > div > div {
+  display: flex;
+}

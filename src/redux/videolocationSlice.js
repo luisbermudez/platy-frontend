@@ -15,6 +15,9 @@ export const videolocationSlice = createSlice({
     currentUserVideolocations: null,
     videolocationDetails: null,
     videolocationToEdit: null,
+    isSearchbarActive: false,
+    currentPage: null,
+    coordinates: null,
   },
   reducers: {
     setError: (state, action) => {
@@ -44,7 +47,19 @@ export const videolocationSlice = createSlice({
     },
     clearVideolocationDetails: (state) => {
       state.videolocationDetails = null;
-    }
+    },
+    toggleSearchbar: (state) => {
+      state.isSearchbarActive = !state.isSearchbarActive;
+    },
+    setCurrentPage: (state, action) => {
+      state.currentPage = action.payload;
+    },
+    setCoordinates: (state, action) => {
+      state.coordinates = action.payload;
+    },
+    clearCoordinates: (state) => {
+      state.coordinates = null;
+    },
   },
 });
 
@@ -57,9 +72,13 @@ export const {
   clearCurrentUserVideolocations,
   setVideolocationDetails,
   clearVideolocationDetails,
+  toggleSearchbar,
+  setCurrentPage,
+  setCoordinates,
+  clearCoordinates,
 } = videolocationSlice.actions;
 
-export const videolocationsCall = () => async (dispatch, getGlobal) => {
+export const videolocationsCall = () => async (dispatch) => {
   try {
     const res = await videolocationsCallWs();
     const { data, errorMessage, status } = res;
@@ -85,19 +104,20 @@ export const currentUserVideolocationCall = (user) => async (dispatch) => {
   }
 };
 
-export const videolocationDetailsProcess = (_id, navigate) => async (dispatch) => {
-  try {
-    const res = await videolocationDetailsWs({ _id });
-    const { data, errorMessage, status } = res;
-    if (status) {
-      return dispatch(setVideolocationDetails(data.dbLocation));
+export const videolocationDetailsProcess =
+  (_id, navigate) => async (dispatch) => {
+    try {
+      const res = await videolocationDetailsWs({ _id });
+      const { data, errorMessage, status } = res;
+      if (status) {
+        return dispatch(setVideolocationDetails(data.dbLocation));
+      }
+      dispatch(setError(errorMessage));
+      return navigate("/");
+    } catch (error) {
+      return dispatch(setError(error));
     }
-    dispatch(setError(errorMessage));
-    return navigate("/")
-  } catch (error) {
-    return dispatch(setError(error));
-  }
-};
+  };
 
 export const deleteVideolocationProcess =
   ({ _id, public_id }, navigate) =>
