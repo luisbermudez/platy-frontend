@@ -1,0 +1,32 @@
+.loginForm a,
+.signupForm a {
+  color: var(--pink-focused);
+  color: black;
+  font-weight: 700;
+}
+
+.loginForm h1,
+.signupForm h1 {
+  margin-bottom: 2.4rem;
+}
+
+.loginSignupToaster {
+  position: relative;
+  background-color: rgb(235, 235, 235);
+  padding: 6px 10px 6px 40px;
+  border-radius: 6px;
+  border-left: 3px solid rgb(255, 126, 126);
+  display: flex;
+  align-items: center;
+}
+
+.loginSignupToaster svg {
+  position: absolute;
+  left: 14px;
+}
+
+.SignupForm,
+.LoginForm {
+  display: flex;
+  padding: 10px 20px;
+}

@@ -7,3 +7,4 @@ export { default as Sidebar } from "./Sidebar";
 export { default as IsPrivate } from "./IsPrivate";
 export { default as IsAnon } from "./IsAnon";
 export { default as CallAuthVerify } from "./CallAuthVerify";
+export { default as AddLocationForm } from "./AddLocationForm";

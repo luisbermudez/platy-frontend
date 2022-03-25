@@ -28,7 +28,7 @@ export const authSlice = createSlice({
     },
     logoutFail: (state, action) => {
       state.errorMessage = action.payload;
-    }
+    },
   },
 });
 
@@ -56,9 +56,7 @@ export const logout = () => async (dispatch) => {
   try {
     const res = await logoutWs();
     const { status, errorMessage } = res;
-    return status
-      ? dispatch(logoutSuccess())
-      : dispatch(logoutFail(errorMessage));
+    status ? dispatch(logoutSuccess()) : dispatch(logoutFail(errorMessage));
   } catch (error) {
     return dispatch(logoutFail(error));
   }

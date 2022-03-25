@@ -1,7 +1,10 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useRef, useState } from "react";
-import { videolocationDetailsProcess } from "../../redux/videolocationSlice";
+import {
+  videolocationDetailsProcess,
+  clearVideolocationDetails,
+} from "../../redux/videolocationSlice";
 import { Form } from "react-bootstrap";
 import { Files } from "react-bootstrap-icons";
 import { videolocationUpdateWs } from "../../services/videolocation-ws";
@@ -23,6 +26,7 @@ const EditVideolocation = () => {
   const [isUpdated, setIsUpdated] = useState(false);
   const [values, setValues] = useState({
     title: "",
+    locationName: "",
     description: "",
   });
   const [errorMessage, setErrorMessage] = useState(null);
@@ -31,6 +35,7 @@ const EditVideolocation = () => {
   const setValuesFunct = () => {
     setValues({
       title: videolocationDetails.title,
+      locationName: videolocationDetails.location.name,
       description: videolocationDetails.description,
     });
   };
@@ -79,6 +84,12 @@ const EditVideolocation = () => {
     }
   });
 
+  useEffect(() => {
+    return () => {
+      dispatch(clearVideolocationDetails());
+    };
+  }, []);
+
   return (
     <>
       <h1>Edit Information</h1>
@@ -104,12 +115,19 @@ const EditVideolocation = () => {
                       value={values.title}
                       onChange={handleInput}
                     />
+                    <Form.Label>Location Name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="locationName"
+                      value={values.locationName}
+                      onChange={handleInput}
+                    />
                     <Form.Label>Description</Form.Label>
                     <Form.Control
                       type="text"
                       name="description"
                       as="textarea"
-                      rows="3"
+                      rows="4"
                       value={values.description}
                       onChange={handleInput}
                     />

@@ -6,7 +6,12 @@ const Logout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  return <button onClick={() => dispatch(logout(navigate))}>Logout</button>;
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/");
+  };
+
+  return <button onClick={handleLogout}>Logout</button>;
 };
 
 export default Logout;

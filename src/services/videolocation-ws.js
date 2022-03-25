@@ -39,3 +39,9 @@ export const videolocationDeleteWs = (credentials) =>
     .post("/videolocations/delete", credentials)
     .then(serverSuccessRes)
     .catch(serverFailRes);
+
+export const addOneViewWs = (credentials) =>
+  api
+    .post("/videolocations/updateViews", credentials)
+    .then(serverSuccessRes)
+    .catch(serverFailRes);

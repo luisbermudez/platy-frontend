@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap");
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,10 +9,9 @@
 }
 
 html {
+  background-color: rgb(242, 242, 242);
   font-size: 16px;
-  font-family: -apple-system, BlinkMacSystemFont, "avenir next", avenir,
-    "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial,
-    sans-serif;
+  font-family: "Lato", sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -20,24 +21,28 @@ html {
   --dark-800: #303030;
   --gray-700: #5a5a5a;
   --gray-500: #b9b9b9;
-  --green-focused: #65eccb;
-  /* --green-focused: #dc65ec; */
+  --background-color: rgb(242, 242, 242);
+  --pink-focused: #ec127f;
+  --pink-focused: #14c8d4;
   --white: white;
   --text-color: var(--dark-800);
 }
 
 body {
+  background-color: transparent;
   padding: 0;
   margin: 0;
   font-weight: 400;
   color: var(--text-color);
   caret-color: var(--text-color);
   line-height: 1.563;
+  font-family: "Lato", sans-serif;
 }
 
 h1 {
-  font-size: 3.3rem;
+  font-size: 2.8rem;
   letter-spacing: -0.15rem;
+  font-weight: 700;
   line-height: 1;
 }
 
@@ -46,7 +51,7 @@ ____________________________ */
 
 .formContainer {
   width: 400px;
-  padding: 1rem 1.5rem;
+  padding: 2.6rem 2.6rem;
 }
 
 label {
@@ -70,6 +75,16 @@ Form > input[type="file"],
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+}
+
+Form > input[type="email"]::selection,
+input[type="password"]::selection,
+Form input[type="text"]::selection,
+Form > input[type="number"]::selection,
+Form > input[type="file"]::selection,
+.form-control::selection,
+.MainSearchBar::selection {
+  background: #e3adf16b; /* WebKit/Blink Browsers */
 }
 
 Form > input[type="email"]::placeholder,
@@ -133,7 +148,8 @@ select:focus,
 textarea:focus,
 .form-control:focus {
   outline: none;
-  border: 2px solid var(--green-focused);
+  border: 2px solid black;
+  border: 2px solid var(--pink-focused);
   padding: 0.5875rem 0.4375rem;
 }
 
@@ -180,18 +196,23 @@ input[type="checkbox"]:checked {
 
 .error {
   font-size: 12px;
+  font-weight: 700;
   margin-top: 0.25rem;
+  color: var(--error-state);
+  color: black;
 }
 
 Form > button {
   padding: 0.5rem 1.25rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
   border-radius: 10px;
   background-color: var(--dark-900);
-  border: 1px solid var(--dark-900);
+  background-color: var(--pink-focused);
+  border: none;
   color: white;
   text-decoration: none;
   font-weight: bold;
+  margin: 0;
   margin-bottom: 1rem;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -209,10 +230,6 @@ Form > button[type="submit"] {
 
 Form > button:hover {
   cursor: pointer;
-}
-
-.error {
-  color: rgb(31, 31, 31);
 }
 
 label.checkbox {
@@ -242,14 +259,30 @@ label.checkbox {
 
 /* Map
 ____________________*/
+/* position: absolute;
+  top: 70px;
+  left: 180px;
+  width: 87.5vw;
+  height: 53.6vw; */
 
 .locationmap-container {
-  width: 88vw;
-  height: 92vh;
+  border-radius: 10px;
+  position: absolute;
+  top: 104px;
+  left: 220px;
+  width: 82.4vw;
+  height: 47.6vw;
 }
 
 .upload-file-disabled {
   pointer-events: none;
+}
+
+.MapLocations {
+  padding-top: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Buttons
@@ -266,4 +299,21 @@ button {
   height: 40px;
   margin: 5px 6px;
   box-sizing: border-box;
+}
+
+.mapbox-ctrl-geocoder--button:active {
+  height: 10px !important;
+  width: 10px !important;
+}
+
+.signupForm button {
+  margin-bottom: 4rem;
+}
+
+.loginForm button {
+  background-color: var(--pink-focused) !important;
+}
+
+.loginForm a {
+  color: black !important;
 }

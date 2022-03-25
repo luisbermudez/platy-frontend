@@ -1,36 +1,42 @@
 import React, { useRef, useEffect, useState } from "react";
 import "./mapAddLocation.css";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
-import AddLocationForm from "../../components/AddLocationForm";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
+import { useSelector } from "react-redux";
+import { Modal } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import LoginForm from "../LoginForm";
+import { setCoordinates } from "../../redux/videolocationSlice";
+import { useDispatch } from "react-redux";
+import { ChevronRight } from "react-bootstrap-icons";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 function MapAddLocation() {
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const coordinates = useSelector((state) => state.videolocation.coordinates);
+  const [hasAddedPin, setHasAddedPin] = useState(false);
+  const navigate = useNavigate();
+  const show = useRef(true);
+
   const mapContainer = useRef(null);
   const mapAddLocation = useRef(null);
   const geocoder = useRef(null);
+  const geolocate = useRef(null);
   const navControl = useRef(null);
   const marker = useRef(null);
-
-  const [lng, setLng] = useState(-73.9615);
-  const [lat, setLat] = useState(40.7801);
-  const [zoom, setZoom] = useState(12.15);
-  const [bearing, setBearing] = useState(0);
-  const [pitch, setPitch] = useState(62);
-  const [lngPop, setLngPop] = useState(null);
-  const [latPop, setLatPop] = useState(null);
 
   useEffect(() => {
     if (mapAddLocation.current) return;
     mapAddLocation.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: "mapbox://styles/mapbox/streets-v11",
-      center: [lng, lat],
-      around: [lng, lat],
-      pitch: [pitch],
-      bearing: [bearing],
-      zoom: zoom,
+      style: "mapbox://styles/mapbox/dark-v10",
+      center: [-73.9615, 40.7801],
+      around: [-73.9615, 40.7801],
+      pitch: [64],
+      bearing: [-6],
+      zoom: 12.15,
     });
 
     navControl.current = new mapboxgl.NavigationControl({
@@ -47,64 +53,79 @@ function MapAddLocation() {
       color: "#ec127f",
     });
 
+    geolocate.current = new mapboxgl.GeolocateControl({
+      positionOptions: { enableAccuracy: true },
+      trackUserLocation: true,
+      showUserHeading: true,
+    });
+
     mapAddLocation.current.addControl(geocoder.current, "top-left");
     mapAddLocation.current.addControl(navControl.current, "bottom-right");
     mapAddLocation.current.addControl(new mapboxgl.FullscreenControl());
+    mapAddLocation.current.addControl(geolocate.current, "bottom-right");
 
     mapAddLocation.current.on("style.load", () => {
       mapAddLocation.current.on("click", (e) => {
         const longitude = e.lngLat.lng.toFixed(4);
         const latitude = e.lngLat.lat.toFixed(4);
-        const coordinates = e.lngLat;
-        marker.current.setLngLat(coordinates).addTo(mapAddLocation.current);
-        setLngPop(longitude);
-        setLatPop(latitude);
+        const onClickCoordinates = e.lngLat;
+        marker.current
+          .setLngLat(onClickCoordinates)
+          .addTo(mapAddLocation.current);
+        dispatch(
+          setCoordinates({
+            lng: longitude,
+            lat: latitude,
+          })
+        );
+        setHasAddedPin(true);
       });
     });
   });
 
   useEffect(() => {
-    if (!mapAddLocation.current) return;
-    mapAddLocation.current.on("move", () => {
-      setLng(mapAddLocation.current.getCenter().lng.toFixed(4));
-      setLat(mapAddLocation.current.getCenter().lat.toFixed(4));
-      setZoom(mapAddLocation.current.getZoom().toFixed(2));
-      setBearing(mapAddLocation.current.getBearing());
-      setPitch(mapAddLocation.current.getPitch());
-      // setLngPop(lng);
-      // setLatPop(lat);
-    });
-
-    // marker.current = new mapboxgl.Marker();
-
-    // mapAddLocation.current.on("style.load", () => {
-    //   mapAddLocation.current.on("click", (e) => {
-    //     const longitude = e.lngLat.lng.toFixed(4);
-    //     const latitude = e.lngLat.lat.toFixed(4);
-    //     const coordinates = e.lngLat;
-    //     // new mapboxgl.Popup()
-    //     //   .setLngLat(coordinates)
-    //     //   .setHTML(`<h3>New location 😎</h3>`)
-    //     //   .addTo(mapAddLocation.current);
-    //     marker.current.setLngLat(coordinates).addTo(mapAddLocation.current);
-    //     setLngPop(longitude);
-    //     setLatPop(latitude);
-    //   });
-    // });
-  });
+    if (coordinates) {
+      const longitude = Number(coordinates.lng);
+      const latitude = Number(coordinates.lat);
+      marker.current
+        .setLngLat([longitude, latitude])
+        .addTo(mapAddLocation.current);
+      setHasAddedPin(true);
+    }
+  }, [coordinates]);
 
   return (
     <div className="MapAddLocation">
-      <div>
-        <AddLocationForm coordinateLng={lngPop} coordinateLat={latPop} />
-      </div>
-      <div className="map-div">
-        <div ref={mapContainer} className="addlocationmap-container" />
-        <p>
-          Use the map to locate the spot you want to add and click on it, a
-          pin will appear.
-        </p>
-      </div>
+      <>
+        {!isLoggedIn && (
+          <Modal
+            show={show.current}
+            animation={false}
+            centered
+            className="MapAddLocations-modal"
+          >
+            <div className="modal-container">
+              <p onClick={() => navigate(-1)} className="goback">
+                X
+              </p>
+              <LoginForm />
+            </div>
+          </Modal>
+        )}
+        <div className="map-div">
+          <h1 className="dropAPin">Share your flow</h1>
+          <p>To get started drop a pin</p>
+          <div ref={mapContainer} className="addlocationmap-container" />
+          {hasAddedPin && (
+            <p
+              onClick={() => navigate("/add-location-2")}
+              className="nextButton pinNext"
+            >
+              Next <ChevronRight className="chevronRightPinAdded" />
+            </p>
+          )}
+        </div>
+      </>
     </div>
   );
 }

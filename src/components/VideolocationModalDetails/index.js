@@ -1,33 +1,20 @@
-import { 
-  // useRef, 
-  useState } from "react";
+import {
+  // useRef,
+  useState,
+} from "react";
 import { Button, Modal } from "react-bootstrap";
-import { videolocationDetailsWs } from "../../services/videolocation-ws";
 import "./VideolocationModalDetails.css";
-import VideoCard from "../VideoCard";
+import VideoPlayer from "../VideoPlayer";
 
-function VideolocationModalDetails({ _id }) {
+function VideolocationModalDetails({ info }) {
   const [show, setShow] = useState(false);
-  const [info, setInfo] = useState(undefined);
-
-  const handleApiCall = async () => {
-    setShow(true);
-    try {
-      const res = await videolocationDetailsWs({ _id });
-      const { data, 
-        // errorMessage, 
-        status } = res;
-      if (status) {
-        setInfo(data.dbLocation);
-      }
-    } catch (error) {}
-  };
 
   return (
-    <>
-      <Button variant="dark" onClick={handleApiCall}>
-        Details
-      </Button>
+    <div className="VideolocationModalDetails">
+      <div onClick={() => setShow(true)} className="infoVideoModal">
+        <h6>{info.title}</h6>
+        <p>Click for more details</p>
+      </div>
 
       <Modal
         show={show}
@@ -40,19 +27,17 @@ function VideolocationModalDetails({ _id }) {
           {info && (
             <div className="divided-container">
               <div>
-                <h1>{info.title}</h1>
-                <VideoCard videoInfo={info} />
-                <p>{info.description}</p>
-                <Button variant="danger">Delete</Button>
-              </div>
-              <div>
-                <h1>Aqui va el mapa</h1>
+                <VideoPlayer
+                  videoUrl={info.videoUrl}
+                  controls={true}
+                  muted={false}
+                />
               </div>
             </div>
           )}
         </div>
       </Modal>
-    </>
+    </div>
   );
 }
 

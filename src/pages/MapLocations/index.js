@@ -1,8 +1,14 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import { useSelector, useDispatch } from "react-redux";
-import { videolocationsCall } from "../../redux/videolocationSlice";
+import {
+  videolocationsCall,
+  setCurrentPage,
+} from "../../redux/videolocationSlice";
+import "./MapLocations.css";
+import ReactDOM from "react-dom";
+import VideoPreviewForMap from "../../components/VideoPreviewForMap";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -10,16 +16,14 @@ function Map() {
   const dispatch = useDispatch();
   const hasVerified = useRef(false);
   const setMarkers = useRef(false);
+  const timeoutId = useRef(null);
 
   const mapContainer = useRef(null);
   const locationsMap = useRef(null);
   const geocoder = useRef(null);
+  const geolocate = useRef(null);
   const navControl = useRef(null);
-
-  const [lng, setLng] = useState(-95.7928);
-  const [lat, setLat] = useState(34.0264);
-  const [zoom, setZoom] = useState(3.22);
-  const [pitch, setPitch] = useState(0);
+  const markers = useRef(null);
 
   const videolocations = useSelector(
     (state) => state.videolocation.videolocations
@@ -28,6 +32,7 @@ function Map() {
   useEffect(() => {
     if (!hasVerified.current) {
       dispatch(videolocationsCall());
+      dispatch(setCurrentPage("map"));
       hasVerified.current = true;
     }
   });
@@ -36,10 +41,9 @@ function Map() {
     if (locationsMap.current) return;
     locationsMap.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: "mapbox://styles/mapbox/streets-v11",
-      center: [lng, lat],
-      pitch: [pitch],
-      zoom: zoom,
+      style: "mapbox://styles/mapbox/dark-v10",
+      center: [-95.7928, 34.0264],
+      zoom: 3.22,
     });
 
     navControl.current = new mapboxgl.NavigationControl({
@@ -52,43 +56,59 @@ function Map() {
       mapboxgl: mapboxgl,
     });
 
+    geolocate.current = new mapboxgl.GeolocateControl({
+      positionOptions: { enableAccuracy: true },
+      trackUserLocation: true,
+      showUserHeading: true,
+    });
+
     locationsMap.current.addControl(geocoder.current, "top-left");
     locationsMap.current.addControl(navControl.current, "bottom-right");
     locationsMap.current.addControl(new mapboxgl.FullscreenControl());
+    locationsMap.current.addControl(geolocate.current, "bottom-right");
   });
 
-  // useEffect(() => {
-  //   if (!locationsMap.current) return;
-  //   locationsMap.current.on("move", () => {
-  //     setLng(locationsMap.current.getCenter().lng.toFixed(4));
-  //     setLat(locationsMap.current.getCenter().lat.toFixed(4));
-  //     setZoom(locationsMap.current.getZoom().toFixed(2));
-  //     setPitch(locationsMap.current.getPitch());
-  //   });
-  // });
+  useEffect(() => {
+    if (!locationsMap.current) return;
+    if (markers.current) {
+      markers.current.on("mouseenter", () => {
+        mapContainer.getCanvas().style.cursor = "pointer";
+      });
+    }
+  });
 
   useEffect(() => {
-    let timeoutId;
     if (!setMarkers.current) {
-      timeoutId = setTimeout(() => {
+      timeoutId.current = setTimeout(() => {
         videolocations.forEach((spot) => {
-          new mapboxgl.Marker({
+          const popupNode = document.createElement("div");
+          ReactDOM.render(<VideoPreviewForMap each={spot} />, popupNode);
+          markers.current = new mapboxgl.Marker({
             color: "#ec127f",
           })
             .setLngLat([
               spot.location.coordinates.longitude,
               spot.location.coordinates.latitude,
             ])
+            .setPopup(
+              new mapboxgl.Popup({
+                closeButton: false,
+                maxWidth: "100%",
+              }).setDOMContent(popupNode)
+            )
             .addTo(locationsMap.current);
         });
         setMarkers.current = true;
       }, 8e2);
     }
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
   });
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timeoutId.current);
+      dispatch(setCurrentPage("other"));
+    };
+  }, []);
 
   return (
     <div>
@@ -99,9 +119,9 @@ function Map() {
 
 function MapLocations() {
   return (
-    <>
+    <div className="MapLocations">
       <Map mapName={"locations"} />
-    </>
+    </div>
   );
 }
 

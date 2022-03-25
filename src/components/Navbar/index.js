@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Search, Plus, Person } from "react-bootstrap-icons";
+import { Plus, PersonFill } from "react-bootstrap-icons";
 import "./Navbar.css";
+import Platy from "./platy.js";
 
 function Navbar() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -11,13 +12,10 @@ function Navbar() {
     <nav className="Navbar">
       <div className="platy-nav-container">
         <Link className="platy" to="/">
-          platy
+          <Platy />
         </Link>
       </div>
-      <div className="searchbar-nav-container">
-        <input type="text" className="MainSearchBar" placeholder="Search" />
-        <Search className="Search" />
-      </div>
+      <div className="searchbar-nav-container"></div>
       <div className="profile-container">
         <div className="share-flow">
           <Plus className="ShareSvg" />
@@ -25,8 +23,12 @@ function Navbar() {
         </div>
         {isLoggedIn ? (
           <>
-            <Link to="/profile">
-              <img className="nav-avatar" alt="profile" src={user.profilePicture} />
+            <Link to="/profile" className="profileLink">
+              <img
+                className="nav-avatar"
+                alt="profile"
+                src={user.profilePicture}
+              />
               <button>{user.name}</button>
             </Link>
           </>
@@ -34,7 +36,7 @@ function Navbar() {
           <>
             <Link to="/login">
               <button className="login">
-                <Person className="PersonFill-Nav" />
+                <PersonFill className="PersonFill-Nav" />
                 Log In
               </button>
             </Link>
