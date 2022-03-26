@@ -48,17 +48,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
-// <Dropdown>
-//   <Dropdown.Toggle className="DropdownToggle-Nav">
-//     <Person className="PersonFill-Nav" />
-//   </Dropdown.Toggle>
-//   <Dropdown.Menu>
-//     <Dropdown.Item as={Link} to="/signup">
-//       Sign Up
-//     </Dropdown.Item>
-//     <Dropdown.Item as={Link} to="/login">
-//       Log In
-//     </Dropdown.Item>
-//   </Dropdown.Menu>
-// </Dropdown>;

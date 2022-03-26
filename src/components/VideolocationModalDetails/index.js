@@ -1,8 +1,5 @@
-import {
-  // useRef,
-  useState,
-} from "react";
-import { Button, Modal } from "react-bootstrap";
+import { useState } from "react";
+import { Modal } from "react-bootstrap";
 import "./VideolocationModalDetails.css";
 import VideoPlayer from "../VideoPlayer";
 

@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { currentUserVideolocationCall } from "../../redux/videolocationSlice";
-// import VideolocationModalDetails from "../../components/VideolocationModalDetails";
 import { useNavigate } from "react-router-dom";
 import "./MyLocations.css";
 import { Pencil } from "react-bootstrap-icons";
@@ -24,35 +23,35 @@ const MyLocations = () => {
 
   return (
     <div className="MyLocations">
-      <h1>My Locations</h1>
+      <h1>My Posts</h1>
       <div className="MyLocations-videos-container">
         {currentUserVideolocations &&
           currentUserVideolocations.map((e) => (
-            <div key={e._id}>
+            <div className="mylocations-general-container" key={e._id}>
               <div className="MyLocations-video-container">
                 <video src={e.videoUrl} />
               </div>
               <div className="MyLocation-information-container">
                 <div>
-                  <h6>
+                  <p className="locationTitle-mylocations">Title:</p>
+                  <p>
                     {e.title.length > 32
                       ? e.title.slice(0, 32) + "..."
                       : e.title}
-                  </h6>
+                  </p>
+                </div>
+                <div>
+                  <p className="locationTitle-mylocations">Description:</p>
                   <p>
                     {e.description.length > 70
                       ? e.description.slice(0, 70) + "..."
                       : e.description}
                   </p>
                 </div>
-                <p>
-                  {e.location.name.length > 60
-                    ? e.location.name.slice(0, 60) + "..."
-                    : e.location.name}
-                </p>
-                <p className="date">
-                  Date: <i>{new Date(e.createdAt).toString().slice(0, 15)}</i>
-                </p>
+                <div>
+                  <p className="date">Date:</p>
+                  <p>{new Date(e.createdAt).toString().slice(0, 15)}</p>
+                </div>
                 <button
                   className="MyLocations-edit-button"
                   onClick={() => navigate(`/edit/${e._id}`)}
@@ -61,7 +60,6 @@ const MyLocations = () => {
                   <Pencil className="pencil-MyLocations" />
                 </button>
               </div>
-              {/* <VideolocationModalDetails _id={e._id} /> */}
             </div>
           ))}
       </div>

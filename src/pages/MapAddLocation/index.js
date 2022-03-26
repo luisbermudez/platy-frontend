@@ -114,7 +114,6 @@ function MapAddLocation() {
         )}
         <div className="map-div">
           <h1 className="dropAPin">Share your flow</h1>
-          <p>To get started drop a pin</p>
           <div ref={mapContainer} className="addlocationmap-container" />
           {hasAddedPin && (
             <p

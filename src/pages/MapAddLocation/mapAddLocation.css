@@ -4,11 +4,11 @@
 
 .addlocationmap-container {
   width: 82.2vw;
-  height: 71.2vh;
+  height: 75.8vh;
   border-radius: 10px;
   z-index: 1;
   position: absolute;
-  top: 206px;
+  top: 170px;
   left: 220px;
 }
 
@@ -83,7 +83,6 @@ _____________ */
 
 .MapAddLocations-modal a {
   color: var(--pink-focused);
-  /* color: black; */
   font-weight: 700;
 }
 
@@ -188,7 +187,7 @@ input[name="videoFile"] {
 
 .pinNext {
   position: absolute;
-  top: 134px;
+  top: 104px;
   right: 1vw;
   font-weight: 400;
 }

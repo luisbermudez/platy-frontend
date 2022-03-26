@@ -50,14 +50,6 @@ const VideolocationDetails = () => {
               muted={false}
             />
             <div className="information">
-              {/* <div className="user-details">
-                <img
-                  className="videoDetails-avatar"
-                  alt={videolocationDetails._user.name}
-                  src={videolocationDetails._user.profilePicture}
-                />
-                <h4>{videolocationDetails._user.name}</h4>
-              </div> */}
               <div className="title-views-container">
                 <h5>
                   {videolocationDetails.title.length > 160
@@ -67,6 +59,25 @@ const VideolocationDetails = () => {
                 <p>
                   {videolocationDetails.views} views • {daysAgo}
                 </p>
+                <div className="userInformation-Details">
+                  <img
+                    className="videoDetails-avatar"
+                    alt={videolocationDetails._user.name}
+                    src={videolocationDetails._user.profilePicture}
+                  />
+                  <div className="user-details">
+                    <h4>{videolocationDetails._user.name}</h4>
+                  </div>
+                </div>
+                <hr />
+                {videolocationDetails.location.name && (
+                  <>
+                    <h6>Location name</h6>
+                    <p>{videolocationDetails.location.name}</p>
+                  </>
+                )}
+                <h6>Description</h6>
+                <p>{videolocationDetails.description}</p>
               </div>
             </div>
           </div>

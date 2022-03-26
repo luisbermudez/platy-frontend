@@ -1,0 +1,71 @@
+.Profile {
+  padding: 40px;
+  padding-top: 0;
+  z-index: 10;
+}
+
+.Profile hr {
+    color: rgb(150, 150, 150);
+    margin: 0;
+}
+
+.profile-videos-container {
+    margin-top: 230px;
+}
+
+.Profile header {
+  position: fixed !important;
+  z-index: 3;
+  top: 70px;
+  background-color: var(--background-color);
+  height: 200px;
+  width: 82vw;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0px;
+  border-bottom: 1px solid rgb(221, 221, 221);
+}
+
+.Profile header img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+
+.Profile header h4 {
+  margin: 10px 20px 10px;
+}
+
+.Profile header button {
+  background-color: transparent;
+  border-radius: 10px;
+  border-color: rgb(204, 204, 204);
+  font-size: 0.86rem;
+}
+
+.Profile header p {
+  margin-left: 20px;
+}
+
+.profile-logout {
+  position: absolute;
+  top: 148px;
+  right: 0px;
+}
+
+.logout_button {
+  z-index: 10;
+  color: black;
+  border: none;
+  font-size: 1rem;
+  padding-left: 0px;
+}
+
+.profile-logout svg {
+    margin-right: 30px;
+    position: absolute;
+    right: -10px;
+    top: 19px;
+}

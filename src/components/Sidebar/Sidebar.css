@@ -27,10 +27,7 @@
 
 .sidebarLink:hover {
   background-color: rgb(243, 243, 243);
-  /* background-color: rgb(234, 234, 234); */
   color: black;
-  /* border-left: 4px solid #ec127f; */
-  /* border-left: 4px solid var(--pink-focused); */
   box-sizing: border-box;
   padding-left: 4px;
 }
