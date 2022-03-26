@@ -33,7 +33,7 @@ const VideoPreviewForMap = ({ each }) => {
         <p className="viewsCount">
           <a
             className="anchorDetails"
-            href={`https://platy.netlify.app/details/${each._id}`}
+            href={`https://platywebsite.netlify.app/details/${each._id}`}
           >
             More details
           </a>
