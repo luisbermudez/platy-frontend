@@ -1,5 +1,3 @@
-import "./VideoCard.css";
-
 const VideoCard = ({ videoInfo, onClick }) => {
   return (
     <video
