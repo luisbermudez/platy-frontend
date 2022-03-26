@@ -1,10 +1,21 @@
+.EditVideolocation {
+  padding: 40px;
+}
+
 .form-control:focus {
   box-shadow: none;
 }
 
 .TrashFill {
-  color: rgb(240, 64, 93);
-  font-size: 1.4rem;
+  color: white;
+  font-size: 1.1rem;
+  position: absolute;
+  right: 8px;
+  top: 10px;
+}
+
+.TrashFill:hover {
+  cursor: pointer;
 }
 
 .PencilSquare {
@@ -13,12 +24,6 @@
 
 .editSection {
   display: flex;
-}
-
-.editSection div:nth-child(1) {
-  padding: 10px 30px;
-  border-right: 1px solid rgb(212, 212, 212);
-  line-height: 100%;
 }
 
 .editMainContainer {
@@ -42,7 +47,7 @@
 }
 
 .tooltipEdit span {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 .tooltipEdit .tooltiptext {
@@ -68,6 +73,48 @@
 }
 
 .urlHT {
-    font-size: 15px;
-    font-weight: 300;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.thumbnail-container {
+  background-color: rgb(230, 230, 230);
+  border-radius: 10px;
+  position: relative;
+  height: 150px;
+  width: 150px;
+  position: absolute;
+  left: 222px;
+  top: 180px;
+}
+
+.thumbnail-container video {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.edit-formcontainer {
+  padding-top: 0px;
+  padding-left: 0px;
+  width: 500px;
+}
+
+.EditVideolocation .VideoPlayer {
+  position: absolute;
+  top: 110px;
+  right: 40px;
+}
+
+.successMessage {
+  margin-top: 14px;
+}
+
+.successMessage strong {
+  text-decoration: underline;
+  margin-left: 5px;
+}
+
+.successMessage strong:hover {
+  cursor: pointer;
 }

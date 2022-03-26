@@ -38,7 +38,9 @@ const EditVideolocationModal = ({ locationId, publicId }) => {
 
   return (
     <>
-      <TrashFill className="TrashFill" onClick={() => setModalShow(true)} />
+      <div className="trash-container" onClick={() => setModalShow(true)}>
+        <TrashFill />
+      </div>
       <Modal
         show={modalShow}
         onHide={() => setModalShow(false)}

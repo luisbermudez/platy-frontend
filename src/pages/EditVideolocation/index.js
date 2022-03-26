@@ -1,4 +1,4 @@
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -6,10 +6,10 @@ import {
   clearVideolocationDetails,
 } from "../../redux/videolocationSlice";
 import { Form } from "react-bootstrap";
-import { Files } from "react-bootstrap-icons";
 import { videolocationUpdateWs } from "../../services/videolocation-ws";
 import EditVideolocationModal from "../../components/EditVideolocationModal";
 import "./EditVideolocation.css";
+import VideoPlayer from "../../components/VideoPlayer";
 
 const EditVideolocation = () => {
   const { _idToEdit: _id } = useParams();
@@ -20,8 +20,6 @@ const EditVideolocation = () => {
   );
   const hasVerified = useRef(false);
   const hasSetupValues = useRef(false);
-  const urlHT = useRef(null);
-  const toolTip = useRef(null);
 
   const [isUpdated, setIsUpdated] = useState(false);
   const [values, setValues] = useState({
@@ -38,11 +36,6 @@ const EditVideolocation = () => {
       locationName: videolocationDetails.location.name,
       description: videolocationDetails.description,
     });
-  };
-
-  const handleCopyLink = () => {
-    navigator.clipboard.writeText(urlHT.current.innerText);
-    toolTip.current.innerText = "Link copied";
   };
 
   const handleInput = (e) => {
@@ -91,16 +84,13 @@ const EditVideolocation = () => {
   }, []);
 
   return (
-    <>
-      <h1>Edit Information</h1>
+    <div className="EditVideolocation">
+      <h1>Edit post</h1>
       {errorMessage && <h5>{errorMessage}</h5>}
       {videolocationDetails && (
         <div className="editMainContainer">
           <section className="editSection">
-            <div>
-              <video src={videolocationDetails.videoUrl} height="120px" />
-            </div>
-            <div className="formContainer">
+            <div className="formContainer edit-formcontainer">
               <Form onSubmit={handleLoginSubmit} autoComplete="off">
                 <EditVideolocationModal
                   locationId={videolocationDetails._id}
@@ -133,47 +123,33 @@ const EditVideolocation = () => {
                     />
                   </>
                 )}
-                {isUpdated && (
-                  <p>
-                    <strong>Information has been updated ✔️</strong>
-                  </p>
-                )}
                 <button type="submit" disabled={submitDisabled}>
                   Update
                 </button>
+                {isUpdated && (
+                  <p className="successMessage">
+                    Information has been updated.
+                    <strong
+                      onClick={() =>
+                        navigate(`/details/${videolocationDetails._id}`)
+                      }
+                    >
+                      {" "}
+                      Go to post
+                    </strong>
+                  </p>
+                )}
               </Form>
             </div>
           </section>
-          <div>
-            <video
-              src={videolocationDetails.videoUrl}
-              controls
-              height="300px"
-            />
-            <h6>Post Link</h6>
-            <Link
-              className="urlHT"
-              ref={urlHT}
-              to={`/details/${videolocationDetails._id}`}
-            >
-              https://platy.netlify.app/details/{videolocationDetails._id}
-            </Link>
-            <section className="tooltipEdit">
-              <Files
-                onMouseOut={() =>
-                  (toolTip.current.innerText = "Copy to clipboard")
-                }
-                onClick={handleCopyLink}
-                className="CopyIcon"
-              />
-              <span ref={toolTip} className="tooltiptext" id="myTooltip">
-                Copy to clipboard
-              </span>
-            </section>
-          </div>
+          <VideoPlayer
+            videoUrl={videolocationDetails.videoUrl}
+            controls={true}
+            muted={false}
+          />
         </div>
       )}
-    </>
+    </div>
   );
 };
 

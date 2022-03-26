@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./PreviewVideoCard.css";
 import { handleDaysCalc } from "../../utils/generalUtils";
 
-const PreviewVideoCard = ({ each, videoPlay }) => {
+const PreviewVideoCard = ({ each, videoPlay, avatar }) => {
   const navigate = useNavigate();
   const [agoValue, setAgoValue] = useState(null);
   const [views, setViews] = useState(null);
@@ -40,13 +40,15 @@ const PreviewVideoCard = ({ each, videoPlay }) => {
         loop
         muted
       />
-      <div className="videoPreviewAvatarContainer">
-        <img
-          className="videoPreviewAvatar"
-          alt={each._user.name}
-          src={each._user.profilePicture}
-        />
-      </div>
+      {avatar && (
+        <div className="videoPreviewAvatarContainer">
+          <img
+            className="videoPreviewAvatar"
+            alt={each._user.name}
+            src={each._user.profilePicture}
+          />
+        </div>
+      )}
       <div className="video-description">
         <h6>
           {each.title.length > 40

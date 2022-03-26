@@ -36,7 +36,6 @@
 
 .MainSearchBar:focus {
   outline: none;
-  /* background-color: rgb(230, 230, 230); */
 }
 
 .Search {
@@ -65,7 +64,6 @@
 .Home-suggestions {
   background-color: var(--background-color);
   background-color: rgb(236, 236, 236);
-  /* border: 1px solid black; */
   font-size: 0.9rem;
   font-weight: 300;
   position: absolute;
@@ -117,58 +115,3 @@
 .MainSearchBar:focus + .closeSearchbar {
   color: rgb(60, 60, 60);
 }
-
-/* Dropdown */
-/* .Home .btn-primary {
-  width: fit-content;
-  background-color: white;
-  background-color: transparent;
-  color: rgb(39, 39, 39);
-  border: none;
-}
-
-.Home .btn-primary:active,
-.Home .btn-primary:active:focus,
-.Home .btn-primary:focus-within,
-.Home .btn-primary:hover,
-.Home .show > .btn-primary.dropdown-toggle,
-.Home .show > .btn-primary.dropdown-toggle:focus {
-  background-color: white;
-  background-color: transparent;
-  border: none;
-  color: black;
-  box-shadow: none;
-}
-
-.DropdownToggle-Nav {
-  position: relative;
-}
-
-.dropdown-menu {
-  border: none;
-  min-width: 104px;
-  text-align: start;
-  background-color: rgb(255, 255, 255);
-  border-radius: 0 0 5px 5px !important;
-  padding: 10px 0px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-
-.dropdown-item {
-  line-height: 25px;
-  padding: 9px 16px;
-  background-color: transparent;
-  color: black;
-  font-size: 1rem;
-}
-
-.dropdown-item:active,
-.dropdown-item:focus-within {
-  color: rgb(0, 0, 0);
-}
-
-.dropdown-item:hover {
-  background-color: rgb(233, 233, 233);
-  border-left: 2px solid #65eccb;
-  padding-left: 14px;
-} */

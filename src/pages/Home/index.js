@@ -141,7 +141,11 @@ function Home() {
           ) : (
             videolocationsArr.map((each) => (
               <div className="video-home-grid" key={each._id}>
-                <PreviewVideoCard each={each} videoPlay={videoPlay} />
+                <PreviewVideoCard
+                  each={each}
+                  videoPlay={videoPlay}
+                  avatar={true}
+                />
               </div>
             ))
           )
@@ -149,7 +153,11 @@ function Home() {
           videolocations &&
           videolocations.map((each) => (
             <div className="video-home-grid" key={each._id}>
-              <PreviewVideoCard each={each} videoPlay={videoPlay} />
+              <PreviewVideoCard
+                each={each}
+                videoPlay={videoPlay}
+                avatar={true}
+              />
             </div>
           ))
         )}
