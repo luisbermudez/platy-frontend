@@ -31,7 +31,7 @@ yarn -v
 
 <br>
 
-## Clone and run the project
+## Clone and set yarn package manager
 
 1. Clone this repository
 
@@ -90,3 +90,30 @@ yarn start
 
 <br>
 <br>
+
+
+# Pages
+In this section you can learn about the different pages the frontend has and some information about each page. For all pages the Base URL is: `https://platywebsite.netlify.app/`
+
+<br>
+<br>
+
+Page                | URL                   | Description       | Auth required      |
+|-------------------|-----------------------|-------------------|:------------------:|
+Home/Discover       | /                     | Homepage          | 
+Map                 | /map                  | Map               |
+Details             | /details/{_id}        | Posts details     |
+Log in              | /login                | Log in            |
+Sign up             | /signup               | Sign up           |
+Add location        | /add-location         | Share new location| ✔️
+Profile             | /profile              | User's profile    | ✔️
+My Posts            | /mylocations          | Manage posts      | ✔️
+Edit posts          | /edit/{_id}           | Edit posts        | ✔️
+
+<br>
+<br>
+
+## Important
+
+- Cross-Origin Resource Sharing has been setup for [Platy Backend](https://github.com/luisbermudez/platy-backend) to only accept requests from Platy Frontend.
+- Credentials to use Mapbox and Cloudinary are required.
