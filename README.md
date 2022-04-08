@@ -1,40 +1,92 @@
-<h1>Platy Front-End</h1>
-<i>by Luis</i>
+<div align="center" style="margin: 2rem 0;">
+<img src="./public/platy.png" width="200"/>
+<h3>Share & Locate Skateflow Content</h3>
+</div>
+
+# About Platy
+
+Platy is a MERN Fullstack Application where you can find places to go rollerblading. You can also watch clips from people around the world rollerblading. If you know a cool spot and want to share it with the community you can sing up, then go to **Share your flow**, drop a pin and attach to it a clip of you rollerblaing. [Take a look](https://platywebsite.netlify.app/).
+
+![Platy landing page](./public/mapAndVideoPreview.png)
+<br>
+<br>
+<br>
+<br>
+
+# Frontend Introduction
+
+This is the frontend of the application and it has been built as a Single Page Application using the React library. Redux slices is used for managing the application state. The Formik and Yup libraries were used to have better control of the forms and Mapbox is used for the maps. To work with the frontend check the information bellow. If you wish to check the backend of this application instead, go to [Platy Backend](https://github.com/luisbermudez/platy-backend).
 
 <br>
 <br>
-<h2><b>Visit <a href="https://platy.netlify.app/" width="200px">Platy</a></b></h2>
+
+## Prerequisites
+
+Make sure you have node and yarn installed. You can use the following commands and if installed, you will get their version.
+
+```bash
+node -v
+yarn -v
+```
+
+<br>
+
+## Clone and run the project
+
+1. Clone this repository
+
+```sh
+git clone https://github.com/luisbermudez/platy-frontend.git
+```
+
+2. Run the yarn command inside the project's directory
+
+```sh
+yarn
+```
+
+<br>
+
+## Dependencies
+
+- @mapbox/mapbox-gl-geocoder
+- @reduxjs/toolkit
+- @testing-library/jest-dom
+- @testing-library/react
+- @testing-library/user-event
+- axios
+- bootstrap
+- dotenv
+- formik
+- mapbox-gl
+- react
+- react-bootstrap
+- react-bootstrap-icons
+- react-dom
+- react-redux
+- react-router-dom
+- react-scripts
+- redux
+- redux-thunk
+- web-vitals
+- yup
+  <br>
+
+If you are missing any of the dependencies above run: yarn add **name-of-dependency**. For instance, to add **@mapbox/mapbox-gl-geocoder** the command would be:
+
+```bash
+yarn add bc@mapbox/mapbox-gl-geocoderryptjs
+```
+
+<br>
+
+## Scripts
+
+Use yarn start to get the frontend running.
+
+```sh
+yarn start
+```
+
 <br>
 <br>
-<img alt="main-website" src="./public/images/main.png">
-Platy is a website where you can find cool places to skate flow. If you are visiting a city for the first time and you want to find a great place to go rollerblading then but you are not sure where to go then Platy is the way to go.
-You will find not only the exact location but also a video linked to it so you get more details about the location. If you know a great place to go rollerblading and want to share it you can do it! All you have to do is sign up and once in you can locate the spot on the map, drop a pin and upload a cool video of it.
-<br>
-<br>
-How does it work?
-<ul>
-<li>1. Go to the home page to find the most recet videos.</li>
-<li>2. Get more details when you click on the video included the spot where it was recorded.</li>
-<li>3. If you prefer you can also go to the Map section, there you can find a map with markers all over the place.</li>
-<li>4. If you have some recommendation to share just sing up and go to Share your flow.</li>
-<li>5. When sharing a new post you will get asked to drop a pin first so, use the map to locate the spot and click on it to drop a pin.</li>
-<li>6. Once the spot has been marked you can then upload a video, this is mandatory before you get to post the new location.</li>
-<li>7. The video is uploaded and the spot is located, just submit and the new location will be created.</li>
-</ul>
-<h2>Page sections</h2>
-<img id="home" src="./public/images/landingPage.png" width="200px">
-This is the landing page. Here you will be able to see all the most recent videos. When you hover over the videos they will start to play without sound and if you click on the, it will take you to the actual pos.
-<br>
-<br>
-<br>
-<img id="map" src="./public/images/Maps.png" width="200px">
-This would be the Map section. Here you can see all the markers and if you click on any of them a pop up will appear with a preview of the video and a more details link.
-<br>
-<br>
-<br>
-<img id="shareYourFlow" src="./public/images/addNewLocation.png" width="200px">
-To get here just click the main botton that says Share your flow. Here you can use the map to locate the spot using the search bar, navigation or geolocation is you are in the area.
-<br>
-<br>
-<br>
-Those are the main features of the website. You should go take a look at the rest of it!
