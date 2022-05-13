@@ -1,12 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Yanone+Kaffeesatz:wght@700&display=swap");
 
+/* Mobile 375px */
 /* Navbar */
 .Navbar {
   width: 100vw;
-  height: 70px;
+  height: 60px;
   position: fixed;
-  top: 0;
+  top: 0px;
   display: flex;
+  justify-content: space-between;
   background-color: white;
   z-index: 1;
   border-bottom: 1px solid rgba(223, 223, 223, 0.575);
@@ -15,115 +17,56 @@
 /* Navbar components */
 /* Platy */
 .platy-nav-container {
-  width: 12.5vw;
-  text-align: center;
-  line-height: 60px;
+  margin-left: 10px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.platy {
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 2.6rem;
-  font-family: "Shadows Into Light", cursive;
-  
-}
-
-.platy svg {
-  height: 100%;
-}
-
-.platy:hover {
-  color: black;
+.platy-nav-container a svg {
+  height: 54px;
+  width: 98px;
 }
 
 /* Searchbar */
 .searchbar-nav-container {
-  width: 56vw;
-  display: flex;
-  align-items: center;
-  position: relative;
-  padding-left: 30px;
+  display: none;
 }
 
 /* Profile */
-.nav-avatar {
-  height: 36px;
-  width: 36px;
-  position: absolute;
-  top: 17px;
-  right: 100px;
-  padding: 2px;
-  border-radius: 50%;
-}
-
 .profile-container {
-  width: 31.5vw;
   display: flex;
-  justify-content: end;
+  justify-content: space-evenly;
   align-items: center;
-  padding-right: 7px;
+  padding-right: 10px;
 }
 
-.ShareSvg {
-  font-size: 1.6rem;
+.icon-ind-container {
+  margin: 13px;
 }
 
-.profileLink button {
-  padding: 0 0 0 30px;
-  background-color: white;
-  border: none;
-  border-radius: 12px;
+.icon-ind-container svg {
   color: black;
-  width: 100px;
-  height: 38px;
-  margin: 0 30px 0 0;
-  box-sizing: border-box;
+  font-size: 24px;
+  height: 30px;
 }
 
-.PersonFill-Nav {
-  font-size: 1.8rem;
-  color: rgb(34, 34, 34);
-  position: absolute;
-  right: 65px;
-  top: 20px;
+.nav-avatar {
+  height: 26px;
+  width: 26px;
+  border-radius: 50%;
+  border: 0.1rem solid black;
 }
 
-.share-flow {
-  position: relative;
-  background-color: var(--pink-focused);
-  
-  width: 156px;
-  border-radius: 10px;
-  margin-right: 48px;
-  padding: 5px;
-  font-weight: 400;
+/* Tablet */
+@media (min-width: 768px) {
+  .searchbar-nav-container {
+    width: 56vw;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 30px;
+    background-color: rgb(242, 242, 242);
+  }
 }
-
-.share-flow svg {
-  color: white;
-}
-
-.share-flow a {
-  color: white;
-  font-size: 0.9rem;
-  font-weight: 600;
-  background-color: transparent;
-  text-decoration: none;
-  padding: 5px 8px 7px 40px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 2px;
-}
-
-.login {
-  border: none;
-  position: relative;
-}
-
-.login svg {
-  left: 10px;
-  top: 9px;
-  font-size: 1.4rem;
-}
-

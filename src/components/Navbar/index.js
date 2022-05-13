@@ -1,46 +1,53 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Plus, PersonFill } from "react-bootstrap-icons";
+import {
+  PlusCircle,
+  Person,
+  GeoAlt,
+  GeoAltFill,
+  House,
+  HouseFill,
+} from "react-bootstrap-icons";
 import "./Navbar.css";
 import Platy from "./platy.js";
 
 function Navbar() {
+  const currentPage = useSelector((state) => state.videolocation.currentPage);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const user = useSelector((state) => state.auth.user);
+
+  const pageSelected = (page, element) => (page === element ? true : false);
 
   return (
     <nav className="Navbar">
       <div className="platy-nav-container">
-        <Link className="platy" to="/">
+        <Link to="/">
           <Platy />
         </Link>
       </div>
       <div className="searchbar-nav-container"></div>
       <div className="profile-container">
-        <div className="share-flow">
-          <Plus className="ShareSvg" />
-          <Link to="/add-location">Share your flow</Link>
-        </div>
+        <Link className="icon-ind-container" to="/discover">
+          {pageSelected(currentPage, "discover") ? <HouseFill /> : <House />}
+        </Link>
+        <Link className="icon-ind-container" to="/map">
+          {pageSelected(currentPage, "map") ? <GeoAltFill /> : <GeoAlt />}
+        </Link>
+        <Link className="icon-ind-container" to="/add-location">
+          <PlusCircle />
+        </Link>
         {isLoggedIn ? (
-          <>
-            <Link to="/profile" className="profileLink">
-              <img
-                className="nav-avatar"
-                alt="profile"
-                src={user.profilePicture}
-              />
-              <button>{user.name}</button>
-            </Link>
-          </>
+          <Link to="/profile" className="icon-ind-container">
+            <img
+              className="nav-avatar"
+              alt="profile"
+              src={user.profilePicture}
+            />
+          </Link>
         ) : (
-          <>
-            <Link to="/login">
-              <button className="login">
-                <PersonFill className="PersonFill-Nav" />
-                Log In
-              </button>
-            </Link>
-          </>
+          <Link className="icon-ind-container" to="/login">
+            <Person />
+          </Link>
         )}
       </div>
     </nav>

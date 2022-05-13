@@ -108,7 +108,7 @@ function Home() {
 
   return (
     <div className="Home" onClick={closeSuggestions}>
-      <div className="searchbar-container-home">
+      {/* <div className="searchbar-container-home">
         <input
           onChange={handleSuggestions}
           onKeyUp={handleInputSearch}
@@ -124,16 +124,19 @@ function Home() {
         )}
         <Search className="Search" />
         {suggestionActive && (
-          <div className="Home-suggestions">
-            {suggestionsArr &&
-              suggestionsArr.map((each) => (
-                <p key={each._id} onClick={handleSelection}>
-                  {each.title}
-                </p>
-              ))}
-          </div>
+          <>
+            <div className="triangle"></div>
+            <div className="Home-suggestions">
+              {suggestionsArr &&
+                suggestionsArr.map((each) => (
+                  <p key={each._id} onClick={handleSelection}>
+                    {each.title}
+                  </p>
+                ))}
+            </div>
+          </>
         )}
-      </div>
+      </div> */}
       <div className="videos-container">
         {isSearching ? (
           videolocationsArr.length < 1 ? (
@@ -141,11 +144,7 @@ function Home() {
           ) : (
             videolocationsArr.map((each) => (
               <div className="video-home-grid" key={each._id}>
-                <PreviewVideoCard
-                  each={each}
-                  videoPlay={videoPlay}
-                  avatar={true}
-                />
+                <PreviewVideoCard each={each} videoPlay={videoPlay} />
               </div>
             ))
           )
@@ -153,11 +152,7 @@ function Home() {
           videolocations &&
           videolocations.map((each) => (
             <div className="video-home-grid" key={each._id}>
-              <PreviewVideoCard
-                each={each}
-                videoPlay={videoPlay}
-                avatar={true}
-              />
+              <PreviewVideoCard each={each} videoPlay={videoPlay} />
             </div>
           ))
         )}

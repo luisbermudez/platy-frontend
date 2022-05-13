@@ -3,7 +3,6 @@ export { default as TextArea } from "./TextArea";
 export { default as PasswordInput } from "./PasswordInput";
 export { default as Logout } from "./Logout";
 export { default as Navbar } from "./Navbar";
-export { default as Sidebar } from "./Sidebar";
 export { default as IsPrivate } from "./IsPrivate";
 export { default as IsAnon } from "./IsAnon";
 export { default as CallAuthVerify } from "./CallAuthVerify";

@@ -1,46 +1,16 @@
 .sidebar-rootnav-container {
   width: 100vw;
-  padding: 70px 0 0 0;
-}
-
-.sidebar-container {
-  position: fixed;
-  height: 100vh;
-  width: 180px;
-}
-
-.rootnav-container {
-  padding-left: 180px;
-}
-
-.collpaseButton {
-  height: 27px;
-  width: 27px;
-  background-color: var(--green-focused);
-  border-radius: 100% 0 0 100%;
-  position: absolute;
-  right: 0px;
-  bottom: 120px;
-}
-
-.collpaseButton:hover {
-  width: 29px;
-  cursor: pointer;
-  border-right: none;
-}
-
-.ChevronLeft {
-  position: absolute;
-  height: 1.8rem !important;
-  top: -16px;
-  right: -23px;
-}
-
-.ChevronLeft:hover {
-  right: -21px;
+  padding-top: 30px;
 }
 
 .mainLoading {
   padding: 20px;
   width: 100vw;
+}
+
+@media (min-width: 768px) {
+  .sidebar-rootnav-container {
+    width: 100vw;
+    padding-top: 70px;
+  }
 }

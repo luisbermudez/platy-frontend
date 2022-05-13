@@ -34,12 +34,7 @@ function App() {
         <>
           <Navbar />
           <div className="sidebar-rootnav-container">
-            <div className="sidebar-container" sm={1}>
-              <Sidebar />
-            </div>
-            <div className="rootnav-container" sm={11}>
-              <RootNavigation />
-            </div>
+            <RootNavigation />
           </div>
         </>
       )}
