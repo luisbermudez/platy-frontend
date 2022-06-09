@@ -1,6 +1,6 @@
-.sidebar-rootnav-container {
+.app-container {
   width: 100vw;
-  padding-top: 30px;
+  padding-top: 60px;
 }
 
 .mainLoading {
@@ -9,7 +9,7 @@
 }
 
 @media (min-width: 768px) {
-  .sidebar-rootnav-container {
+  .app-container {
     width: 100vw;
     padding-top: 70px;
   }

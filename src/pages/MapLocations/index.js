@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,11 +8,15 @@ import {
 } from "../../redux/videolocationSlice";
 import "./MapLocations.css";
 import ReactDOM from "react-dom";
-import VideoPreviewForMap from "../../components/VideoPreviewForMap";
+import PreviewVideoCard from "../../components/PreviewVideoCard";
+import { handlePlay } from "../../utils/generalUtils";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 function Map() {
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [currentlyPlaying, setCurrentlyPlaying] = useState(undefined);
+  
   const dispatch = useDispatch();
   const hasVerified = useRef(false);
   const setMarkers = useRef(false);
@@ -24,10 +28,23 @@ function Map() {
   const geolocate = useRef(null);
   const navControl = useRef(null);
   const markers = useRef(null);
+  const videoRef = useRef(null);
 
   const videolocations = useSelector(
     (state) => state.videolocation.videolocations
   );
+
+  const videoPlay = (e) => {
+    videoRef.current = e.target;
+    handlePlay(
+      e,
+      isVideoPlaying,
+      currentlyPlaying,
+      setIsVideoPlaying,
+      videoRef,
+      setCurrentlyPlaying
+    );
+  };
 
   useEffect(() => {
     if (!hasVerified.current) {
@@ -42,8 +59,8 @@ function Map() {
     locationsMap.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/dark-v10",
-      center: [-95.7928, 34.0264],
-      zoom: 3.22,
+      center: [-80.9091, 26.3473],
+      zoom: 1,
     });
 
     navControl.current = new mapboxgl.NavigationControl({
@@ -75,6 +92,11 @@ function Map() {
         mapContainer.getCanvas().style.cursor = "pointer";
       });
     }
+
+    locationsMap.current.on('move', () => {
+      console.log(locationsMap.current.getCenter().lng);
+      console.log(locationsMap.current.getCenter().lat);
+    })
   });
 
   useEffect(() => {
@@ -82,7 +104,8 @@ function Map() {
       timeoutId.current = setTimeout(() => {
         videolocations.forEach((spot) => {
           const popupNode = document.createElement("div");
-          ReactDOM.render(<VideoPreviewForMap each={spot} />, popupNode);
+          popupNode.className = "video-home-grid";
+          ReactDOM.render(<PreviewVideoCard each={spot} videoPlay={videoPlay} />, popupNode);
           markers.current = new mapboxgl.Marker({
             color: "#ec127f",
           })

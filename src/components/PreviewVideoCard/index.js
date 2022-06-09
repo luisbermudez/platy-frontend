@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import "./PreviewVideoCard.css";
 import { handleDaysCalc } from "../../utils/generalUtils";
 import placeholderVideo from "../../santafe-low.mp4";
 import dogo from "../../Black-Dog-PNG.png";
 
 const PreviewVideoCard = ({ each, videoPlay }) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [agoValue, setAgoValue] = useState(null);
   const [views, setViews] = useState(null);
 
@@ -31,7 +31,7 @@ const PreviewVideoCard = ({ each, videoPlay }) => {
       onLoadedMetadata={handleMath}
       key={each._id}
       className="videocard-container"
-      onClick={() => navigate(`/details/${each._id}`)}
+      // onClick={() => navigate(`/details/${each._id}`)}
       onMouseOut={videoPlay}
       onMouseOver={videoPlay}
     >

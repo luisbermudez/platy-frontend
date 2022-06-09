@@ -253,29 +253,6 @@ label.checkbox {
   cursor: pointer;
 }
 
-/* Map
-____________________*/
-
-.locationmap-container {
-  border-radius: 10px;
-  position: absolute;
-  top: 104px;
-  left: 220px;
-  width: 82.4vw;
-  height: 47.6vw;
-}
-
-.upload-file-disabled {
-  pointer-events: none;
-}
-
-.MapLocations {
-  padding-top: 5vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 /* Buttons
 ____________________ */
 
@@ -292,10 +269,10 @@ button {
   box-sizing: border-box;
 }
 
-.mapbox-ctrl-geocoder--button:active {
+/* .mapbox-ctrl-geocoder--button:active {
   height: 10px !important;
   width: 10px !important;
-}
+} */
 
 .signupForm button {
   margin-bottom: 4rem;

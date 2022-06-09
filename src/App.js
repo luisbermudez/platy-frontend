@@ -33,7 +33,7 @@ function App() {
       ) : (
         <>
           <Navbar />
-          <div className="sidebar-rootnav-container">
+          <div className="app-container">
             <RootNavigation />
           </div>
         </>

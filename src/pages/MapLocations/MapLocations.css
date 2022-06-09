@@ -1,10 +1,4 @@
-.locationmap-container .mapboxgl-popup-content {
-  padding: 0;
-  border-radius: 10px;
-  height: 100%;
-}
-
-
+/* General map style */
 .mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
 .mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip,
 .mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
@@ -20,4 +14,101 @@
 }
 .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
   border-left-color: white !important;
+}
+
+.upload-file-disabled {
+  pointer-events: none;
+}
+
+/* Map container */
+.locationmap-container {
+  position: relative;
+  width: 100vw;
+  height: calc(100vh - 60px);
+}
+
+/* Map popup video player container */
+.locationmap-container .mapboxgl-popup-content {
+  padding: 0;
+  border-radius: 10px;
+  height: 100%;
+}
+
+.locationmap-container .video-home-grid,
+.locationmap-container .videocard-container {
+  width: 240px !important;
+  height: 270px !important;
+  margin: 0 !important;
+}
+
+/* Video */
+.locationmap-container video {
+  height: 180px !important;
+}
+
+.locationmap-container video:hover {
+  height: 206px !important;
+}
+
+.locationmap-container .video-home-grid h6 {
+  color: var(--text-color);
+  font-family: "Lato", sans-serif;
+}
+
+/* Enter map full screen */
+.locationmap-container .mapboxgl-ctrl-top-right {
+  display: none;
+}
+
+/* Search bar container */
+.locationmap-container .mapboxgl-ctrl-top-left {
+  width: calc(100vw - 20px);
+}
+
+/* Close x svg */
+.locationmap-container .mapboxgl-ctrl-geocoder--button svg {
+  height: 36px;
+  margin-top: 0px;
+  padding: 2.2px;
+}
+
+/* Search and x-close icon */
+.locationmap-container .mapboxgl-ctrl-geocoder--button svg,
+.locationmap-container .mapboxgl-ctrl-geocoder--icon-search {
+  fill: var(--dark-800);
+}
+
+/* Loading icon */
+.locationmap-container .mapboxgl-ctrl-geocoder--icon-loading {
+  display: none !important;
+}
+
+/* Search input */
+.locationmap-container .mapboxgl-ctrl-geocoder--input,
+.locationmap-container .suggestions-wrapper {
+  font-family: "Lato", sans-serif;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+@media (min-width: 768px) {
+  /* Enter map full screen */
+  .locationmap-container .mapboxgl-ctrl-top-right {
+    display: block;
+  }
+  
+  /* Map View div */
+  .MapLocations {
+    padding-top: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Map container */
+  .locationmap-container {
+    border-radius: 10px;
+    width: 82.4vw;
+    height: 47.6vw;
+  }
 }
