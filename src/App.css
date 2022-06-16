@@ -1,7 +1,6 @@
 .app-container {
   width: 100vw;
-  margin-top: 60px;
-  height: calc(100vh + 1px);
+  padding-top: 60px;
 }
 
 .mainLoading {
