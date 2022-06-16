@@ -1,0 +1,28 @@
+.SignupOrLogin {
+  padding: 50px;
+}
+
+.SignupOrLogin p {
+  margin: 6px 0px;
+  color: var(--gray-700);
+}
+
+.SignupOrLogin a {
+  color: var(--dark-900);
+  font-weight: 700;
+}
+
+.SignupOrLogin button {
+  background-color: var(--pink-focused);
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 0.94rem;
+  margin: 26px 0px;
+}
+
+.SignupOrLogin h2 {
+  font-weight: 900;
+  margin-bottom: 0px;
+  font-size: 1.7rem;
+}

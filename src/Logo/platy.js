@@ -8,7 +8,7 @@ const Platy = () => {
       xmlns="http://www.w3.org/2000/svg"
     >
       <g clipPath="url(#clip0_2513_101591)">
-        <rect width="179" height="102" fill="white" />
+        <rect width="179" height="102" fill="transparent" />
         <circle cx="38" cy="76" r="9" fill="#ec127f" />
         <circle cx="36" cy="74" r="3" fill="white" />
         <circle cx="71" cy="76" r="9" fill="#ec127f" />

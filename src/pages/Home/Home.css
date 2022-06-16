@@ -6,7 +6,6 @@
 .searchbar-container-home {
   height: 94px;
   z-index: 2;
-
   position: fixed;
   top: 60px;
   width: 100vw;
@@ -112,6 +111,7 @@
 /* Videos container */
 .videos-container {
   padding: 20px;
+  background-color: aqua;
 }
 
 /* Tablet */

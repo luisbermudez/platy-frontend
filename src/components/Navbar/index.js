@@ -9,7 +9,7 @@ import {
   HouseFill,
 } from "react-bootstrap-icons";
 import "./Navbar.css";
-import Platy from "./platy.js";
+import Platy from "../../Logo/platy.js";
 
 function Navbar() {
   const currentPage = useSelector((state) => state.videolocation.currentPage);
@@ -36,17 +36,13 @@ function Navbar() {
         <Link className="icon-ind-container" to="/add-location">
           <PlusCircle />
         </Link>
-        {isLoggedIn ? (
+        {isLoggedIn && (
           <Link to="/profile" className="icon-ind-container">
             <img
               className="nav-avatar"
               alt="profile"
               src={user.profilePicture}
             />
-          </Link>
-        ) : (
-          <Link className="icon-ind-container" to="/login">
-            <Person />
           </Link>
         )}
       </div>

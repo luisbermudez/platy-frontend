@@ -3,18 +3,9 @@
 }
 
 .addlocationmap-container {
-  width: 82.2vw;
-  height: 75.8vh;
-  border-radius: 10px;
-  z-index: 1;
-  position: absolute;
-  top: 170px;
-  left: 220px;
-}
-
-.map-div {
-  width: 58vw;
-  padding-top: 70px;
+  width: 100vw;
+  height: 70vh;
+  margin-top: 120px;
 }
 
 .mapboxgl-popup-content {
@@ -55,49 +46,30 @@
 
 /* Modal
 _____________ */
-.MapAddLocations-modal .modal-dialog {
-  max-width: 33.5vw;
+.MapAddLocations-modal {
+  display: flex !important;
+  justify-content: center;
+  padding: 0px 16px;
 }
 
 .MapAddLocations-modal .modal-content {
+  min-width: 300px;
+  max-width: 360px;
   border: none;
-  border-radius: 12px;
-  background-color: var(--background-color);
-}
-
-.MapAddLocations-modal .modal-container {
-  padding: 40px;
-}
-
-.MapAddLocations-modal .divided-container {
+  border-radius: 10px;
+  background-color: white;
+  height: 380px;
+  position: relative;
   display: flex;
-}
-
-.MapAddLocations-modal .divided-container > div {
-  width: 50%;
-}
-
-.MapAddLocations-modal h2 {
-  margin-bottom: 10px;
-}
-
-.MapAddLocations-modal a {
-  color: var(--pink-focused);
-  font-weight: 700;
-}
-
-.MapAddLocations-modal button {
-  background-color: rgb(34, 34, 34);
-  color: white;
-  margin-left: 0;
+  justify-content: center;
 }
 
 .MapAddLocations-modal .goback {
   position: absolute;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 600;
   right: 32px;
   top: 20px;
-  margin: 0;
 }
 
 .MapAddLocations-modal .goback:hover {
@@ -227,4 +199,112 @@ input[name="videoFile"] {
   left: 37.7vw;
   border-radius: 10px;
   border: 1px solid rgba(212, 212, 212, 0.637);
+}
+
+
+/* Tablet */
+@media (min-width: 768px) {
+  /* Map 
+  _____________ */
+  .addlocationmap-container {
+    width: 82.2vw;
+    height: 75.8vh;
+    border-radius: 10px;
+    z-index: 1;
+    position: absolute;
+    top: 170px;
+    left: 220px;
+  }
+  
+  .map-div {
+    width: 58vw;
+    padding-top: 70px;
+  }
+  
+  .mapboxgl-popup-content {
+    background-color: rgba(0, 0, 0, 0.82);
+    color: rgb(236, 18, 127);
+    color: white;
+  }
+  .mapboxgl-popup-content > h3 {
+    margin: 4px 5px 0;
+  }
+  .mapboxgl-popup-close-button {
+    color: aliceblue;
+    font-size: 1rem;
+    margin: 2px 5px 0 0;
+  }
+  
+  .mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
+  .mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip,
+  .mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
+    border-bottom-color: rgba(0, 0, 0, 0.82);
+  }
+  .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip,
+  .mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip,
+  .mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
+    border-top-color: rgba(0, 0, 0, 0.82);
+  }
+  .mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+    border-right-color: rgba(0, 0, 0, 0.82);
+  }
+  .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+    border-left-color: rgba(0, 0, 0, 0.82);
+  }
+  
+  .mapboxgl-ctrl-geocoder--button {
+    height: fit-content !important;
+    width: fit-content !important;
+  }
+
+  /* Modal
+  _____________ */
+  .MapAddLocations-modal .modal-dialog {
+    max-width: 33.5vw;
+  }
+
+  .MapAddLocations-modal .modal-content {
+    border: none;
+    border-radius: 12px;
+    background-color: var(--background-color);
+  }
+
+  .MapAddLocations-modal .modal-container {
+    padding: 40px;
+  }
+
+  .MapAddLocations-modal .divided-container {
+    display: flex;
+  }
+
+  .MapAddLocations-modal .divided-container > div {
+    width: 50%;
+  }
+
+  .MapAddLocations-modal h2 {
+    margin-bottom: 10px;
+  }
+
+  .MapAddLocations-modal a {
+    color: var(--pink-focused);
+    font-weight: 700;
+  }
+
+  .MapAddLocations-modal button {
+    background-color: rgb(34, 34, 34);
+    color: white;
+    margin-left: 0;
+  }
+
+  .MapAddLocations-modal .goback {
+    position: absolute;
+    font-size: 1.2rem;
+    right: 32px;
+    top: 20px;
+    margin: 0;
+  }
+
+  .MapAddLocations-modal .goback:hover {
+    cursor: pointer;
+  }
 }

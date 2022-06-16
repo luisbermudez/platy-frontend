@@ -1,3 +1,7 @@
+.MapLocations {
+  position: relative;
+}
+
 /* General map style */
 .mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
 .mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip,
@@ -63,6 +67,13 @@
 /* Search bar container */
 .locationmap-container .mapboxgl-ctrl-top-left {
   width: calc(100vw - 20px);
+  z-index: 0;
+}
+
+/* Geolocation, nav controls */
+.locationmap-container .mapboxgl-ctrl-bottom-right,
+.locationmap-container .mapboxgl-ctrl-top-right {
+  z-index: 0;
 }
 
 /* Close x svg */

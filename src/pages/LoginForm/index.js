@@ -6,6 +6,7 @@ import { loginWs } from "../../services/auth-ws";
 import { useState } from "react";
 import "./LoginForm.css";
 import { ExclamationCircle } from "react-bootstrap-icons";
+import Platy from "../../Logo/platy";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -29,6 +30,9 @@ const LoginForm = () => {
 
   return (
     <div className="LoginForm">
+      <Link to="/">
+        <Platy className="platy-logo" />
+      </Link>
       <div className="formContainer loginForm">
         <h1>Log in</h1>
         {loginError && (

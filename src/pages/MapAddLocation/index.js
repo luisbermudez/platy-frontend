@@ -5,7 +5,7 @@ import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import { useSelector } from "react-redux";
 import { Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import LoginForm from "../LoginForm";
+import SignupOrLogin from "../../components/SignupOrLogin";
 import { setCoordinates } from "../../redux/videolocationSlice";
 import { useDispatch } from "react-redux";
 import { ChevronRight } from "react-bootstrap-icons";
@@ -106,13 +106,13 @@ function MapAddLocation() {
           >
             <div className="modal-container">
               <p onClick={() => navigate(-1)} className="goback">
-                X
+                x
               </p>
-              <LoginForm />
+              <SignupOrLogin />
             </div>
           </Modal>
         )}
-        <div className="map-div">
+        <>
           <h1 className="dropAPin">Share your flow</h1>
           <div ref={mapContainer} className="addlocationmap-container" />
           {hasAddedPin && (
@@ -123,7 +123,7 @@ function MapAddLocation() {
               Next <ChevronRight className="chevronRightPinAdded" />
             </p>
           )}
-        </div>
+        </>
       </>
     </div>
   );
