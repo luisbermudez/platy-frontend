@@ -1,15 +1,16 @@
-.loginForm a,
+.formContainer a,
 .signupForm a {
   color: var(--pink-focused);
   color: black;
   font-weight: 700;
 }
 
-.loginForm h1,
+.formContainer h1,
 .signupForm h1 {
   margin-bottom: 2.4rem;
 }
-.loginForm h2,
+
+.formContainer h2,
 .signupForm h2 {
   font-weight: 700;
   font-size: 1.8rem;
@@ -36,7 +37,6 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  min-width: 370px;
 }
 
 .LoginForm > a svg,

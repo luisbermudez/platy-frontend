@@ -33,8 +33,8 @@ const LoginForm = () => {
       <Link to="/">
         <Platy className="platy-logo" />
       </Link>
-      <div className="formContainer loginForm">
-        <h1>Log in</h1>
+      <div className="formContainer">
+        <h2>Log in</h2>
         {loginError && (
           <p className="loginSignupToaster">
             <ExclamationCircle />
