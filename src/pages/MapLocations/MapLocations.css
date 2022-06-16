@@ -28,7 +28,7 @@
 .locationmap-container {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh + 1px);
 }
 
 /* Map popup video player container */
