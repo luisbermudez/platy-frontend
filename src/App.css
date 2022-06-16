@@ -1,5 +1,5 @@
 .App {
-  height: 200vh;
+  height: calc(100vh + 1px);
 }
 
 .app-container {
