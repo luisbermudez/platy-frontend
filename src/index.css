@@ -25,7 +25,7 @@ html {
   font-size: 16px;
   margin: 0;
   padding: 0;
-  height: 100vh;
+  height: -webkit-fill-available;
 }
 
 body {
@@ -37,7 +37,8 @@ body {
   caret-color: var(--text-color);
   line-height: 1.563;
   font-family: "Lato", sans-serif;
-  height: 100vh;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
 
 h1 {
