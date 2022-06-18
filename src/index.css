@@ -38,9 +38,6 @@ body {
   caret-color: var(--text-color);
   line-height: 1.563;
   font-family: "Lato", sans-serif;
-  min-height: 100vh;
-  min-height: fill-available;
-  min-height: -webkit-fill-available;
 }
 
 h1 {
