@@ -4,7 +4,7 @@
 /* Navbar */
 .Navbar {
   width: 100vw;
-  height: 60px;
+  height: 50px;
   position: fixed;
   top: 0px;
   display: flex;
@@ -25,8 +25,7 @@
 }
 
 .platy-nav-container a svg {
-  height: 54px;
-  width: 98px;
+  height: 48px;
 }
 
 /* Searchbar */
@@ -49,7 +48,7 @@
 .icon-ind-container svg {
   color: black;
   font-size: 24px;
-  height: 30px;
+  height: 24px;
 }
 
 .nav-avatar {
