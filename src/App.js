@@ -34,7 +34,8 @@ function App() {
         <h2 className="mainLoading">Loading ...</h2>
       ) : (
         <>
-          {pathname == "/signup" ? null : pathname == "/login" ? null : <Navbar />}
+          {/* {pathname == "/signup" ? null : pathname == "/login" ? null : <Navbar />} */}
+          <Navbar />
           <div className="app-container">
             <RootNavigation />
           </div>

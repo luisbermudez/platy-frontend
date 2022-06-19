@@ -57,6 +57,7 @@ ____________________________ */
 }
 
 label {
+  /* font-size: 0.9rem; */
   font-weight: bold;
   display: flex;
   margin-top: 1rem;
@@ -276,15 +277,3 @@ button {
   height: 10px !important;
   width: 10px !important;
 } */
-
-.signupForm button {
-  margin-bottom: 4rem;
-}
-
-.loginForm button {
-  background-color: var(--pink-focused);
-}
-
-.loginForm a {
-  color: black;
-}

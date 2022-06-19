@@ -5,7 +5,6 @@ import { signupWs } from "../../services/auth-ws";
 import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import { ExclamationCircle } from "react-bootstrap-icons";
-import Platy from "../../Logo/platy";
 
 const SignupForm = () => {
   const navigate = useNavigate();
@@ -13,9 +12,6 @@ const SignupForm = () => {
 
   return (
     <div className="SignupForm">
-      <Link to="/">
-        <Platy className="platy-logo" />
-      </Link>
       <div className="formContainer signupForm">
         <h2>Sign Up</h2>
         {loginError && (
