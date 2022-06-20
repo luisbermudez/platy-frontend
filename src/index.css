@@ -52,8 +52,8 @@ ____________________________ */
 
 .formContainer {
   max-width: 400px;
-  min-width: 375px;
-  padding: 2.6rem 2.6rem;
+  width: 100vw;
+  padding: 2.6rem 30px;
 }
 
 label {

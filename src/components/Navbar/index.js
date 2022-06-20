@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
   PlusCircle,
@@ -8,18 +8,38 @@ import {
   House,
   HouseFill,
 } from "react-bootstrap-icons";
+import { Modal } from "react-bootstrap";
+import { useRef, useState } from "react";
 import "./Navbar.css";
 import Platy from "../../Logo/platy.js";
+import SignupOrLogin from "../SignupOrLogin";
 
 function Navbar() {
   const currentPage = useSelector((state) => state.videolocation.currentPage);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const user = useSelector((state) => state.auth.user);
+  const navigate = useNavigate();
+  const [show, setShow] = useState(false);
 
   const pageSelected = (page, element) => (page === element ? true : false);
 
+  const switchModal = () => setShow(!show);
+
   return (
     <nav className="Navbar">
+      <Modal
+        show={show}
+        animation={false}
+        centered
+        className="MapAddLocations-modal"
+      >
+        <div className="modal-container">
+          <p onClick={switchModal} className="goback">
+            x
+          </p>
+          <SignupOrLogin switchModal={switchModal} />
+        </div>
+      </Modal>
       <div className="platy-nav-container">
         <Link to="/">
           <Platy />
@@ -33,16 +53,27 @@ function Navbar() {
         <Link className="icon-ind-container" to="/map">
           {pageSelected(currentPage, "map") ? <GeoAltFill /> : <GeoAlt />}
         </Link>
-        <Link className="icon-ind-container" to="/add-location">
-          <PlusCircle />
-        </Link>
-        {isLoggedIn && (
+        {isLoggedIn ? (
+          <Link className="icon-ind-container" to="/add-location">
+            <PlusCircle />
+          </Link>
+        ) : (
+          <a className="icon-ind-container">
+            <PlusCircle onClick={switchModal}/>
+          </a>
+        )}
+
+        {isLoggedIn ? (
           <Link to="/profile" className="icon-ind-container">
             <img
               className="nav-avatar"
               alt="profile"
               src={user.profilePicture}
             />
+          </Link>
+        ) : (
+          <Link className="icon-ind-container" to="/login">
+            <Person />
           </Link>
         )}
       </div>

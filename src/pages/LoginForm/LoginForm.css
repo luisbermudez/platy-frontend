@@ -39,14 +39,9 @@
   position: relative;
 }
 
-.signupForm,
-.loginForm {
+.SignupForm,
+.LoginForm {
   min-height: 100vh;
   min-height: fill-available;
   min-height: -webkit-fill-available;
-}
-
-.LoginForm > a svg,
-.SignupForm > a svg {
-  height: 80px;
 }

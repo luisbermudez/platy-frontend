@@ -12,13 +12,13 @@
   background-color: white;
   z-index: 1;
   border-bottom: 1px solid rgba(223, 223, 223, 0.575);
+  padding: 0px 30px;
 }
 
 /* Navbar components */
 /* Platy */
 .platy-nav-container {
-  margin-left: 10px;
-  width: 100px;
+  width: 66px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,6 +26,7 @@
 
 .platy-nav-container a svg {
   height: 48px;
+  width: 86px;
 }
 
 /* Searchbar */
@@ -36,19 +37,25 @@
 /* Profile */
 .profile-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
-  padding-right: 10px;
 }
 
 .icon-ind-container {
   margin: 13px;
+}
+.icon-ind-container:first-of-type {
+  margin-left: 0px;
+}
+.icon-ind-container:last-of-type {
+  margin-right: 0px;
 }
 
 .icon-ind-container svg {
   color: black;
   font-size: 24px;
   height: 24px;
+  margin: 0px;
 }
 
 .nav-avatar {

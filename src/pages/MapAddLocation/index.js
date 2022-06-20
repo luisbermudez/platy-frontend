@@ -3,9 +3,7 @@ import "./mapAddLocation.css";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import { useSelector } from "react-redux";
-import { Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import SignupOrLogin from "../../components/SignupOrLogin";
 import { setCoordinates } from "../../redux/videolocationSlice";
 import { useDispatch } from "react-redux";
 import { ChevronRight } from "react-bootstrap-icons";
@@ -14,11 +12,9 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 function MapAddLocation() {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const coordinates = useSelector((state) => state.videolocation.coordinates);
   const [hasAddedPin, setHasAddedPin] = useState(false);
   const navigate = useNavigate();
-  const show = useRef(true);
 
   const mapContainer = useRef(null);
   const mapAddLocation = useRef(null);
@@ -96,35 +92,16 @@ function MapAddLocation() {
 
   return (
     <div className="MapAddLocation">
-      <>
-        {!isLoggedIn && (
-          <Modal
-            show={show.current}
-            animation={false}
-            centered
-            className="MapAddLocations-modal"
-          >
-            <div className="modal-container">
-              <p onClick={() => navigate(-1)} className="goback">
-                x
-              </p>
-              <SignupOrLogin />
-            </div>
-          </Modal>
-        )}
-        <>
-          <h1 className="dropAPin">Share your flow</h1>
-          <div ref={mapContainer} className="addlocationmap-container" />
-          {hasAddedPin && (
-            <p
-              onClick={() => navigate("/add-location-2")}
-              className="nextButton pinNext"
-            >
-              Next <ChevronRight className="chevronRightPinAdded" />
-            </p>
-          )}
-        </>
-      </>
+      <h1 className="dropAPin">Share your flow</h1>
+      <div ref={mapContainer} className="addlocationmap-container" />
+      {hasAddedPin && (
+        <p
+          onClick={() => navigate("/add-location-2")}
+          className="nextButton pinNext"
+        >
+          Next <ChevronRight className="chevronRightPinAdded" />
+        </p>
+      )}
     </div>
   );
 }
