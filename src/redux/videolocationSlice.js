@@ -16,7 +16,6 @@ export const videolocationSlice = createSlice({
     videolocationDetails: null,
     videolocationToEdit: null,
     isSearchbarActive: false,
-    currentPage: null,
     coordinates: null,
   },
   reducers: {
@@ -51,9 +50,6 @@ export const videolocationSlice = createSlice({
     toggleSearchbar: (state) => {
       state.isSearchbarActive = !state.isSearchbarActive;
     },
-    setCurrentPage: (state, action) => {
-      state.currentPage = action.payload;
-    },
     setCoordinates: (state, action) => {
       state.coordinates = action.payload;
     },
@@ -73,7 +69,6 @@ export const {
   setVideolocationDetails,
   clearVideolocationDetails,
   toggleSearchbar,
-  setCurrentPage,
   setCoordinates,
   clearCoordinates,
 } = videolocationSlice.actions;

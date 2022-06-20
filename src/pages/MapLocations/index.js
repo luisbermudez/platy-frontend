@@ -2,10 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  videolocationsCall,
-  setCurrentPage,
-} from "../../redux/videolocationSlice";
+import { videolocationsCall } from "../../redux/videolocationSlice";
 import "./MapLocations.css";
 import ReactDOM from "react-dom";
 import PreviewVideoCard from "../../components/PreviewVideoCard";
@@ -16,7 +13,7 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 function Map() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [currentlyPlaying, setCurrentlyPlaying] = useState(undefined);
-  
+
   const dispatch = useDispatch();
   const hasVerified = useRef(false);
   const setMarkers = useRef(false);
@@ -49,7 +46,6 @@ function Map() {
   useEffect(() => {
     if (!hasVerified.current) {
       dispatch(videolocationsCall());
-      dispatch(setCurrentPage("map"));
       hasVerified.current = true;
     }
   });
@@ -93,10 +89,10 @@ function Map() {
       });
     }
 
-    locationsMap.current.on('move', () => {
+    locationsMap.current.on("move", () => {
       console.log(locationsMap.current.getCenter().lng);
       console.log(locationsMap.current.getCenter().lat);
-    })
+    });
   });
 
   useEffect(() => {
@@ -105,7 +101,10 @@ function Map() {
         videolocations.forEach((spot) => {
           const popupNode = document.createElement("div");
           popupNode.className = "video-home-grid";
-          ReactDOM.render(<PreviewVideoCard each={spot} videoPlay={videoPlay} />, popupNode);
+          ReactDOM.render(
+            <PreviewVideoCard each={spot} videoPlay={videoPlay} />,
+            popupNode
+          );
           markers.current = new mapboxgl.Marker({
             color: "#ec127f",
           })
@@ -129,7 +128,6 @@ function Map() {
   useEffect(() => {
     return () => {
       clearTimeout(timeoutId.current);
-      dispatch(setCurrentPage("other"));
     };
   }, []);
 

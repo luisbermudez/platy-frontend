@@ -42,7 +42,11 @@
 }
 
 .icon-ind-container {
+  width: 25px;
   margin: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .icon-ind-container:first-of-type {
   margin-left: 0px;
@@ -59,8 +63,8 @@
 }
 
 .nav-avatar {
-  height: 26px;
-  width: 26px;
+  height: 25px;
+  width: 25px;
   border-radius: 50%;
   border: 0.1rem solid black;
 }

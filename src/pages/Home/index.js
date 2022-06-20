@@ -1,9 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  videolocationsCall,
-  setCurrentPage,
-} from "../../redux/videolocationSlice";
+import { videolocationsCall } from "../../redux/videolocationSlice";
 import { Search } from "react-bootstrap-icons";
 import PreviewVideoCard from "../../components/PreviewVideoCard";
 import "./Home.css";
@@ -95,16 +92,9 @@ function Home() {
   useEffect(() => {
     if (!hasVerified.current) {
       dispatch(videolocationsCall());
-      dispatch(setCurrentPage("discover"));
       hasVerified.current = true;
     }
   });
-
-  useEffect(() => {
-    return () => {
-      dispatch(setCurrentPage("other"));
-    };
-  }, []);
 
   return (
     <div className="Home" onClick={closeSuggestions}>
