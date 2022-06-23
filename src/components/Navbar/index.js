@@ -59,7 +59,7 @@ function Navbar() {
           </Link>
         ) : (
           <a className="icon-ind-container">
-            <PlusCircle onClick={switchModal}/>
+            <PlusCircle onClick={switchModal} />
           </a>
         )}
 
@@ -73,7 +73,13 @@ function Navbar() {
           </Link>
         ) : (
           <Link className="icon-ind-container" to="/login">
-            {pathname == "/login" ? <PersonFill /> : <Person />}
+            {pathname == "/login" ? (
+              <PersonFill />
+            ) : pathname == "/signup" ? (
+              <PersonFill />
+            ) : (
+              <Person />
+            )}
           </Link>
         )}
       </div>

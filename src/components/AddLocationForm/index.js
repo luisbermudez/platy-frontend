@@ -76,7 +76,7 @@ const AddLocationForm = () => {
             description: Yup.string().required("This field is required."),
             name: Yup.string(),
           })}
-          onSubmit={async (values, { setSubmitting }) => {
+          onSubmit={async (values) => {
             const coordinateLng = coordinates.lng;
             const coordinateLat = coordinates.lat;
             const res = await videolocationCreateWs({

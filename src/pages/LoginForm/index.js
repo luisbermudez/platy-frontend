@@ -15,15 +15,15 @@ const LoginForm = () => {
   const handleSubmit = async (values) => {
     setLoginError(null);
     try {
-      const res = await loginWs(values);
-      const { errorMessage, status } = res;
+      const { errorMessage, status } = await loginWs(values);
       if (status) {
-        pathname === "/login" ? navigate("/") : window.location.reload(false);
+        // pathname === "/login" ? navigate("/") : window.location.reload(false);
+        navigate("/");
       } else {
         setLoginError(errorMessage);
       }
     } catch (error) {
-      setLoginError("Server error: ");
+      setLoginError("There has been an internal server error.");
     }
   };
 
@@ -48,14 +48,11 @@ const LoginForm = () => {
               .required("This field is required."),
             password: Yup.string().required("This field is required."),
           })}
-          onSubmit={async (values) => {
-            handleSubmit(values);
-          }}
+          onSubmit={(values) => handleSubmit(values)}
         >
           <Form autoComplete="off">
             <TextInput label="Email Address" name="email" type="email" />
             <PasswordInput label="Password" name="password" />
-
             <button type="submit">Log in</button>
           </Form>
         </Formik>

@@ -3,7 +3,7 @@ import axios from "axios";
 const isProduction = process.env.REACT_APP_NODE_ENV === 'production';
 
 const baseURL = isProduction 
-  ? "https://platybend.herokuapp.com/api"
+  ? "https://www.api.platy.lapbermudez.com/"
   : "http://localhost:5005/api";
 
 export const api = axios.create({

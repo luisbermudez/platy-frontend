@@ -8,16 +8,30 @@ import { ExclamationCircle } from "react-bootstrap-icons";
 
 const SignupForm = () => {
   const navigate = useNavigate();
-  const [loginError, setLoginError] = useState(null);
+  const [signupError, setSignupError] = useState(null);
+
+  const handleSubmit = async (values) => {
+    setSignupError(null);
+    try {
+      const { errorMessage, status } = await signupWs(values);
+      if (status) {
+        navigate("/login");
+      } else {
+        setSignupError(errorMessage);
+      }
+    } catch (error) {
+      setSignupError("There has been an internal server error.");
+    }
+  };
 
   return (
     <div className="SignupForm">
       <div className="formContainer signupForm">
         <h2>Sign Up</h2>
-        {loginError && (
+        {signupError && (
           <p className="loginSignupToaster">
             <ExclamationCircle />
-            {loginError}
+            {signupError}
           </p>
         )}
         <Formik
@@ -44,20 +58,7 @@ const SignupForm = () => {
               .oneOf([Yup.ref("password"), null], "Passwords doesn't match")
               .required("This field is required."),
           })}
-          onSubmit={async (values, { setSubmitting }) => {
-            setLoginError(null);
-            try {
-              const { errorMessage, status } = await signupWs(values);
-              if (status) {
-                navigate("/login");
-                return;
-              } else {
-                setLoginError(errorMessage);
-              }
-            } catch (error) {
-              setLoginError("Server error");
-            }
-          }}
+          onSubmit={(values) => handleSubmit(values)}
         >
           <Form autoComplete="off">
             <TextInput label="First Name" name="name" type="text" />
