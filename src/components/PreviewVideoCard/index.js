@@ -50,13 +50,19 @@ const PreviewVideoCard = ({ each, videoPlay }) => {
           />
         </div>
         <div className="video-description">
-          <h6>
+          {/* <h6>
             {each.title.length > 40
               ? each.title.slice(0, 40) + "..."
               : each.title}
           </h6>
           <p>
             {views} • {agoValue}
+          </p> */}
+          <h6>{each._user.name}</h6>
+          <p>
+            {each.title.length > 40
+              ? each.title.slice(0, 40) + "..."
+              : each.title}{" "}
           </p>
         </div>
       </aside>

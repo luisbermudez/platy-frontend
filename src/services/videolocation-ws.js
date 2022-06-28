@@ -45,3 +45,9 @@ export const addOneViewWs = (credentials) =>
     .post("/videolocations/updateViews", credentials)
     .then(serverSuccessRes)
     .catch(serverFailRes);
+
+export const removeVideoFromCloudinary = (credentials) =>
+  api
+    .post("/videolocations/deleteVideo-cloudinaryServices", credentials)
+    .then(serverSuccessRes)
+    .catch(serverFailRes);

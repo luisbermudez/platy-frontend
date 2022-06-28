@@ -29,6 +29,7 @@ html {
 }
 
 body {
+  overscroll-behavior: contain;
   background-color: transparent;
   padding: 0;
   margin: 0;
@@ -298,8 +299,8 @@ button {
 }
 
 /* Geolocation, nav controls */
-.locationmap-container .mapboxgl-ctrl-bottom-right,
-.locationmap-container .mapboxgl-ctrl-top-right {
+.mapboxgl-ctrl-bottom-right,
+.mapboxgl-ctrl-top-right {
   z-index: 0;
 }
 

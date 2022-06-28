@@ -5,12 +5,15 @@ import TextArea from "../TextArea";
 import TextInput from "../TextInput";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { clearCoordinates } from "../../redux/videolocationSlice";
+import {
+  clearCoordinates,
+  setVideoForNewPost,
+} from "../../redux/videolocationSlice";
 import {
   CameraVideo,
   CloudUpload,
-  Check,
   ExclamationCircle,
+  XLg,
 } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 import MapForVideoDetails from "../MapForVideoDetails";
@@ -18,6 +21,7 @@ import {
   videolocationCreateWs,
   uploadWs,
 } from "../../services/videolocation-ws";
+import placeholderVideo from "../../santafe-low.mp4";
 
 const AddLocationForm = () => {
   const user = useSelector((state) => state.auth.user);
@@ -27,29 +31,52 @@ const AddLocationForm = () => {
   const [loading, setLoading] = useState(false);
   const [videoUrl, setVideoUrl] = useState(null);
   const [public_id, setPublicId] = useState(null);
-  const [uploadError, setUploadError] = useState(null);
+  const [uploadErrorMessage, setUploadErrorMessage] = useState({
+    active: false,
+    content: null,
+  });
   const [uploaded, setUploaded] = useState(null);
 
   const handleUpload = async (e) => {
-    setUploadError(false);
+    setUploadErrorMessage({
+      active: false,
+      content: null,
+    });
+
     try {
       setLoading(true);
       const uploadData = new FormData();
       uploadData.append("videoFile", e.target.files[0]);
 
       const res = await uploadWs(uploadData);
-      const { data, status } = res;
+      const { data, status, errorMessage } = res;
 
       if (status) {
+        dispatch(
+          setVideoForNewPost({
+            readyToShare: true,
+            videoUrl: data.secure_url,
+            publicId: data.public_id,
+          })
+        );
+
         setVideoUrl(data.secure_url);
         setPublicId(data.public_id);
         setLoading(false);
         setUploaded(true);
       } else {
-        setUploadError(true);
+        setUploadErrorMessage({
+          active: true,
+          content: errorMessage,
+        });
+        setLoading(false);
       }
     } catch (error) {
-      setUploadError(true);
+      setUploadErrorMessage({
+        active: true,
+        content: "Internal server error. Try again.",
+      });
+      setLoading(false);
     }
   };
 
@@ -61,13 +88,13 @@ const AddLocationForm = () => {
 
   return (
     <div className="AddLocationForm">
-      {coordinates && (
+      {/* {coordinates && (
         <MapForVideoDetails
           lng={coordinates.lng}
           lat={coordinates.lat}
           draggable={true}
         />
-      )}
+      )} */}
       <div className="formContainer">
         {videoUrl && <video src={videoUrl} />}
         <Formik
@@ -99,53 +126,49 @@ const AddLocationForm = () => {
             }
           }}
         >
-          <Form autoComplete="off">
+          <Form autoComplete="off" id="new-post-form">
             {
               <>
-                {uploadError ? (
-                  <>
-                    <label htmlFor="uploadFile">
-                      <CameraVideo className="cameraVideo" />
-                    </label>
-                    <input
-                      id="uploadFile"
-                      name="videoFile"
-                      type="file"
-                      onChange={handleUpload}
-                    />
-                    <div className="errorMessage">
-                      <p className="uploadLabel">
-                        <ExclamationCircle /> Video was not uploaded
-                      </p>
-                      <p className="maxSize">
-                        The size of the video is larger than allowed. Max size
-                        is 100MB.
+                {uploadErrorMessage.active && (
+                  <div className="errorMessage">
+                    <div>
+                      <ExclamationCircle />
+                    </div>
+                    <div>
+                      <p>Video not uploaded</p>
+                      <p>
+                        {uploadErrorMessage.content
+                          ? uploadErrorMessage.content
+                          : "Internal Server Error. Please try again."}
                       </p>
                     </div>
-                  </>
-                ) : uploaded ? (
+                    <div>
+                      <XLg
+                        onClick={() =>
+                          setUploadErrorMessage({
+                            active: false,
+                            content: null,
+                          })
+                        }
+                      />
+                    </div>
+                  </div>
+                )}
+                {uploaded ? (
                   <>
-                    <label htmlFor="uploadFile">
-                      <Check className="uploaded" />
-                    </label>
-                    <p className="uploadLabel">Video uploaded</p>
-                    <p className="maxSize">Video is ready to submit</p>
+                    {/* {videoUrl && <video src={videoUrl}/>} */}
+                    <video src={placeholderVideo} />
                   </>
                 ) : loading ? (
                   <>
-                    <label htmlFor="uploadFile">
-                      <CloudUpload className="uploaded" />
-                    </label>
-                    <p className="uploadLabel">
-                      Your video is being uploaded ...
+                    <p className="loading">
+                      Your video is being uploaded ... <CloudUpload />
                     </p>
-                    <p className="maxSize">This will take just a second</p>
                   </>
                 ) : (
                   <>
-                    {/* <p className="uploadLabel">Click to upload</p>
-                    <p className="maxSize">Max size is 100 MB</p> */}
                     <label htmlFor="uploadFile">
+                      Select video
                       <CameraVideo className="cameraVideo" />
                     </label>
                     <input
@@ -159,7 +182,7 @@ const AddLocationForm = () => {
                 <TextInput label="Location name" name="name" type="text" />
                 <TextInput label="Title" name="title" type="text" />
                 <TextArea label="Description" name="description" />
-                {uploaded && <button type="submit">Submit</button>}
+                {/* {uploaded && <button type="submit">Submit</button>} */}
               </>
             }
           </Form>

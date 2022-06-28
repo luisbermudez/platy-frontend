@@ -1,102 +1,123 @@
 .AddLocationForm .formContainer {
- padding-top: 20px;
+  padding-top: 20px;
 }
 
 input[name="videoFile"] {
   display: none;
 }
 
-.uploaded {
+/* File upload button */
+label[for="uploadFile"],
+.loading {
+  background-color: var(--pink-focused);
+  background-color: var(--dark-900);
+  /* background-color: white; */
+  color: rgb(240, 240, 240);
+  /* color: black; */
+  border-radius: 10px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+label[for="uploadFile"]:hover {
+  cursor: pointer;
+}
+
+label[for="uploadFile"] svg,
+.loading svg {
+  font-size: 1.6rem;
+  margin-left: 30px;
+}
+
+.loading {
+  background-color: transparent;
+  color: black;
+  border: none;
+  margin-top: 16px;
+}
+
+/* Error message */
+.errorMessage {
+  display: flex;
+  align-items: center;
+  padding: 0px 4px;
+  background-color: rgb(225, 225, 225);
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px 20px;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  margin-bottom: 20px;
+}
+
+.errorMessage div:first-of-type {
+  height: 20px;
+  line-height: 16px;
+  margin-right: 14px;
+}
+
+.errorMessage div:last-of-type {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  padding: 0px 4px 3px;
+}
+
+.errorMessage div:last-of-type svg {
+  font-size: 0.9rem;
+}
+
+/* Error title */
+.errorMessage p:first-of-type {
+  font-weight: 700;
+  margin: 0px;
+}
+
+/* Error message content */
+.errorMessage p:last-of-type {
+  font-size: 0.88rem;
+  color: rgb(146, 146, 146);
+  align-self: flex-start;
+  margin: 0px;
+  margin-right: 10px;
+}
+
+/* Exclamation circle */
+.errorMessage div:first-of-type svg {
+  font-size: 1.2rem;
+  margin: 0px;
+  color: rgb(255, 0, 38);
+}
+
+/* .uploaded {
   position: absolute;
   background-color: var(--background-color);
   width: 100px;
   height: 100px;
   padding: 20px;
   border-radius: 10px;
-}
+} */
 
-.cameraVideo {
-  background-color: rgb(230, 230, 230);
-  border-left: 3px solid #ec127f;
-  width: 100px;
-  height: 100px;
-  padding: 30px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.cameraVideo:hover {
-  cursor: pointer;
-  background-color: rgb(222, 222, 222);
-}
-
-.uploadLabel {
-  position: absolute;
-  font-weight: 700;
-  left: 340px;
-  top: 244px;
-}
-
-.maxSize {
-  position: absolute;
-  left: 340px;
-  top: 274px;
-  font-size: 0.88rem;
-  color: rgb(146, 146, 146);
-}
-
-.nextButton {
-  background-color: transparent;
-  color: black;
-  text-decoration: none;
-  padding: 0.5rem 1.25rem;
-  font-size: 1.2rem;
-  border-radius: 10px;
-  font-weight: 700;
-  margin-top: 1rem !important;
-  width: 120px;
-  text-align: center;
-}
-
-.nextButton:hover {
-  cursor: pointer;
-}
-
-.dropAPin {
-  margin: 0 40px;
-  position: absolute;
-  top: 110px;
-}
-
-.pinNext {
-  position: absolute;
-  top: 104px;
-  right: 1vw;
-  font-weight: 400;
-}
-
-.map-div > p {
+/* .map-div > p {
   margin-left: 40px;
   margin-top: 30px;
-}
+} */
 
-.directions {
+/* .directions {
   margin-top: 0px;
   position: absolute;
   top: 170px;
-}
+} */
 
-.uploadLabel svg {
+/* .uploadLabel svg {
   margin: 0 6px 3px 0;
-}
+} */
 
 .AddLocationForm .formContainer video {
-  height: 220px;
-  width: 240px;
+  margin-top: 10px;
+  width: 100%;
   background-color: transparent;
-  position: absolute;
-  top: 110px;
-  left: 37.7vw;
-  border-radius: 10px;
-  border: 1px solid rgba(212, 212, 212, 0.637);
+  object-fit: cover;
 }

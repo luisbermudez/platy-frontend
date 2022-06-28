@@ -31,3 +31,16 @@
 .NewPostNavbar > div:last-of-type p {
     color: var(--pink-focused);
 }
+
+/* Share */
+button[form="new-post-form"] {
+  padding: 0px;
+  margin-bottom: 9px;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 0px;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--pink-focused);
+}
