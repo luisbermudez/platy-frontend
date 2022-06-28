@@ -59,11 +59,7 @@ const PreviewVideoCard = ({ each, videoPlay }) => {
             {views} • {agoValue}
           </p> */}
           <h6>{each._user.name}</h6>
-          <p>
-            {each.title.length > 40
-              ? each.title.slice(0, 40) + "..."
-              : each.title}{" "}
-          </p>
+          <p>{each.title}</p>
         </div>
       </aside>
     </div>

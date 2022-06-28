@@ -182,7 +182,6 @@ const AddLocationForm = () => {
                 <TextInput label="Location name" name="name" type="text" />
                 <TextInput label="Title" name="title" type="text" />
                 <TextArea label="Description" name="description" />
-                {/* {uploaded && <button type="submit">Submit</button>} */}
               </>
             }
           </Form>

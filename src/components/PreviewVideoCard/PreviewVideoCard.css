@@ -93,8 +93,11 @@
   color: rgb(107, 107, 107);
   font-weight: 300;
   font-size: 0.9rem;
-  display: inline;
+  margin-bottom: 0px;
   transition: color 0.15s ease-out;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .videocard-container video:hover ~ aside .video-description p {

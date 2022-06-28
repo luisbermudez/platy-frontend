@@ -3,7 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { XLg, ChevronLeft } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
-import { setCoordinates } from "../../redux/videolocationSlice";
+import {
+  clearCoordinates,
+  clearVideoForNewPost,
+} from "../../redux/videolocationSlice";
 import { useLocation } from "react-router-dom";
 import { removeVideoFromCloudinary } from "../../services/videolocation-ws";
 
@@ -17,17 +20,23 @@ const NewPostNavbar = () => {
 
   const cancelPost = async () => {
     try {
-      dispatch(setCoordinates(null));
-      const { status, data, errorMessage } = await removeVideoFromCloudinary({
-        public_id: post.publicId,
-      });
-      
-      if (status) {
-        navigate("/");
+      dispatch(clearCoordinates());
+      if (post) {
+        if (post.publicId) {
+          const { status, data, errorMessage } =
+            await removeVideoFromCloudinary({
+              public_id: post.publicId,
+            });
+        }
+
+        dispatch(clearVideoForNewPost());
       }
+
+      return navigate("/");
     } catch (error) {
-      dispatch(setCoordinates(null));
-      navigate("/");
+      dispatch(clearCoordinates());
+      dispatch(clearVideoForNewPost());
+      return navigate("/");
     }
   };
 

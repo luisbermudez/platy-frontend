@@ -17,7 +17,7 @@ export const videolocationSlice = createSlice({
     videolocationToEdit: null,
     isSearchbarActive: false,
     coordinates: null,
-    videoForNewPost: { readyToShare: true },
+    videoForNewPost: null,
   },
   reducers: {
     setError: (state, action) => {
