@@ -1,23 +1,19 @@
-.MapLocations {
-  position: relative;
-}
-
 /* General map style */
 .mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
 .mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip,
 .mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
-  border-bottom-color: white !important;
+  border-bottom-color: white;
 }
 .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip,
 .mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip,
 .mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
-  border-top-color: white !important;
+  border-top-color: white;
 }
 .mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
-  border-right-color: white !important;
+  border-right-color: white;
 }
 .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
-  border-left-color: white !important;
+  border-left-color: white;
 }
 
 .upload-file-disabled {
@@ -28,7 +24,7 @@
 .locationmap-container {
   position: relative;
   width: 100vw;
-  min-height: calc(100vh - 48px);
+  min-height: calc(100vh - 50px);
   min-height: fill-available;
   min-height: -webkit-fill-available;
 }
@@ -59,49 +55,6 @@
 .locationmap-container .video-home-grid h6 {
   color: var(--text-color);
   font-family: "Lato", sans-serif;
-}
-
-/* Enter map full screen */
-.locationmap-container .mapboxgl-ctrl-top-right {
-  display: none;
-}
-
-/* Search bar container */
-.locationmap-container .mapboxgl-ctrl-top-left {
-  width: calc(100vw - 20px);
-  z-index: 0;
-}
-
-/* Geolocation, nav controls */
-.locationmap-container .mapboxgl-ctrl-bottom-right,
-.locationmap-container .mapboxgl-ctrl-top-right {
-  z-index: 0;
-}
-
-/* Close x svg */
-.locationmap-container .mapboxgl-ctrl-geocoder--button svg {
-  height: 36px;
-  margin-top: 0px;
-  padding: 2.2px;
-}
-
-/* Search and x-close icon */
-.locationmap-container .mapboxgl-ctrl-geocoder--button svg,
-.locationmap-container .mapboxgl-ctrl-geocoder--icon-search {
-  fill: var(--dark-800);
-}
-
-/* Loading icon */
-.locationmap-container .mapboxgl-ctrl-geocoder--icon-loading {
-  display: none !important;
-}
-
-/* Search input */
-.locationmap-container .mapboxgl-ctrl-geocoder--input,
-.locationmap-container .suggestions-wrapper {
-  font-family: "Lato", sans-serif;
-  font-size: 1rem;
-  color: var(--text-color);
 }
 
 @media (min-width: 768px) {

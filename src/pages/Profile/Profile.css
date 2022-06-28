@@ -15,7 +15,6 @@
 
 .Profile header {
   position: fixed !important;
-  z-index: 3;
   top: 70px;
   background-color: var(--background-color);
   height: 200px;

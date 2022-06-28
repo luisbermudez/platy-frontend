@@ -1,10 +1,10 @@
+import "./AddLocationForm.css";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import TextArea from "../TextArea";
 import TextInput from "../TextInput";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import "../../pages/MapAddLocation/mapAddLocation.css";
 import { clearCoordinates } from "../../redux/videolocationSlice";
 import {
   CameraVideo,
@@ -60,11 +60,16 @@ const AddLocationForm = () => {
   }, []);
 
   return (
-    <div className="mapAndFormReview">
-      <div className="formContainer addVideoForm">
+    <div className="AddLocationForm">
+      {coordinates && (
+        <MapForVideoDetails
+          lng={coordinates.lng}
+          lat={coordinates.lat}
+          draggable={true}
+        />
+      )}
+      <div className="formContainer">
         {videoUrl && <video src={videoUrl} />}
-        <h1>Share your flow</h1>
-        <p className="directions">Upload your video and fill in the form</p>
         <Formik
           initialValues={{
             title: "",
@@ -138,8 +143,8 @@ const AddLocationForm = () => {
                   </>
                 ) : (
                   <>
-                    <p className="uploadLabel">Click to upload</p>
-                    <p className="maxSize">Max size is 100 MB</p>
+                    {/* <p className="uploadLabel">Click to upload</p>
+                    <p className="maxSize">Max size is 100 MB</p> */}
                     <label htmlFor="uploadFile">
                       <CameraVideo className="cameraVideo" />
                     </label>
@@ -160,13 +165,6 @@ const AddLocationForm = () => {
           </Form>
         </Formik>
       </div>
-      {coordinates && (
-        <MapForVideoDetails
-          lng={coordinates.lng}
-          lat={coordinates.lat}
-          draggable={true}
-        />
-      )}
     </div>
   );
 };

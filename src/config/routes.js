@@ -27,10 +27,6 @@ export const gralRoutes = () => {
       element: <Home />,
     },
     {
-      path: PATHS.ADDLOCATION,
-      element: <MapAddLocation />,
-    },
-    {
       path: PATHS.EVENTS,
       element: <h1>Events</h1>,
     },
@@ -58,6 +54,10 @@ export const privateRoutes = () => {
     {
       path: PATHS.EDIT,
       element: <EditVideolocation />,
+    },
+    {
+      path: PATHS.ADDLOCATION,
+      element: <MapAddLocation />,
     },
     {
       path: PATHS.ADDLOCATION2,

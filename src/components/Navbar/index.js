@@ -8,10 +8,11 @@ import {
   GeoAltFill,
   House,
   HouseFill,
+  CameraReels,
 } from "react-bootstrap-icons";
-import { Modal } from "react-bootstrap";
+import { Modal, DropdownButton, Dropdown } from "react-bootstrap";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import Platy from "../../Logo/platy.js";
 import SignupOrLogin from "../SignupOrLogin";
@@ -19,6 +20,7 @@ import SignupOrLogin from "../SignupOrLogin";
 function Navbar() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const user = useSelector((state) => state.auth.user);
+  const navigate = useNavigate();
   const { pathname } = useLocation();
   const [show, setShow] = useState(false);
 
@@ -30,9 +32,9 @@ function Navbar() {
         show={show}
         animation={false}
         centered
-        className="MapAddLocations-modal"
+        className="login-modal"
       >
-        <div className="modal-container">
+        <div>
           <p onClick={switchModal} className="goback">
             x
           </p>
@@ -54,9 +56,19 @@ function Navbar() {
         </Link>
 
         {isLoggedIn ? (
-          <Link className="icon-ind-container" to="/add-location">
-            <PlusCircle />
-          </Link>
+          <DropdownButton
+            title={
+              <Link className="icon-ind-container" to="#">
+                <PlusCircle />
+              </Link>
+            }
+          >
+            <Dropdown.Item onClick={() => navigate("/add-location")}>
+              <Link to="#">
+                Post <CameraReels />
+              </Link>
+            </Dropdown.Item>
+          </DropdownButton>
         ) : (
           <a className="icon-ind-container">
             <PlusCircle onClick={switchModal} />

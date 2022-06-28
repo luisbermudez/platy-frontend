@@ -1,7 +1,4 @@
 .locationmap-container-videoDetails {
-    width: 32vw;
-    height: 82vh;
-    position: fixed;
-    right: 40px;
-    border-radius: 10px;
+    width: 100vw;
+    height: 300px;
 }

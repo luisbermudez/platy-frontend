@@ -2,13 +2,15 @@ import "./App.css";
 import { useDispatch } from "react-redux";
 import { authVerify } from "./redux/authSlice";
 import { useEffect, useState, useRef } from "react";
-import { Navbar } from "./components";
+import { Navbar, NewPostNavbar } from "./components";
 import RootNavigation from "./RootNavigation";
+import { useLocation } from "react-router-dom";
 
 function App() {
   const [loading, setLoading] = useState(true);
   const hasVerified = useRef(false);
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     if (!hasVerified.current) {
@@ -32,7 +34,13 @@ function App() {
         <h2 className="mainLoading">Loading ...</h2>
       ) : (
         <>
-          <Navbar />
+          {pathname == "/add-location" ? (
+            <NewPostNavbar />
+          ) : pathname == "/add-location-2" ? (
+            <NewPostNavbar />
+          ) : (
+            <Navbar />
+          )}
           <div className="app-container">
             <RootNavigation />
           </div>

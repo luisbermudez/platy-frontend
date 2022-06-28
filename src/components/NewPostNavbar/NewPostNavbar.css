@@ -1,0 +1,33 @@
+.NewPostNavbar > div {
+  width: calc(100vw / 3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.NewPostNavbar > div:first-of-type {
+  justify-content: start;
+}
+
+.NewPostNavbar > div:last-of-type {
+  justify-content: end;
+}
+
+/* Text */
+.NewPostNavbar p {
+  height: 16px;
+  line-height: 12px;
+  margin: 0px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* Close/back left icon */
+.NewPostNavbar > div:first-of-type svg {
+  font-size: 24px;
+}
+
+/* Next */
+.NewPostNavbar > div:last-of-type p {
+    color: var(--pink-focused);
+}

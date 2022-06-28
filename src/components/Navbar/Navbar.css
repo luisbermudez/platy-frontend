@@ -1,8 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Yanone+Kaffeesatz:wght@700&display=swap");
 
 /* Mobile 375px */
-/* Navbar */
-.Navbar {
+/* Navbar/NewPostNavbar */
+.Navbar,
+.NewPostNavbar {
   width: 100vw;
   height: 50px;
   position: fixed;
@@ -67,6 +68,74 @@
   width: 25px;
   border-radius: 50%;
   border: 0.1rem solid black;
+}
+
+/* New post dropdown */
+.Navbar .dropdown a {
+  color: var(--text-color);
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.Navbar .dropdown .dropdown-toggle {
+  background-color: transparent;
+  width: 25px;
+  height: 25px;
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  margin: 13px;
+}
+
+.Navbar .dropdown  .icon-ind-container {
+  margin: 0px;
+}
+
+.Navbar .dropdown .btn-primary {
+  outline: none;
+  box-shadow: none;
+}
+
+.Navbar .dropdown-menu {
+  border: 0.09rem solid rgb(226, 226, 226);
+  background-color: rgb(255, 255, 255);
+  outline: none;
+  padding: 0px;
+  margin-top: 4px;
+  transform: translate3d(-27px, 40px, 0px) !important;
+  min-width: 100px;
+}
+
+.Navbar .dropdown-menu svg {
+  position: absolute;
+  right: 14px;
+  top: 8px;
+}
+
+/* Modal - New post log in */
+.login-modal {
+  padding: 0px 16px;
+}
+
+.login-modal .modal-content {
+  min-width: 300px;
+  max-width: 360px;
+  border: none;
+  border-radius: 10px;
+  height: 380px;
+  justify-content: center;
+}
+
+.login-modal .goback {
+  position: absolute;
+  font-size: 1.3rem;
+  font-weight: 600;
+  right: 32px;
+  top: 20px;
+}
+
+.login-modal .goback:hover {
+  cursor: pointer;
 }
 
 /* Tablet */

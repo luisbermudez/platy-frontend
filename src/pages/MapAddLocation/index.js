@@ -3,18 +3,14 @@ import "./mapAddLocation.css";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { setCoordinates } from "../../redux/videolocationSlice";
 import { useDispatch } from "react-redux";
-import { ChevronRight } from "react-bootstrap-icons";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 function MapAddLocation() {
   const dispatch = useDispatch();
   const coordinates = useSelector((state) => state.videolocation.coordinates);
-  const [hasAddedPin, setHasAddedPin] = useState(false);
-  const navigate = useNavigate();
 
   const mapContainer = useRef(null);
   const mapAddLocation = useRef(null);
@@ -28,11 +24,10 @@ function MapAddLocation() {
     mapAddLocation.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/dark-v10",
-      center: [-73.9615, 40.7801],
-      around: [-73.9615, 40.7801],
-      pitch: [64],
-      bearing: [-6],
-      zoom: 12.15,
+      center: coordinates
+        ? [coordinates.lng, coordinates.lat]
+        : [-80.9091, 26.3473],
+      zoom: 1,
     });
 
     navControl.current = new mapboxgl.NavigationControl({
@@ -74,11 +69,11 @@ function MapAddLocation() {
             lat: latitude,
           })
         );
-        setHasAddedPin(true);
       });
     });
   });
 
+  // Marker icon changes when there's new coordinates
   useEffect(() => {
     if (coordinates) {
       const longitude = Number(coordinates.lng);
@@ -86,22 +81,12 @@ function MapAddLocation() {
       marker.current
         .setLngLat([longitude, latitude])
         .addTo(mapAddLocation.current);
-      setHasAddedPin(true);
     }
   }, [coordinates]);
 
   return (
     <div className="MapAddLocation">
-      <h1 className="dropAPin">Share your flow</h1>
-      <div ref={mapContainer} className="addlocationmap-container" />
-      {hasAddedPin && (
-        <p
-          onClick={() => navigate("/add-location-2")}
-          className="nextButton pinNext"
-        >
-          Next <ChevronRight className="chevronRightPinAdded" />
-        </p>
-      )}
+      <div ref={mapContainer} />
     </div>
   );
 }

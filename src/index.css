@@ -16,7 +16,6 @@
   --background-color: rgb(248, 248, 248);
   --pink-focused: #14c8d4;
   --pink-focused: #ec127f;
-  --white: white;
   --text-color: var(--dark-800);
 }
 
@@ -121,7 +120,7 @@ select {
   border-radius: 10px;
   color: var(--text-color);
   height: auto;
-  background-color: var(--white);
+  background-color: white;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 125.304 125.304"><path d="M62.652 103.895L0 21.41h125.304" fill="%23303030"/></svg>');
   background-repeat: no-repeat;
   background-size: 1rem;
@@ -273,7 +272,52 @@ button {
   box-sizing: border-box;
 }
 
-/* .mapbox-ctrl-geocoder--button:active {
-  height: 10px !important;
-  width: 10px !important;
-} */
+/* General map style */
+/* Close X - Map search geocoder */
+.mapboxgl-ctrl-geocoder--button {
+  height: fit-content;
+  width: fit-content;
+}
+
+/* Close x svg */
+.mapboxgl-ctrl-geocoder--button svg {
+  height: 36px;
+  margin-top: 0px;
+  padding: 2.2px;
+}
+
+/* Enter map full screen */
+.mapboxgl-ctrl-top-right {
+  display: none;
+}
+
+/* Search bar container */
+.mapboxgl-ctrl-top-left {
+  width: calc(100vw - 20px);
+  z-index: 0;
+}
+
+/* Geolocation, nav controls */
+.locationmap-container .mapboxgl-ctrl-bottom-right,
+.locationmap-container .mapboxgl-ctrl-top-right {
+  z-index: 0;
+}
+
+/* Search and x-close icon */
+.mapboxgl-ctrl-geocoder--button svg,
+.mapboxgl-ctrl-geocoder--icon-search {
+  fill: var(--dark-800);
+}
+
+/* Loading icon */
+.mapboxgl-ctrl-geocoder--icon-loading {
+  display: none !important;
+}
+
+/* Search input */
+.mapboxgl-ctrl-geocoder--input,
+.suggestions-wrapper {
+  font-family: "Lato", sans-serif;
+  font-size: 1rem;
+  color: var(--text-color);
+}

@@ -1,0 +1,102 @@
+.AddLocationForm .formContainer {
+ padding-top: 20px;
+}
+
+input[name="videoFile"] {
+  display: none;
+}
+
+.uploaded {
+  position: absolute;
+  background-color: var(--background-color);
+  width: 100px;
+  height: 100px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.cameraVideo {
+  background-color: rgb(230, 230, 230);
+  border-left: 3px solid #ec127f;
+  width: 100px;
+  height: 100px;
+  padding: 30px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.cameraVideo:hover {
+  cursor: pointer;
+  background-color: rgb(222, 222, 222);
+}
+
+.uploadLabel {
+  position: absolute;
+  font-weight: 700;
+  left: 340px;
+  top: 244px;
+}
+
+.maxSize {
+  position: absolute;
+  left: 340px;
+  top: 274px;
+  font-size: 0.88rem;
+  color: rgb(146, 146, 146);
+}
+
+.nextButton {
+  background-color: transparent;
+  color: black;
+  text-decoration: none;
+  padding: 0.5rem 1.25rem;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  font-weight: 700;
+  margin-top: 1rem !important;
+  width: 120px;
+  text-align: center;
+}
+
+.nextButton:hover {
+  cursor: pointer;
+}
+
+.dropAPin {
+  margin: 0 40px;
+  position: absolute;
+  top: 110px;
+}
+
+.pinNext {
+  position: absolute;
+  top: 104px;
+  right: 1vw;
+  font-weight: 400;
+}
+
+.map-div > p {
+  margin-left: 40px;
+  margin-top: 30px;
+}
+
+.directions {
+  margin-top: 0px;
+  position: absolute;
+  top: 170px;
+}
+
+.uploadLabel svg {
+  margin: 0 6px 3px 0;
+}
+
+.AddLocationForm .formContainer video {
+  height: 220px;
+  width: 240px;
+  background-color: transparent;
+  position: absolute;
+  top: 110px;
+  left: 37.7vw;
+  border-radius: 10px;
+  border: 1px solid rgba(212, 212, 212, 0.637);
+}
