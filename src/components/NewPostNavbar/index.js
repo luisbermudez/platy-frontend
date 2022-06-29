@@ -22,10 +22,10 @@ const NewPostNavbar = () => {
     try {
       dispatch(clearCoordinates());
       if (post) {
-        if (post.publicId) {
+        if (post.public_id) {
           const { status, data, errorMessage } =
             await removeVideoFromCloudinary({
-              public_id: post.publicId,
+              public_id: post.public_id,
             });
         }
 
@@ -57,7 +57,7 @@ const NewPostNavbar = () => {
           ? coordinates && (
               <p onClick={() => navigate("/add-location-2")}>Next</p>
             )
-          : post.readyToShare && (
+          : post && (
               <button form="new-post-form" type="submit">
                 Share
               </button>

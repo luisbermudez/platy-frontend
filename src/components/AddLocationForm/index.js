@@ -28,14 +28,15 @@ const AddLocationForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const coordinates = useSelector((state) => state.videolocation.coordinates);
+  const post = useSelector((state) => state.videolocation.videoForNewPost);
   const [loading, setLoading] = useState(false);
-  const [videoUrl, setVideoUrl] = useState(null);
-  const [public_id, setPublicId] = useState(null);
+  // const [videoUrl, setVideoUrl] = useState(null);
+  // const [public_id, setPublicId] = useState(null);
   const [uploadErrorMessage, setUploadErrorMessage] = useState({
     active: false,
     content: null,
   });
-  const [uploaded, setUploaded] = useState(null);
+  // const [uploaded, setUploaded] = useState(null);
 
   const handleUpload = async (e) => {
     setUploadErrorMessage({
@@ -56,19 +57,35 @@ const AddLocationForm = () => {
           setVideoForNewPost({
             readyToShare: true,
             videoUrl: data.secure_url,
-            publicId: data.public_id,
+            public_id: data.public_id,
           })
         );
 
-        setVideoUrl(data.secure_url);
-        setPublicId(data.public_id);
+        // setVideoUrl(data.secure_url);
+        // setPublicId(data.public_id);
         setLoading(false);
-        setUploaded(true);
+        // setUploaded(true);
       } else {
-        setUploadErrorMessage({
-          active: true,
-          content: errorMessage,
-        });
+        switch (errorMessage) {
+          case "400 - Image file format png not allowed":
+            setUploadErrorMessage({
+              active: true,
+              content: "Video is the only type of file allowed.",
+            });
+            break;
+          case "413 - Server returned unexpected status code - 413":
+            setUploadErrorMessage({
+              active: true,
+              content:
+                "The size of your video is larger than allowed. Max size 100MB.",
+            });
+            break;
+          default:
+            setUploadErrorMessage({
+              active: true,
+              content: errorMessage,
+            });
+        }
         setLoading(false);
       }
     } catch (error) {
@@ -96,7 +113,6 @@ const AddLocationForm = () => {
         />
       )} */}
       <div className="formContainer">
-        {videoUrl && <video src={videoUrl} />}
         <Formik
           initialValues={{
             title: "",
@@ -111,6 +127,7 @@ const AddLocationForm = () => {
           onSubmit={async (values) => {
             const coordinateLng = coordinates.lng;
             const coordinateLat = coordinates.lat;
+            const { videoUrl, public_id } = post;
             const res = await videolocationCreateWs({
               values,
               user,
@@ -154,10 +171,10 @@ const AddLocationForm = () => {
                     </div>
                   </div>
                 )}
-                {uploaded ? (
+                {post ? (
                   <>
-                    {/* {videoUrl && <video src={videoUrl}/>} */}
-                    <video src={placeholderVideo} />
+                    {post.videoUrl && <video src={post.videoUrl} />}
+                    {/* <video src={placeholderVideo} /> */}
                   </>
                 ) : loading ? (
                   <>

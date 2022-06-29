@@ -11,9 +11,7 @@ label[for="uploadFile"],
 .loading {
   background-color: var(--pink-focused);
   background-color: var(--dark-900);
-  /* background-color: white; */
   color: rgb(240, 240, 240);
-  /* color: black; */
   border-radius: 10px;
   height: 42px;
   display: flex;
@@ -55,7 +53,7 @@ label[for="uploadFile"] svg,
 .errorMessage div:first-of-type {
   height: 20px;
   line-height: 16px;
-  margin-right: 14px;
+  margin-right: 16px;
 }
 
 .errorMessage div:last-of-type {
