@@ -22,6 +22,7 @@ import {
   uploadWs,
 } from "../../services/videolocation-ws";
 import placeholderVideo from "../../santafe-low.mp4";
+import VideoPlayer from "../VideoPlayer";
 
 const AddLocationForm = () => {
   const user = useSelector((state) => state.auth.user);
@@ -30,13 +31,10 @@ const AddLocationForm = () => {
   const coordinates = useSelector((state) => state.videolocation.coordinates);
   const post = useSelector((state) => state.videolocation.videoForNewPost);
   const [loading, setLoading] = useState(false);
-  // const [videoUrl, setVideoUrl] = useState(null);
-  // const [public_id, setPublicId] = useState(null);
   const [uploadErrorMessage, setUploadErrorMessage] = useState({
     active: false,
     content: null,
   });
-  // const [uploaded, setUploaded] = useState(null);
 
   const handleUpload = async (e) => {
     setUploadErrorMessage({
@@ -61,31 +59,28 @@ const AddLocationForm = () => {
           })
         );
 
-        // setVideoUrl(data.secure_url);
-        // setPublicId(data.public_id);
         setLoading(false);
-        // setUploaded(true);
       } else {
-        switch (errorMessage) {
-          case "400 - Image file format png not allowed":
-            setUploadErrorMessage({
-              active: true,
-              content: "Video is the only type of file allowed.",
-            });
-            break;
-          case "413 - Server returned unexpected status code - 413":
-            setUploadErrorMessage({
-              active: true,
-              content:
-                "The size of your video is larger than allowed. Max size 100MB.",
-            });
-            break;
-          default:
-            setUploadErrorMessage({
-              active: true,
-              content: errorMessage,
-            });
+        if (errorMessage.includes("400 - Image file format")) {
+          setUploadErrorMessage({
+            active: true,
+            content: "Video is the only type of file allowed.",
+          });
+        } else if (
+          errorMessage == "413 - Server returned unexpected status code - 413"
+        ) {
+          setUploadErrorMessage({
+            active: true,
+            content:
+              "The size of your video is larger than allowed. Max size 100MB.",
+          });
+        } else {
+          setUploadErrorMessage({
+            active: true,
+            content: errorMessage,
+          });
         }
+
         setLoading(false);
       }
     } catch (error) {
@@ -171,18 +166,7 @@ const AddLocationForm = () => {
                     </div>
                   </div>
                 )}
-                {post ? (
-                  <>
-                    {post.videoUrl && <video src={post.videoUrl} />}
-                    {/* <video src={placeholderVideo} /> */}
-                  </>
-                ) : loading ? (
-                  <>
-                    <p className="loading">
-                      Your video is being uploaded ... <CloudUpload />
-                    </p>
-                  </>
-                ) : (
+                {!loading && !post && (
                   <>
                     <label htmlFor="uploadFile">
                       Select video
@@ -196,6 +180,21 @@ const AddLocationForm = () => {
                     />
                   </>
                 )}
+
+                {loading && (
+                  <p className="loading">
+                    Your video is being uploaded ... <CloudUpload />
+                  </p>
+                )}
+
+                {post && post.videoUrl && (
+                  <VideoPlayer
+                    videoUrl={post.videoUrl}
+                    controls={true}
+                    muted={false}
+                  />
+                )}
+
                 <TextInput label="Location name" name="name" type="text" />
                 <TextInput label="Title" name="title" type="text" />
                 <TextArea label="Description" name="description" />

@@ -89,33 +89,12 @@ label[for="uploadFile"] svg,
   color: rgb(255, 0, 38);
 }
 
-/* .uploaded {
-  position: absolute;
-  background-color: var(--background-color);
-  width: 100px;
-  height: 100px;
-  padding: 20px;
-  border-radius: 10px;
-} */
-
-/* .map-div > p {
-  margin-left: 40px;
-  margin-top: 30px;
-} */
-
-/* .directions {
-  margin-top: 0px;
-  position: absolute;
-  top: 170px;
-} */
-
-/* .uploadLabel svg {
-  margin: 0 6px 3px 0;
-} */
-
-.AddLocationForm .formContainer video {
+/* .AddLocationForm .formContainer video {
   margin-top: 10px;
   width: 100%;
+  height: 300px;
   background-color: transparent;
+  border-bottom: 0.09rem solid rgb(50, 50, 50);
+  border-top: 0.09rem solid rgb(50, 50, 50);
   object-fit: cover;
-}
+} */
