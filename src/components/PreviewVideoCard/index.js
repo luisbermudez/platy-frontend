@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import "./PreviewVideoCard.css";
 import { handleDaysCalc } from "../../utils/generalUtils";
 import placeholderVideo from "../../santafe-low.mp4";
 import dogo from "../../Black-Dog-PNG.png";
 
 const PreviewVideoCard = ({ each, videoPlay }) => {
-  const navigate = useNavigate();
+  // YOU CANNOT USE NAVIGATE //
+  // const navigate = useNavigate();
   const [agoValue, setAgoValue] = useState(null);
   const [views, setViews] = useState(null);
 

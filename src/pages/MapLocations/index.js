@@ -89,10 +89,10 @@ function Map() {
       });
     }
 
-    locationsMap.current.on("move", () => {
-      console.log(locationsMap.current.getCenter().lng);
-      console.log(locationsMap.current.getCenter().lat);
-    });
+    // locationsMap.current.on("move", () => {
+    //   console.log(locationsMap.current.getCenter().lng);
+    //   console.log(locationsMap.current.getCenter().lat);
+    // });
   });
 
   useEffect(() => {

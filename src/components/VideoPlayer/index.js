@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import "./VideoPlayer.css";
 
 const VideoPlayer = ({ videoUrl, controls }) => {
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
   const videoRef = useRef(null);
   const controlsRef = useRef(controls);
@@ -36,6 +36,8 @@ const VideoPlayer = ({ videoUrl, controls }) => {
           src={videoUrl}
           loop
           playsInline
+          // muted
+          autoPlay
         />
       )}
       {controlsRef.current && (
@@ -48,7 +50,7 @@ const VideoPlayer = ({ videoUrl, controls }) => {
             )}
           </div>
           <div onClick={handleVolume} className="volume-toggle">
-            {isMuted ? <VolumeMute /> : <VolumeUp />}
+            {isMuted ? <VolumeUp /> : <VolumeMute />}
           </div>
         </>
       )}
