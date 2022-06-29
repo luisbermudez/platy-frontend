@@ -30,7 +30,13 @@ const VideoPlayer = ({ videoUrl, controls }) => {
   return (
     <div className="VideoPlayer">
       {videoUrl && (
-        <video ref={videoRef} onClick={handlePlay} src={videoUrl} loop />
+        <video
+          ref={videoRef}
+          onClick={handlePlay}
+          src={videoUrl}
+          loop
+          playsInline
+        />
       )}
       {controlsRef.current && (
         <>

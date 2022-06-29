@@ -1,3 +1,7 @@
+video::-webkit-media-controls {
+  display: none !important;
+}
+
 .VideoPlayer {
   position: relative;
   height: 320px;
