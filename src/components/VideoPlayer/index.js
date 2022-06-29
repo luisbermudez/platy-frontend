@@ -4,7 +4,7 @@ import "./VideoPlayer.css";
 
 const VideoPlayer = ({ videoUrl, controls }) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef(null);
   const controlsRef = useRef(controls);
 
@@ -36,7 +36,7 @@ const VideoPlayer = ({ videoUrl, controls }) => {
           src={videoUrl}
           loop
           playsInline
-          // muted
+          muted
           autoPlay
         />
       )}
