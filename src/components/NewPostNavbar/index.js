@@ -6,9 +6,12 @@ import { useSelector } from "react-redux";
 import {
   clearCoordinates,
   clearVideoForNewPost,
+  setPostLocation,
+  toggleEditingLocationStatus,
 } from "../../redux/videolocationSlice";
 import { useLocation } from "react-router-dom";
 import { removeVideoFromCloudinary } from "../../services/videolocation-ws";
+import axios from "axios";
 
 const NewPostNavbar = () => {
   const navigate = useNavigate();
@@ -17,27 +20,37 @@ const NewPostNavbar = () => {
 
   const coordinates = useSelector((state) => state.videolocation.coordinates);
   const post = useSelector((state) => state.videolocation.videoForNewPost);
+  const editingLocation = useSelector(
+    (state) => state.videolocation.editingLocation
+  );
 
   const cancelPost = async () => {
     try {
-      dispatch(clearCoordinates());
       if (post) {
         if (post.public_id) {
-          const { status, data, errorMessage } =
-            await removeVideoFromCloudinary({
-              public_id: post.public_id,
-            });
+          await removeVideoFromCloudinary({
+            public_id: post.public_id,
+          });
         }
-
         dispatch(clearVideoForNewPost());
       }
-
-      return navigate("/");
     } catch (error) {
-      dispatch(clearCoordinates());
       dispatch(clearVideoForNewPost());
-      return navigate("/");
     }
+
+    dispatch(clearCoordinates());
+    return navigate("/");
+  };
+
+  const handleReverseGeocoding = async () => {
+    try {
+      const res = await axios.get(
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${coordinates.lng},${coordinates.lat}.json?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`
+      );
+      console.log(res.data.features[0].place_name);
+      dispatch(setPostLocation(res.data.features[0].place_name));
+    } catch (error) {}
+    return navigate("/add-location-2");
   };
 
   return (
@@ -46,22 +59,38 @@ const NewPostNavbar = () => {
         {pathname == "/add-location" ? (
           <XLg onClick={cancelPost} />
         ) : (
-          <ChevronLeft onClick={() => navigate(-1)} />
+          !editingLocation && <ChevronLeft onClick={() => navigate(-1)} />
         )}
       </div>
       <div>
-        {pathname == "/add-location" ? <p>Drop a pin</p> : <p>Add a video</p>}
+        {pathname == "/add-location" ? (
+          <p>Drop a pin</p>
+        ) : editingLocation ? (
+          <p>Edit location</p>
+        ) : (
+          <p>Add a video</p>
+        )}
       </div>
       <div>
-        {pathname == "/add-location"
-          ? coordinates && (
-              <p onClick={() => navigate("/add-location-2")}>Next</p>
-            )
-          : post && (
-              <button form="new-post-form" type="submit">
-                Share
-              </button>
-            )}
+        {pathname == "/add-location" ? (
+          coordinates && <p onClick={handleReverseGeocoding}>Next</p>
+        ) : editingLocation ? (
+          <button
+            form="new-post-form"
+            onClick={() => {
+              handleReverseGeocoding();
+              dispatch(toggleEditingLocationStatus());
+            }}
+          >
+            Done
+          </button>
+        ) : (
+          post && (
+            <button form="new-post-form" type="submit">
+              Share
+            </button>
+          )
+        )}
       </div>
     </nav>
   );

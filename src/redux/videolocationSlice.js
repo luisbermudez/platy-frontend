@@ -18,6 +18,8 @@ export const videolocationSlice = createSlice({
     isSearchbarActive: false,
     coordinates: null,
     videoForNewPost: null,
+    postLocation: null,
+    editingLocation: false,
   },
   reducers: {
     setError: (state, action) => {
@@ -63,6 +65,15 @@ export const videolocationSlice = createSlice({
     clearVideoForNewPost: (state) => {
       state.videoForNewPost = null;
     },
+    setPostLocation: (state, action) => {
+      state.postLocation = action.payload;
+    },
+    clearPostLocation: (state) => {
+      state.postLocation = null;
+    },
+    toggleEditingLocationStatus: (state) => {
+      state.editingLocation = !state.editingLocation;
+    },
   },
 });
 
@@ -80,6 +91,9 @@ export const {
   clearCoordinates,
   setVideoForNewPost,
   clearVideoForNewPost,
+  setPostLocation,
+  clearPostLocation,
+  toggleEditingLocationStatus,
 } = videolocationSlice.actions;
 
 export const videolocationsCall = () => async (dispatch) => {

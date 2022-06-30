@@ -24,7 +24,7 @@
 .locationmap-container {
   position: relative;
   width: 100vw;
-  min-height: calc(100vh - 50px);
+  min-height: calc(100vh - 48px);
   min-height: fill-available;
   min-height: -webkit-fill-available;
 }

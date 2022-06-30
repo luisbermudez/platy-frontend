@@ -89,12 +89,32 @@ label[for="uploadFile"] svg,
   color: rgb(255, 0, 38);
 }
 
-/* .AddLocationForm .formContainer video {
-  margin-top: 10px;
-  width: 100%;
-  height: 300px;
-  background-color: transparent;
-  border-bottom: 0.09rem solid rgb(50, 50, 50);
-  border-top: 0.09rem solid rgb(50, 50, 50);
-  object-fit: cover;
-} */
+/* Edit */
+.AddLocationForm .editLocation {
+  margin-top: 20px;
+  position: relative;
+}
+
+.AddLocationForm .editLocation h6 {
+  font-weight: bold;
+}
+
+.AddLocationForm .editLocation p:first-of-type {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  color: var(--dark-800);
+  width: calc(100% - 50px);
+}
+
+.AddLocationForm .editLocation p:last-of-type {
+  font-size: 0.8rem;
+  font-weight: bold;
+  position: absolute;
+  top: 29px;
+  right: 0px;
+}
+
+.AddLocationForm .editLocation p:last-of-type svg {
+  margin-bottom: 3px;
+}

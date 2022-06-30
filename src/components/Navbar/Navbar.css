@@ -5,7 +5,7 @@
 .Navbar,
 .NewPostNavbar {
   width: 100vw;
-  height: 50px;
+  height: 48px;
   position: fixed;
   top: 0px;
   display: flex;
@@ -27,7 +27,7 @@
 
 .platy-nav-container a svg {
   height: 48px;
-  width: 86px;
+  width: 80px;
 }
 
 /* Searchbar */
@@ -44,7 +44,7 @@
 
 .icon-ind-container {
   width: 25px;
-  margin: 13px;
+  margin: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,22 +57,26 @@
 }
 
 .icon-ind-container svg {
-  color: black;
-  font-size: 24px;
+  color: var(--dark-900);
+  font-size: 22px;
   height: 24px;
   margin: 0px;
 }
 
 .nav-avatar {
-  height: 25px;
-  width: 25px;
+  height: 24px;
+  width: 24px;
   border-radius: 50%;
-  border: 0.1rem solid black;
+  border: 0.1rem solid var(--dark-900);
+}
+
+.nav-avatar img {
+ object-fit: cover;
 }
 
 /* New post dropdown */
 .Navbar .dropdown a {
-  color: var(--text-color);
+  color: var(--dark-900);
   text-decoration: none;
   background-color: transparent;
 }
@@ -81,10 +85,9 @@
   background-color: transparent;
   width: 25px;
   height: 25px;
-  margin: 0px;
   border: none;
   padding: 0px;
-  margin: 13px;
+  margin: 12px;
 }
 
 .Navbar .dropdown  .icon-ind-container {
@@ -97,19 +100,29 @@
 }
 
 .Navbar .dropdown-menu {
-  border: 0.09rem solid rgb(226, 226, 226);
+  border: none;
+  border: 0.064rem solid rgb(239, 239, 239);
   background-color: rgb(255, 255, 255);
   outline: none;
   padding: 0px;
-  margin-top: 4px;
-  transform: translate3d(-27px, 40px, 0px) !important;
+  transform: translate3d(33px, 42px, 0px) !important;
   min-width: 100px;
+  font-size: 0.94rem;
+  border-radius: 16px;
 }
 
 .Navbar .dropdown-menu svg {
-  position: absolute;
-  right: 14px;
-  top: 8px;
+  width: 20px;
+  height: 20px;
+  margin: 0px 0px 4px 30px;
+  color: var(--dark-900);
+}
+
+.Navbar .dropdown-menu > a {
+  border-bottom: 0.07em solid rgb(152, 152, 152);
+}
+.Navbar .dropdown-menu > a:last-of-type {
+  border-bottom: none;
 }
 
 /* Modal - New post log in */

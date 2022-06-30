@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   PlusCircle,
   Person,
@@ -16,24 +16,30 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import Platy from "../../Logo/platy.js";
 import SignupOrLogin from "../SignupOrLogin";
+import {
+  clearVideoForNewPost,
+  clearCoordinates,
+} from "../../redux/videolocationSlice";
 
 function Navbar() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { pathname } = useLocation();
   const [show, setShow] = useState(false);
 
   const switchModal = () => setShow(!show);
 
+  const newPost = () => {
+    dispatch(clearVideoForNewPost());
+    dispatch(clearCoordinates());
+    navigate("/add-location");
+  };
+
   return (
     <nav className="Navbar">
-      <Modal
-        show={show}
-        animation={false}
-        centered
-        className="login-modal"
-      >
+      <Modal show={show} animation={false} centered className="login-modal">
         <div>
           <p onClick={switchModal} className="goback">
             x
@@ -63,10 +69,8 @@ function Navbar() {
               </Link>
             }
           >
-            <Dropdown.Item onClick={() => navigate("/add-location")}>
-              <Link to="#">
-                Post <CameraReels />
-              </Link>
+            <Dropdown.Item onClick={newPost}>
+              Post <CameraReels />
             </Dropdown.Item>
           </DropdownButton>
         ) : (

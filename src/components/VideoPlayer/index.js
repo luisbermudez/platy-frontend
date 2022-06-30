@@ -50,7 +50,7 @@ const VideoPlayer = ({ videoUrl, controls }) => {
             )}
           </div>
           <div onClick={handleVolume} className="volume-toggle">
-            {isMuted ? <VolumeUp /> : <VolumeMute />}
+            {isMuted ? <VolumeMute /> : <VolumeUp />}
           </div>
         </>
       )}
