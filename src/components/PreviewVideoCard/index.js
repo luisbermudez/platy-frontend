@@ -42,6 +42,8 @@ const PreviewVideoCard = ({ each, videoPlay }) => {
         alt="Location Video"
         loop
         muted
+        playsInline
+        preload="true"
       />
       <aside>
         <div className="videocard-avatar-container">

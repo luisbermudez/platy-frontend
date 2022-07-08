@@ -1,3 +1,7 @@
+video::-webkit-media-controls {
+  display: none !important;
+}
+
 .video-home-grid {
   display: flex;
   justify-content: center;
@@ -45,9 +49,8 @@
 
 /* Avatar */
 .videocard-avatar-container {
-  margin-right: 10px;
-  height: 2.1rem;
-  width: 2.1rem;
+  height: 30px;
+  width: 30px;
   border: 3px solid rgb(234, 234, 234);
   background-color: rgb(247, 247, 247);
   box-sizing: content-box;
@@ -55,6 +58,7 @@
   padding: 2px;
   transition: height, width, 0.15s ease-out;
   flex-shrink: 0;
+  margin-right: 10px;
 }
 
 .videocard-container video:hover + aside .videocard-avatar-container {

@@ -1,22 +1,40 @@
 import { Play, VolumeUp, Pause, VolumeMute } from "react-bootstrap-icons";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import "./VideoPlayer.css";
 
-const VideoPlayer = ({ videoUrl, controls }) => {
-  const [isVideoPlaying, setIsVideoPlaying] = useState(true);
+// Detects when element is in viewport
+const useElementOnScreen = (targetRef) => {
+  const [isVisible, setIsVisible] = useState();
+
+  // The entry intersecting gets its state changed to visible
+  const callbackFunction = ([entry]) => {
+    setIsVisible(entry.isIntersecting);
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(callbackFunction, {
+      root: null,
+      threshold: 1,
+    });
+    const currentTarget = targetRef.current;
+
+    if (currentTarget) {
+      observer.observe(currentTarget);
+    }
+
+    return () => {
+      if (currentTarget) observer.unobserve(currentTarget);
+    };
+  }, [targetRef]);
+
+  return isVisible;
+};
+
+const VideoPlayer = ({ videoUrl, handlePlay }) => {
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef(null);
-  const controlsRef = useRef(controls);
-
-  const handlePlay = () => {
-    if (!controls) return;
-    if (isVideoPlaying) {
-      videoRef.current.pause();
-      return setIsVideoPlaying(false);
-    }
-    videoRef.current.play();
-    return setIsVideoPlaying(true);
-  };
+  const isVisible = useElementOnScreen(videoRef);
 
   const handleVolume = () => {
     if (isMuted) {
@@ -27,33 +45,44 @@ const VideoPlayer = ({ videoUrl, controls }) => {
     return setIsMuted(true);
   };
 
+  useEffect(() => {
+    if (isVisible && !isVideoPlaying) {
+      handlePlay(videoRef, setIsVideoPlaying);
+    }
+  }, [isVisible]);
+
   return (
     <div className="VideoPlayer">
       {videoUrl && (
         <video
           ref={videoRef}
-          onClick={handlePlay}
+          onClick={() => {
+            handlePlay(videoRef, setIsVideoPlaying);
+          }}
           src={videoUrl}
           loop
           playsInline
-          muted
-          autoPlay
+          muted={true}
+          preload="true"
         />
       )}
-      {controlsRef.current && (
-        <>
-          <div onClick={handlePlay} className="play-toggle">
-            {isVideoPlaying ? (
-              <Pause className="pause" />
-            ) : (
-              <Play className="play" />
-            )}
-          </div>
-          <div onClick={handleVolume} className="volume-toggle">
-            {isMuted ? <VolumeMute /> : <VolumeUp />}
-          </div>
-        </>
-      )}
+      <>
+        <div
+          onClick={() => {
+            handlePlay(videoRef, setIsVideoPlaying);
+          }}
+          className="play-toggle"
+        >
+          {isVideoPlaying ? (
+            <Pause className="pause" />
+          ) : (
+            <Play className="play" />
+          )}
+        </div>
+        <div onClick={handleVolume} className="volume-toggle">
+          {isMuted ? <VolumeMute /> : <VolumeUp />}
+        </div>
+      </>
     </div>
   );
 };

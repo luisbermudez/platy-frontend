@@ -210,8 +210,6 @@ const AddLocationForm = () => {
                     <>
                       <VideoPlayer
                         videoUrl={post.videoUrl}
-                        controls={true}
-                        muted={false}
                       />
                       <label htmlFor="uploadFile">
                         Use different video

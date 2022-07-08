@@ -118,3 +118,8 @@ label[for="uploadFile"] svg,
 .AddLocationForm .editLocation p:last-of-type svg {
   margin-bottom: 3px;
 }
+
+.AddLocationForm .VideoPlayer {
+  height: 320px;
+  margin: 10px 0px 20px;
+}

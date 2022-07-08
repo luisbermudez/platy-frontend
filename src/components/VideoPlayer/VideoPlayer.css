@@ -1,14 +1,13 @@
-/* video::-webkit-media-controls {
+video::-webkit-media-controls {
   display: none !important;
-} */
+}
 
 .VideoPlayer {
   position: relative;
-  height: 320px;
   width: 100%;
+  height: 100%;
   margin: 0;
   display: block;
-  margin: 10px 0px 20px;
 }
 
 .VideoPlayer video {
@@ -16,6 +15,7 @@
   background-color: rgb(26, 26, 26);
   height: 100%;
   width: 100%;
+  object-fit: cover;
 }
 
 .play-toggle,
@@ -28,7 +28,7 @@
   border-radius: 50%;
   position: absolute;
   bottom: 10px;
-  background-color: rgb(44, 44, 44);
+  background-color: rgba(10, 10, 10, 0.8);
 }
 
 .play-toggle {
@@ -57,5 +57,5 @@
 
 video:hover ~ .play-toggle,
 .play-toggle:hover {
-  background-color: rgb(60, 60, 60);
+  background-color: rgba(10, 10, 10, 0.8);
 }
