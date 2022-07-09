@@ -14,7 +14,7 @@ const useElementOnScreen = (targetRef) => {
   useEffect(() => {
     const observer = new IntersectionObserver(callbackFunction, {
       root: null,
-      threshold: 1,
+      threshold: 0.5,
     });
     const currentTarget = targetRef.current;
 
@@ -63,7 +63,7 @@ const VideoPlayer = ({ videoUrl, handlePlay }) => {
           loop
           playsInline
           muted={true}
-          preload="true"
+          preload="auto"
         />
       )}
       <>

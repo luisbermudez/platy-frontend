@@ -6,13 +6,17 @@ import { videolocationsCall } from "../../redux/videolocationSlice";
 import "./MapLocations.css";
 import ReactDOM from "react-dom";
 import PreviewVideoCard from "../../components/PreviewVideoCard";
-import { handlePlay } from "../../utils/generalUtils";
+import VideoPlayer from "../../components/VideoPlayer";
+import placeholderVideo from "../../santafe-low.mp4"
+// import { handlePlay } from "../../utils/generalUtils";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 function Map() {
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const [currentlyPlaying, setCurrentlyPlaying] = useState(undefined);
+  // const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  // const [currentlyPlaying, setCurrentlyPlaying] = useState(undefined);
+  const [currentVideoPlaying, setCurrentVideoPlaying] = useState(null);
+  const [oneVideoPlaying, setOneVideoPlaying] = useState(false);
 
   const dispatch = useDispatch();
   const hasVerified = useRef(false);
@@ -25,22 +29,49 @@ function Map() {
   const geolocate = useRef(null);
   const navControl = useRef(null);
   const markers = useRef(null);
-  const videoRef = useRef(null);
+  // const videoRef = useRef(null);
 
   const videolocations = useSelector(
     (state) => state.videolocation.videolocations
   );
 
-  const videoPlay = (e) => {
-    videoRef.current = e.target;
-    handlePlay(
-      e,
-      isVideoPlaying,
-      currentlyPlaying,
-      setIsVideoPlaying,
-      videoRef,
-      setCurrentlyPlaying
-    );
+  // const videoPlay = (e) => {
+  //   videoRef.current = e.target;
+  //   handlePlay(
+  //     e,
+  //     isVideoPlaying,
+  //     currentlyPlaying,
+  //     setIsVideoPlaying,
+  //     videoRef,
+  //     setCurrentlyPlaying
+  //   );
+  // };
+
+  const handlePlay = (video, setIsVideoPlaying) => {
+    if (oneVideoPlaying) {
+      if (video.current === currentVideoPlaying.video) {
+        setOneVideoPlaying(false);
+        setIsVideoPlaying(false);
+        video.current.pause();
+      } else {
+        currentVideoPlaying.video.pause();
+        currentVideoPlaying.state(false);
+        setIsVideoPlaying(true);
+        setCurrentVideoPlaying({
+          video: video.current,
+          state: setIsVideoPlaying,
+        });
+        video.current.play();
+      }
+    } else {
+      setOneVideoPlaying(true);
+      setIsVideoPlaying(true);
+      video.current.play();
+      setCurrentVideoPlaying({
+        video: video.current,
+        state: setIsVideoPlaying,
+      });
+    }
   };
 
   useEffect(() => {
@@ -102,9 +133,17 @@ function Map() {
           const popupNode = document.createElement("div");
           popupNode.className = "video-home-grid";
           ReactDOM.render(
-            <PreviewVideoCard each={spot} videoPlay={videoPlay} />,
+            <VideoPlayer
+                // videoUrl={each.videoUrl}
+                videoUrl={placeholderVideo}
+                handlePlay={handlePlay}
+              />,
             popupNode
           );
+          // ReactDOM.render(
+          //   <PreviewVideoCard each={spot} videoPlay={videoPlay} />,
+          //   popupNode
+          // );
           markers.current = new mapboxgl.Marker({
             color: "#ec127f",
           })
