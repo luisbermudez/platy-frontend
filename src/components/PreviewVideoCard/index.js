@@ -33,8 +33,6 @@ const PreviewVideoCard = ({ each, videoPlay }) => {
       key={each._id}
       className="videocard-container"
       // onClick={() => navigate(`/details/${each._id}`)}
-      onMouseOut={videoPlay}
-      onMouseOver={videoPlay}
     >
       <video
         // src={each.videoUrl}
@@ -43,7 +41,8 @@ const PreviewVideoCard = ({ each, videoPlay }) => {
         loop
         muted
         playsInline
-        preload="true"
+        autoPlay
+        preload="metadata"
       />
       <aside>
         <div className="videocard-avatar-container">

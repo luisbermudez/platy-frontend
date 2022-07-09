@@ -25,8 +25,8 @@
   position: relative;
   width: 100vw;
   min-height: calc(100vh - 48px);
-  /* min-height: fill-available;
-  min-height: -webkit-fill-available; */
+  min-height: fill-available;
+  min-height: -webkit-fill-available;
 }
 
 /* Map popup video player container */
@@ -44,16 +44,7 @@
 }
 
 /* Video */
-.locationmap-container .VideoPlayer {
-  width: 240px !important;
-  height: 270px !important;
-  border-radius: 10px;
-}
-
-.locationmap-container .VideoPlayer video {
-  border-radius: 10px;
-}
-/* .locationmap-container video {
+.locationmap-container video {
   height: 180px !important;
 }
 
@@ -64,7 +55,7 @@
 .locationmap-container .video-home-grid h6 {
   color: var(--text-color);
   font-family: "Lato", sans-serif;
-} */
+}
 
 @media (min-width: 768px) {
   /* Enter map full screen */

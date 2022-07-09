@@ -63,7 +63,7 @@ const VideoPlayer = ({ videoUrl, handlePlay }) => {
           loop
           playsInline
           muted={true}
-          preload="auto"
+          preload="metadata"
         />
       )}
       <>
