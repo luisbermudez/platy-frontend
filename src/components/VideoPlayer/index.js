@@ -1,5 +1,6 @@
 import { Play, VolumeUp, Pause, VolumeMute } from "react-bootstrap-icons";
 import { useRef, useState, useEffect } from "react";
+import { handlePlay } from "../../utils/generalUtils";
 import "./VideoPlayer.css";
 
 // Detects when element is in viewport
@@ -14,7 +15,7 @@ const useElementOnScreen = (targetRef) => {
   useEffect(() => {
     const observer = new IntersectionObserver(callbackFunction, {
       root: null,
-      threshold: 0.5,
+      threshold: 0.6,
     });
     const currentTarget = targetRef.current;
 
@@ -30,7 +31,13 @@ const useElementOnScreen = (targetRef) => {
   return isVisible;
 };
 
-const VideoPlayer = ({ videoUrl, handlePlay }) => {
+const VideoPlayer = ({
+  videoUrl,
+  currentVideoPlaying,
+  setCurrentVideoPlaying,
+  oneVideoPlaying,
+  setOneVideoPlaying,
+}) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef(null);
@@ -47,7 +54,14 @@ const VideoPlayer = ({ videoUrl, handlePlay }) => {
 
   useEffect(() => {
     if (isVisible && !isVideoPlaying) {
-      handlePlay(videoRef, setIsVideoPlaying);
+      handlePlay(
+        videoRef,
+        setIsVideoPlaying,
+        currentVideoPlaying,
+        setCurrentVideoPlaying,
+        oneVideoPlaying,
+        setOneVideoPlaying
+      );
     }
   }, [isVisible]);
 
@@ -57,19 +71,32 @@ const VideoPlayer = ({ videoUrl, handlePlay }) => {
         <video
           ref={videoRef}
           onClick={() => {
-            handlePlay(videoRef, setIsVideoPlaying);
+            handlePlay(
+              videoRef,
+              setIsVideoPlaying,
+              currentVideoPlaying,
+              setCurrentVideoPlaying,
+              oneVideoPlaying,
+              setOneVideoPlaying
+            );
           }}
           src={videoUrl}
           loop
           playsInline
           muted={true}
-          preload="metadata"
         />
       )}
       <>
         <div
           onClick={() => {
-            handlePlay(videoRef, setIsVideoPlaying);
+            handlePlay(
+              videoRef,
+              setIsVideoPlaying,
+              currentVideoPlaying,
+              setCurrentVideoPlaying,
+              oneVideoPlaying,
+              setOneVideoPlaying
+            );
           }}
           className="play-toggle"
         >

@@ -20,26 +20,60 @@ export const handleDaysCalc = (createdAt, setAgoValue) => {
   return res === 1 ? setAgoValue("1 Day Ago") : setAgoValue(res + " Days Ago");
 };
 
+// export const handlePlay = (
+//   e,
+//   isVideoPlaying,
+//   currentlyPlaying,
+//   setIsVideoPlaying,
+//   videoRef,
+//   setCurrentlyPlaying
+// ) => {
+//   if (isVideoPlaying) {
+//     if (e.target === currentlyPlaying) {
+//       setIsVideoPlaying(false);
+//       videoRef.current.pause();
+//     } else {
+//       currentlyPlaying.pause();
+//       setCurrentlyPlaying(e.target);
+//       videoRef.current.play();
+//     }
+//   } else {
+//     setIsVideoPlaying(true);
+//     setCurrentlyPlaying(e.target);
+//     videoRef.current.play();
+//   }
+// };
+
 export const handlePlay = (
-  e,
-  isVideoPlaying,
-  currentlyPlaying,
+  video,
   setIsVideoPlaying,
-  videoRef,
-  setCurrentlyPlaying
+  currentVideoPlaying,
+  setCurrentVideoPlaying,
+  oneVideoPlaying,
+  setOneVideoPlaying
 ) => {
-  if (isVideoPlaying) {
-    if (e.target === currentlyPlaying) {
+  if (oneVideoPlaying) {
+    if (video.current === currentVideoPlaying.video) {
+      setOneVideoPlaying(false);
       setIsVideoPlaying(false);
-      videoRef.current.pause();
+      video.current.pause();
     } else {
-      currentlyPlaying.pause();
-      setCurrentlyPlaying(e.target);
-      videoRef.current.play();
+      currentVideoPlaying.video.pause();
+      currentVideoPlaying.state(false);
+      setIsVideoPlaying(true);
+      setCurrentVideoPlaying({
+        video: video.current,
+        state: setIsVideoPlaying,
+      });
+      video.current.play();
     }
   } else {
+    setOneVideoPlaying(true);
     setIsVideoPlaying(true);
-    setCurrentlyPlaying(e.target);
-    videoRef.current.play();
+    video.current.play();
+    setCurrentVideoPlaying({
+      video: video.current,
+      state: setIsVideoPlaying,
+    });
   }
 };

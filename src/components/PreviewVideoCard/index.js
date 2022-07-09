@@ -42,7 +42,6 @@ const PreviewVideoCard = ({ each, videoPlay }) => {
         muted
         playsInline
         autoPlay
-        preload="metadata"
       />
       <aside>
         <div className="videocard-avatar-container">

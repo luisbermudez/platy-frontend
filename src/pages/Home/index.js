@@ -80,32 +80,39 @@ function Home() {
   const [agoValue, setAgoValue] = useState(null);
   const [views, setViews] = useState(null);
 
-  const handlePlay = (video, setIsVideoPlaying) => {
-    if (oneVideoPlaying) {
-      if (video.current === currentVideoPlaying.video) {
-        setOneVideoPlaying(false);
-        setIsVideoPlaying(false);
-        video.current.pause();
-      } else {
-        currentVideoPlaying.video.pause();
-        currentVideoPlaying.state(false);
-        setIsVideoPlaying(true);
-        setCurrentVideoPlaying({
-          video: video.current,
-          state: setIsVideoPlaying,
-        });
-        video.current.play();
-      }
-    } else {
-      setOneVideoPlaying(true);
-      setIsVideoPlaying(true);
-      video.current.play();
-      setCurrentVideoPlaying({
-        video: video.current,
-        state: setIsVideoPlaying,
-      });
-    }
-  };
+  // const handlePlay = (
+  //   video,
+  //   setIsVideoPlaying,
+  //   currentVideoPlaying,
+  //   setCurrentVideoPlaying,
+  //   oneVideoPlaying,
+  //   setOneVideoPlaying
+  // ) => {
+  //   if (oneVideoPlaying) {
+  //     if (video.current === currentVideoPlaying.video) {
+  //       setOneVideoPlaying(false);
+  //       setIsVideoPlaying(false);
+  //       video.current.pause();
+  //     } else {
+  //       currentVideoPlaying.video.pause();
+  //       currentVideoPlaying.state(false);
+  //       setIsVideoPlaying(true);
+  //       setCurrentVideoPlaying({
+  //         video: video.current,
+  //         state: setIsVideoPlaying,
+  //       });
+  //       video.current.play();
+  //     }
+  //   } else {
+  //     setOneVideoPlaying(true);
+  //     setIsVideoPlaying(true);
+  //     video.current.play();
+  //     setCurrentVideoPlaying({
+  //       video: video.current,
+  //       state: setIsVideoPlaying,
+  //     });
+  //   }
+  // };
 
   const handleViews = (views) => {
     if (views === 1) {
@@ -150,9 +157,12 @@ function Home() {
                 <h6>{each._user.name}</h6>
               </aside>
               <VideoPlayer
-                // videoUrl={each.videoUrl}
-                videoUrl={placeholderVideo}
-                handlePlay={handlePlay}
+                videoUrl={each.videoUrl}
+                // videoUrl={placeholderVideo}
+                currentVideoPlaying={currentVideoPlaying}
+                setCurrentVideoPlaying={setCurrentVideoPlaying}
+                oneVideoPlaying={oneVideoPlaying}
+                setOneVideoPlaying={setOneVideoPlaying}
               />
               <aside className="bottomInfo">
                 <h6>{each.title}</h6>
