@@ -15,7 +15,7 @@ const useElementOnScreen = (targetRef) => {
   useEffect(() => {
     const observer = new IntersectionObserver(callbackFunction, {
       root: null,
-      threshold: 0.6,
+      threshold: 1,
     });
     const currentTarget = targetRef.current;
 
@@ -32,7 +32,7 @@ const useElementOnScreen = (targetRef) => {
 };
 
 const VideoPlayer = ({
-  videoUrl,
+  videoInfo,
   currentVideoPlaying,
   setCurrentVideoPlaying,
   oneVideoPlaying,
@@ -42,6 +42,7 @@ const VideoPlayer = ({
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef(null);
   const isVisible = useElementOnScreen(videoRef);
+  const videoPoster = `https://res.cloudinary.com/dqxe9yome/video/upload/so_0/${videoInfo.public_id}.jpg`;
 
   const handleVolume = () => {
     if (isMuted) {
@@ -67,7 +68,7 @@ const VideoPlayer = ({
 
   return (
     <div className="VideoPlayer">
-      {videoUrl && (
+      {videoInfo.videoUrl && (
         <video
           ref={videoRef}
           onClick={() => {
@@ -80,10 +81,11 @@ const VideoPlayer = ({
               setOneVideoPlaying
             );
           }}
-          src={videoUrl}
+          src={videoInfo.videoUrl}
           loop
           playsInline
           muted={true}
+          poster={videoPoster}
         />
       )}
       <>

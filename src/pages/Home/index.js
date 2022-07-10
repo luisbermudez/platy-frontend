@@ -157,7 +157,7 @@ function Home() {
                 <h6>{each._user.name}</h6>
               </aside>
               <VideoPlayer
-                videoUrl={each.videoUrl}
+                videoInfo={each}
                 // videoUrl={placeholderVideo}
                 currentVideoPlaying={currentVideoPlaying}
                 setCurrentVideoPlaying={setCurrentVideoPlaying}
