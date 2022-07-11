@@ -4,10 +4,9 @@ import { videolocationsCall } from "../../redux/videolocationSlice";
 import { Search } from "react-bootstrap-icons";
 import PreviewVideoCard from "../../components/PreviewVideoCard";
 import "./Home.css";
-import placeholderVideo from "../../santafe-low.mp4";
 import placeholderPP from "../../Black-Dog-PNG.png";
 import VideoPlayer from "../../components/VideoPlayer";
-import { handleDaysCalc } from "../../utils/generalUtils";
+import VideoInfoHomeCard from "../../components/VideoInfoHomeCard";
 
 function Home() {
   // const [isSearching, setIsSearching] = useState(false);
@@ -77,58 +76,12 @@ function Home() {
   const hasVerified = useRef(false);
   const [currentVideoPlaying, setCurrentVideoPlaying] = useState(null);
   const [oneVideoPlaying, setOneVideoPlaying] = useState(false);
-  const [agoValue, setAgoValue] = useState(null);
-  const [views, setViews] = useState(null);
-
-  // const handlePlay = (
-  //   video,
-  //   setIsVideoPlaying,
-  //   currentVideoPlaying,
-  //   setCurrentVideoPlaying,
-  //   oneVideoPlaying,
-  //   setOneVideoPlaying
-  // ) => {
-  //   if (oneVideoPlaying) {
-  //     if (video.current === currentVideoPlaying.video) {
-  //       setOneVideoPlaying(false);
-  //       setIsVideoPlaying(false);
-  //       video.current.pause();
-  //     } else {
-  //       currentVideoPlaying.video.pause();
-  //       currentVideoPlaying.state(false);
-  //       setIsVideoPlaying(true);
-  //       setCurrentVideoPlaying({
-  //         video: video.current,
-  //         state: setIsVideoPlaying,
-  //       });
-  //       video.current.play();
-  //     }
-  //   } else {
-  //     setOneVideoPlaying(true);
-  //     setIsVideoPlaying(true);
-  //     video.current.play();
-  //     setCurrentVideoPlaying({
-  //       video: video.current,
-  //       state: setIsVideoPlaying,
-  //     });
-  //   }
-  // };
-
-  const handleViews = (views) => {
-    if (views === 1) {
-      return setViews("1 View");
-    }
-    if (views > 999) {
-      const ks = Math.floor(views / 1000);
-      return setViews(ks + "K Views");
-    }
-    setViews(views + " Views");
-  };
-
-  const handleMath = (each) => {
-    handleDaysCalc(each.createdAt, setAgoValue);
-    handleViews(each.views);
-  };
+  const videosGlobalState = [
+    currentVideoPlaying,
+    setCurrentVideoPlaying,
+    oneVideoPlaying,
+    setOneVideoPlaying,
+  ];
 
   useEffect(() => {
     if (!hasVerified.current) {
@@ -145,11 +98,7 @@ function Home() {
       <div className="playerContainer">
         {videolocations &&
           videolocations.map((each) => (
-            <div
-              onLoadedMetadata={() => handleMath(each)}
-              className="videoCard"
-              key={each._id}
-            >
+            <div className="videoCard" key={each._id}>
               <aside className="topInfo">
                 <div className="videocard-avatar-container">
                   <img src={placeholderPP} />
@@ -158,18 +107,10 @@ function Home() {
               </aside>
               <VideoPlayer
                 videoInfo={each}
-                // videoUrl={placeholderVideo}
-                currentVideoPlaying={currentVideoPlaying}
-                setCurrentVideoPlaying={setCurrentVideoPlaying}
-                oneVideoPlaying={oneVideoPlaying}
-                setOneVideoPlaying={setOneVideoPlaying}
+                videosGlobalState={videosGlobalState}
+                singleVideo={false}
               />
-              <aside className="bottomInfo">
-                <h6>{each.title}</h6>
-                <p>
-                  {views} • {agoValue}
-                </p>
-              </aside>
+              <VideoInfoHomeCard videoInfo={each} />
             </div>
           ))}
       </div>

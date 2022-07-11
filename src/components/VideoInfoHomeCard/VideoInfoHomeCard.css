@@ -1,0 +1,13 @@
+.VideoInfoHomeCard {
+  padding: 18px;
+}
+
+.VideoInfoHomeCard h6 {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.VideoInfoHomeCard p {
+  margin: 0px;
+  font-weight: 300;
+}

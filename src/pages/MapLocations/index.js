@@ -6,13 +6,12 @@ import { videolocationsCall } from "../../redux/videolocationSlice";
 import "./MapLocations.css";
 import ReactDOM from "react-dom";
 import PreviewVideoCard from "../../components/PreviewVideoCard";
-import { handlePlay } from "../../utils/generalUtils";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 function Map() {
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const [currentlyPlaying, setCurrentlyPlaying] = useState(undefined);
+  // const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  // const [currentlyPlaying, setCurrentlyPlaying] = useState(undefined);
 
   const dispatch = useDispatch();
   const hasVerified = useRef(false);
@@ -25,23 +24,23 @@ function Map() {
   const geolocate = useRef(null);
   const navControl = useRef(null);
   const markers = useRef(null);
-  const videoRef = useRef(null);
+  // const videoRef = useRef(null);
 
   const videolocations = useSelector(
     (state) => state.videolocation.videolocations
   );
 
-  const videoPlay = (e) => {
-    videoRef.current = e.target;
-    handlePlay(
-      e,
-      isVideoPlaying,
-      currentlyPlaying,
-      setIsVideoPlaying,
-      videoRef,
-      setCurrentlyPlaying
-    );
-  };
+  // const videoPlay = (e) => {
+  //   videoRef.current = e.target;
+  //   handlePlay(
+  //     e,
+  //     isVideoPlaying,
+  //     currentlyPlaying,
+  //     setIsVideoPlaying,
+  //     videoRef,
+  //     setCurrentlyPlaying
+  //   );
+  // };
 
   useEffect(() => {
     if (!hasVerified.current) {
@@ -101,10 +100,7 @@ function Map() {
         videolocations.forEach((spot) => {
           const popupNode = document.createElement("div");
           popupNode.className = "video-home-grid";
-          ReactDOM.render(
-            <PreviewVideoCard each={spot} videoPlay={videoPlay} />,
-            popupNode
-          );
+          ReactDOM.render(<PreviewVideoCard each={spot} />, popupNode);
           markers.current = new mapboxgl.Marker({
             color: "#ec127f",
           })

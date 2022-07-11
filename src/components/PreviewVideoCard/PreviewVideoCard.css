@@ -9,8 +9,6 @@ video::-webkit-media-controls {
 
 .videocard-container {
   position: relative;
-  width: 100%;
-  height: 450px;
   background-color: white;
   box-shadow: 1px 1.9px 1.9px rgba(0, 0, 0, 0.01);
   margin: 0 0 20px;
@@ -19,20 +17,28 @@ video::-webkit-media-controls {
 }
 
 /* Video */
+.VideoPlayer {
+  height: 180px;
+}
+
+.VideoPlayer:hover {
+  height: 206px;
+}
+
 .videocard-container video {
   width: 100%;
   margin: 0;
   padding: 0;
   object-fit: cover;
-  height: 361px;
+  height: 180px;
   transition: height 0.15s ease-out;
   border-radius: 10px 10px 0 0;
 }
 
-.videocard-container video:hover {
-  height: 387px;
-  transition: height 0.25s ease-in;
+.videocard-container .VideoPlayer:hover video {
+  height: 206px;
 }
+
 /* Aside */
 .videocard-container aside {
   display: flex;
@@ -42,7 +48,7 @@ video::-webkit-media-controls {
   transition: height 0.15s ease-out;
 }
 
-.videocard-container video:hover + aside {
+.videocard-container .VideoPlayer:hover + aside {
   height: 50px;
   transition: height 0.25s ease-in;
 }
@@ -61,7 +67,7 @@ video::-webkit-media-controls {
   margin-right: 10px;
 }
 
-.videocard-container video:hover + aside .videocard-avatar-container {
+.videocard-container .VideoPlayer:hover + aside .videocard-avatar-container {
   height: 1.7rem;
   width: 1.7rem;
   transition: height, width, 0.25s ease-in;
@@ -88,7 +94,7 @@ video::-webkit-media-controls {
   transition: margin 0.15s ease-out;
 }
 
-.videocard-container video:hover ~ aside .video-description h6 {
+.videocard-container .VideoPlayer:hover ~ aside .video-description h6 {
   margin: 24px 0 0;
   transition: margin 0.25s ease-in;
 }
@@ -104,7 +110,7 @@ video::-webkit-media-controls {
   overflow: hidden;
 }
 
-.videocard-container video:hover ~ aside .video-description p {
+.videocard-container .VideoPlayer:hover ~ aside .video-description p {
   color: transparent;
   transition: color 0.25s ease-in;
 }

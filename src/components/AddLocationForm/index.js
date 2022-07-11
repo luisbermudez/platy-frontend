@@ -43,8 +43,6 @@ const AddLocationForm = () => {
     active: false,
     content: null,
   });
-  const [currentVideoPlaying, setCurrentVideoPlaying] = useState(null);
-  const [oneVideoPlaying, setOneVideoPlaying] = useState(false);
 
   const handleUpload = async (e) => {
     setUploadErrorMessage({
@@ -212,10 +210,8 @@ const AddLocationForm = () => {
                     <>
                       <VideoPlayer
                         videoUrl={post.videoUrl}
-                        currentVideoPlaying={currentVideoPlaying}
-                        setCurrentVideoPlaying={setCurrentVideoPlaying}
-                        oneVideoPlaying={oneVideoPlaying}
-                        setOneVideoPlaying={setOneVideoPlaying}
+                        videosGlobalState={null}
+                        singleVideo={true}
                       />
                       <label htmlFor="uploadFile">
                         Use different video

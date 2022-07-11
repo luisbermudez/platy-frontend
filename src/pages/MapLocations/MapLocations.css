@@ -25,8 +25,8 @@
   position: relative;
   width: 100vw;
   min-height: calc(100vh - 48px);
-  /* min-height: fill-available;
-  min-height: -webkit-fill-available; */
+  min-height: fill-available;
+  min-height: -webkit-fill-available;
 }
 
 /* Map popup video player container */
@@ -41,15 +41,6 @@
   width: 240px !important;
   height: 270px !important;
   margin: 0 !important;
-}
-
-/* Video */
-.locationmap-container video {
-  height: 180px !important;
-}
-
-.locationmap-container video:hover {
-  height: 206px !important;
 }
 
 .locationmap-container .video-home-grid h6 {

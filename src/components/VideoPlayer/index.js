@@ -1,6 +1,7 @@
 import { Play, VolumeUp, Pause, VolumeMute } from "react-bootstrap-icons";
 import { useRef, useState, useEffect } from "react";
 import { handlePlay } from "../../utils/generalUtils";
+import placeholderVideo from "../../santafe-low.mp4";
 import "./VideoPlayer.css";
 
 // Detects when element is in viewport
@@ -33,16 +34,29 @@ const useElementOnScreen = (targetRef) => {
 
 const VideoPlayer = ({
   videoInfo,
-  currentVideoPlaying,
-  setCurrentVideoPlaying,
-  oneVideoPlaying,
-  setOneVideoPlaying,
+  videosGlobalState,
+  singleVideo,
 }) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef(null);
   const isVisible = useElementOnScreen(videoRef);
   const videoPoster = `https://res.cloudinary.com/dqxe9yome/video/upload/so_0/${videoInfo.public_id}.jpg`;
+  const handleVideoParams = [videoRef, setIsVideoPlaying, videosGlobalState];
+
+  const callHandlePlayFunct = () => {
+    if (singleVideo) {
+      if (isVideoPlaying) {
+        setIsVideoPlaying(false);
+        videoRef.current.pause();
+      } else {
+        setIsVideoPlaying(true);
+        videoRef.current.play();
+      }
+    } else {
+      handlePlay(handleVideoParams);
+    }
+  };
 
   const handleVolume = () => {
     if (isMuted) {
@@ -55,14 +69,7 @@ const VideoPlayer = ({
 
   useEffect(() => {
     if (isVisible && !isVideoPlaying) {
-      handlePlay(
-        videoRef,
-        setIsVideoPlaying,
-        currentVideoPlaying,
-        setCurrentVideoPlaying,
-        oneVideoPlaying,
-        setOneVideoPlaying
-      );
+      callHandlePlayFunct();
     }
   }, [isVisible]);
 
@@ -72,16 +79,10 @@ const VideoPlayer = ({
         <video
           ref={videoRef}
           onClick={() => {
-            handlePlay(
-              videoRef,
-              setIsVideoPlaying,
-              currentVideoPlaying,
-              setCurrentVideoPlaying,
-              oneVideoPlaying,
-              setOneVideoPlaying
-            );
+            callHandlePlayFunct();
           }}
           src={videoInfo.videoUrl}
+          // src={placeholderVideo}
           loop
           playsInline
           muted={true}
@@ -91,14 +92,7 @@ const VideoPlayer = ({
       <>
         <div
           onClick={() => {
-            handlePlay(
-              videoRef,
-              setIsVideoPlaying,
-              currentVideoPlaying,
-              setCurrentVideoPlaying,
-              oneVideoPlaying,
-              setOneVideoPlaying
-            );
+            callHandlePlayFunct();
           }}
           className="play-toggle"
         >

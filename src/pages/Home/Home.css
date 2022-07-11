@@ -142,47 +142,15 @@
   margin-left: 10px;
 }
 
-.Home .videoCard .bottomInfo h6 {
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-.Home .videoCard .bottomInfo {
-  padding: 18px;
-}
-
 .Home .videoCard .bottomInfo p {
   margin: 0px;
 }
 
-.Home .VideoPlayer {
+.Home .VideoPlayer,
+.Home .VideoPlayer video {
   height: 350px;
+  width: 100%;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Tablet */
 @media (min-width: 768px) {
