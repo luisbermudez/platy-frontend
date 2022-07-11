@@ -146,8 +146,9 @@
   margin: 0px;
 }
 
-.Home .VideoPlayer,
-.Home .VideoPlayer video {
+.Home .VideoPlayer
+/* , .Home .VideoPlayer video  */
+{
   height: 350px;
   width: 100%;
 }

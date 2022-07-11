@@ -63,14 +63,20 @@ const VideoPlayer = ({ videoInfo, videosGlobalState, singleVideo }) => {
     return setIsMuted(true);
   };
 
+  const videoReady = () => {
+    if (!isVideoPlaying) {
+      callHandlePlayFunct();
+    }
+  };
+
   useEffect(() => {
     if (isVisible) {
       videoRef.current.load();
-      videoRef.current.addEventListener("loadeddata", () => {
-        if (!isVideoPlaying) {
-          callHandlePlayFunct();
-        }
-      });
+      // videoRef.current.addEventListener("loadeddata", () => {
+      //   if (!isVideoPlaying) {
+      //     callHandlePlayFunct();
+      //   }
+      // });
     }
   }, [isVisible]);
 
@@ -85,6 +91,7 @@ const VideoPlayer = ({ videoInfo, videosGlobalState, singleVideo }) => {
           src={videoInfo.videoUrl}
           // src={placeholderVideo}
           loop
+          onLoadedData={videoReady}
           playsInline
           muted={true}
           poster={videoPoster}
