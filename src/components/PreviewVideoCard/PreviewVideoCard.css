@@ -17,12 +17,16 @@ video::-webkit-media-controls {
 }
 
 /* Video */
-.VideoPlayer {
-  height: 180px;
+.locationmap-container .VideoPlayer,
+.locationmap-container .VideoPlayer video {
+  height: 194px;
+  transition: height 0.15s ease-out;
 }
 
-.VideoPlayer:hover {
-  height: 206px;
+.locationmap-container .VideoPlayer:hover,
+.locationmap-container .VideoPlayer:hover video {
+  height: 220px;
+  transition: height 0.25s ease-in;
 }
 
 .videocard-container video {
@@ -30,13 +34,7 @@ video::-webkit-media-controls {
   margin: 0;
   padding: 0;
   object-fit: cover;
-  height: 180px;
-  transition: height 0.15s ease-out;
   border-radius: 10px 10px 0 0;
-}
-
-.videocard-container .VideoPlayer:hover video {
-  height: 206px;
 }
 
 /* Aside */

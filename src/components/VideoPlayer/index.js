@@ -81,8 +81,8 @@ const VideoPlayer = ({
           onClick={() => {
             callHandlePlayFunct();
           }}
-          src={videoInfo.videoUrl}
-          // src={placeholderVideo}
+          // src={videoInfo.videoUrl}
+          src={placeholderVideo}
           loop
           playsInline
           muted={true}

@@ -209,7 +209,7 @@ const AddLocationForm = () => {
                   {post && post.videoUrl && (
                     <>
                       <VideoPlayer
-                        videoUrl={post.videoUrl}
+                        videoInfo={post}
                         videosGlobalState={null}
                         singleVideo={true}
                       />
