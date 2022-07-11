@@ -16,7 +16,7 @@ const useElementOnScreen = (targetRef) => {
   useEffect(() => {
     const observer = new IntersectionObserver(callbackFunction, {
       root: null,
-      threshold: 1,
+      threshold: 0.1,
     });
     const currentTarget = targetRef.current;
 
@@ -32,11 +32,7 @@ const useElementOnScreen = (targetRef) => {
   return isVisible;
 };
 
-const VideoPlayer = ({
-  videoInfo,
-  videosGlobalState,
-  singleVideo,
-}) => {
+const VideoPlayer = ({ videoInfo, videosGlobalState, singleVideo }) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef(null);
@@ -68,8 +64,13 @@ const VideoPlayer = ({
   };
 
   useEffect(() => {
-    if (isVisible && !isVideoPlaying) {
-      callHandlePlayFunct();
+    if (isVisible) {
+      videoRef.current.load();
+      videoRef.current.addEventListener("loadeddata", () => {
+        if (!isVideoPlaying) {
+          callHandlePlayFunct();
+        }
+      });
     }
   }, [isVisible]);
 
