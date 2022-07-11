@@ -13,9 +13,9 @@ video::-webkit-media-controls {
 .VideoPlayer video {
   cursor: pointer;
   background-color: rgb(26, 26, 26);
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
+  /* height: 100%; */
+  /* width: 100%; */
+  /* object-fit: cover; */
 }
 
 .play-toggle,

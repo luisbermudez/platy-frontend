@@ -72,11 +72,9 @@ const VideoPlayer = ({ videoInfo, videosGlobalState, singleVideo }) => {
   useEffect(() => {
     if (isVisible) {
       videoRef.current.load();
-      // videoRef.current.addEventListener("loadeddata", () => {
-      //   if (!isVideoPlaying) {
-      //     callHandlePlayFunct();
-      //   }
-      // });
+      videoRef.current.addEventListener("loadeddata", () => {
+        videoReady();
+      });
     }
   }, [isVisible]);
 
@@ -91,11 +89,13 @@ const VideoPlayer = ({ videoInfo, videosGlobalState, singleVideo }) => {
           src={videoInfo.videoUrl}
           // src={placeholderVideo}
           loop
-          onLoadedData={videoReady}
           playsInline
           muted={true}
           poster={videoPoster}
           preload="metadata"
+          width="100%"
+          height="100%"
+          style={{objectFit : "cover"}}
         />
       )}
       <>
