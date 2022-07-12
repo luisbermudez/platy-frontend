@@ -19,21 +19,22 @@ video::-webkit-media-controls {
 /* Video */
 .locationmap-container .VideoPlayer,
 .locationmap-container .VideoPlayer video {
-  height: 194px;
+  height: 224px;
   transition: height 0.15s ease-out;
 }
 
 .locationmap-container .VideoPlayer:hover,
 .locationmap-container .VideoPlayer:hover video {
-  height: 220px;
+  height: 250px;
   transition: height 0.25s ease-in;
 }
 
 .videocard-container video {
   width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
-  object-fit: cover;
+  /* object-fit: cover; */
   border-radius: 10px 10px 0 0;
 }
 

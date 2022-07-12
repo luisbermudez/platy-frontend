@@ -93,9 +93,6 @@ const VideoPlayer = ({ videoInfo, videosGlobalState, singleVideo }) => {
           muted={true}
           poster={videoPoster}
           preload="metadata"
-          width="100%"
-          height="100%"
-          style={{objectFit : "cover"}}
         />
       )}
       <>
