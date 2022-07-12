@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
 import "./PreviewVideoCard.css";
 import { handleDaysCalc } from "../../utils/generalUtils";
 import placeholderVideo from "../../santafe-low.mp4";
@@ -7,43 +6,11 @@ import dogo from "../../Black-Dog-PNG.png";
 import VideoPlayer from "../VideoPlayer";
 
 const PreviewVideoCard = ({ each }) => {
-  // YOU CANNOT USE NAVIGATE //
-  // const navigate = useNavigate();
-  // const [agoValue, setAgoValue] = useState(null);
-  // const [views, setViews] = useState(null);
-
-  // const handleViews = (views) => {
-  //   if (views === 1) {
-  //     return setViews("1 View");
-  //   }
-  //   if (views > 999) {
-  //     const ks = Math.floor(views / 1000);
-  //     return setViews(ks + "K Views");
-  //   }
-  //   setViews(views + " Views");
-  // };
-
-  // const handleMath = () => {
-  //   handleDaysCalc(each.createdAt, setAgoValue);
-  //   handleViews(each.views);
-  // };
-
   return (
     <div
-      // onLoadedMetadata={handleMath}
       key={each._id}
       className="videocard-container"
-      // onClick={() => navigate(`/details/${each._id}`)}
     >
-      {/* <video
-        // src={each.videoUrl}
-        src={placeholderVideo}
-        alt="Location Video"
-        loop
-        muted
-        playsInline
-        autoPlay
-      /> */}
       <VideoPlayer
         videoInfo={each}
         videosGlobalState={null}
@@ -57,14 +24,6 @@ const PreviewVideoCard = ({ each }) => {
           />
         </div>
         <div className="video-description">
-          {/* <h6>
-            {each.title.length > 40
-              ? each.title.slice(0, 40) + "..."
-              : each.title}
-          </h6>
-          <p>
-            {views} • {agoValue}
-          </p> */}
           <h6>{each._user.name}</h6>
           <p>{each.title}</p>
         </div>

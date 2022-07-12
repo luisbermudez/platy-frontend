@@ -2,18 +2,18 @@
 .mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
 .mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip,
 .mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
-  border-bottom-color: white;
+  border-bottom-color: black;
 }
 .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip,
 .mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip,
 .mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
-  border-top-color: white;
+  border-top-color: black;
 }
 .mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
-  border-right-color: white;
+  border-right-color: black;
 }
 .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
-  border-left-color: white;
+  border-left-color: black;
 }
 
 .upload-file-disabled {
@@ -33,14 +33,13 @@
 .locationmap-container .mapboxgl-popup-content {
   padding: 0;
   border-radius: 10px;
-  height: 100%;
-  border: 1px solid white;
+  height: 100%;  
 }
 
 .locationmap-container .video-home-grid,
 .locationmap-container .videocard-container {
   width: 240px !important;
-  height: 300px !important;
+  height: 330px !important;
   margin: 0 !important;
 }
 

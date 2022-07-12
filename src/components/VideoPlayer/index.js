@@ -2,6 +2,7 @@ import { Play, VolumeUp, Pause, VolumeMute } from "react-bootstrap-icons";
 import { useRef, useState, useEffect } from "react";
 import { handlePlay } from "../../utils/generalUtils";
 import placeholderVideo from "../../santafe-low.mp4";
+import placeholderPoster from "../../videoPoster.jpg"
 import "./VideoPlayer.css";
 
 // Detects when element is in viewport
@@ -16,7 +17,7 @@ const useElementOnScreen = (targetRef) => {
   useEffect(() => {
     const observer = new IntersectionObserver(callbackFunction, {
       root: null,
-      threshold: 0.1,
+      threshold: 0.7,
     });
     const currentTarget = targetRef.current;
 
@@ -86,12 +87,13 @@ const VideoPlayer = ({ videoInfo, videosGlobalState, singleVideo }) => {
           onClick={() => {
             callHandlePlayFunct();
           }}
-          src={videoInfo.videoUrl}
-          // src={placeholderVideo}
+          // src={videoInfo.videoUrl}
+          src={placeholderVideo}
           loop
           playsInline
           muted={true}
-          poster={videoPoster}
+          // poster={videoPoster}
+          poster={placeholderPoster}
           preload="metadata"
         />
       )}

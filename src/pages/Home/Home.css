@@ -124,7 +124,6 @@
   scroll-snap-align: start;
   width: calc(100vw - 20px);
   border-radius: 10px;
-  /* border: 0.07rem solid rgb(238, 238, 238); */
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   margin: 20px 0px;
   background-color: white;
@@ -149,9 +148,13 @@
 
 .Home .VideoPlayer
 {
-  /* height: 350px; */
   height: 90vw;
   width: 100%;
+}
+
+.Home .videocard-avatar-container {
+  border: 2px solid rgba(0, 0, 0, 0.08);
+  background-color: rgba(0, 0, 0, 0.052);
 }
 
 /* Tablet */
