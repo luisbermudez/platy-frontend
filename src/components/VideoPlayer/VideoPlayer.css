@@ -30,9 +30,7 @@ video::-webkit-media-controls {
   border-radius: 50%;
   position: absolute;
   bottom: 10px;
-  background-color: rgba(10, 10, 10, 0.8);
   background-color: rgba(0, 0, 0, 0.385);
-  /* background-color: rgba(255, 255, 255, 0.336); */
 }
 
 .play-toggle {
@@ -56,10 +54,10 @@ video::-webkit-media-controls {
 }
 
 .volume-toggle:hover {
-  background-color: rgb(60, 60, 60);
+  background-color: rgba(60, 60, 60, 0.436);
 }
 
 video:hover ~ .play-toggle,
 .play-toggle:hover {
-  background-color: rgba(10, 10, 10, 0.8);
+  background-color: rgba(60, 60, 60, 0.436);
 }

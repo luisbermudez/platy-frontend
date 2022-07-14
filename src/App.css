@@ -1,6 +1,6 @@
 .app-container {
-  width: 100vw;
   padding-top: 48px;
+  margin: 0 auto;
 }
 
 .mainLoading {
@@ -8,9 +8,15 @@
   width: 100vw;
 }
 
-@media (min-width: 768px) {
-  .app-container {
-    width: 100vw;
-    padding-top: 70px;
-  }
+.navbar-container {
+  position: fixed;
+  top: 0px;
+  width: 100vw;
+  height: 48px;
+  background-color: rgb(255, 255, 255);
+  border-bottom: 1px solid rgba(223, 223, 223, 0.575);
 }
+
+/* @media (min-width: 768px) {
+  
+} */

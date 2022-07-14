@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import "./SignupOrLogin.css";
-import Platy from "../../Logo/platy";
-import { PersonFill } from "react-bootstrap-icons";
 
 const SignupOrLogin = ({switchModal}) => {
   return (

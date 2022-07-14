@@ -143,9 +143,9 @@ const EditVideolocation = () => {
             </div>
           </section>
           <VideoPlayer
-            videoUrl={videolocationDetails.videoUrl}
-            controls={true}
-            muted={false}
+            videoInfo={videolocationDetails}
+            videosGlobalState={null}
+            singleVideo={true}
           />
         </div>
       )}

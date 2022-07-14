@@ -113,6 +113,8 @@
   height: calc(100vh - 48px);
   overflow: scroll;
   padding: 0px 10px;
+  max-width: 100%;
+  margin: 0px auto;
   /* scroll-snap-type: y mandatory; */
 }
 
@@ -122,10 +124,11 @@
 
 .Home .videoCard {
   scroll-snap-align: start;
-  width: calc(100vw - 20px);
+  max-width: 440px;
+  min-width: 310px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  margin: 20px 0px;
+  margin: 20px auto;
   background-color: white;
 }
 
@@ -146,9 +149,8 @@
   margin: 0px;
 }
 
-.Home .VideoPlayer
-{
-  height: 90vw;
+.Home .VideoPlayer {
+  height: 360px;
   width: 100%;
 }
 
@@ -160,13 +162,12 @@
 /* Tablet */
 @media (min-width: 768px) {
   /* Home */
-  .Home {
-    padding: 96px 30px 0;
-    position: relative;
+  .Home .VideoPlayer {
+    height: 470px;
   }
 
   /* Searchbar */
-  .searchbar-container-home {
+  /* .searchbar-container-home {
     position: relative;
     background-color: var(--background-color);
     position: fixed;
@@ -265,18 +266,5 @@
 
   .MainSearchBar:focus + .closeSearchbar {
     color: rgb(60, 60, 60);
-  }
-
-  /* Videos container */
-  .videos-container {
-    background-color: transparent;
-    height: fit-content;
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .videos-container::after {
-    content: "";
-    width: 25%;
-  }
+  } */
 }

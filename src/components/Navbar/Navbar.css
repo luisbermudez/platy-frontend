@@ -4,10 +4,10 @@
 /* Navbar/NewPostNavbar */
 .Navbar,
 .NewPostNavbar {
-  width: 100vw;
+  max-width: 1000px;
+  min-width: 375px;
+  margin: 0 auto;
   height: 48px;
-  position: fixed;
-  top: 0px;
   display: flex;
   justify-content: space-between;
   background-color: white;
@@ -71,7 +71,7 @@
 }
 
 .nav-avatar img {
- object-fit: cover;
+  object-fit: cover;
 }
 
 /* New post dropdown */
@@ -90,7 +90,7 @@
   margin: 12px;
 }
 
-.Navbar .dropdown  .icon-ind-container {
+.Navbar .dropdown .icon-ind-container {
   margin: 0px;
 }
 
@@ -126,20 +126,11 @@
 }
 
 /* Modal - New post log in */
-.login-modal {
-  padding: 0px 16px;
+.modal-dialog-centered {
+  margin: auto;
 }
 
-.login-modal .modal-content {
-  min-width: 300px;
-  max-width: 360px;
-  border: none;
-  border-radius: 10px;
-  height: 380px;
-  justify-content: center;
-}
-
-.login-modal .goback {
+.singuplogin-modal .goback {
   position: absolute;
   font-size: 1.3rem;
   font-weight: 600;
@@ -147,8 +138,17 @@
   top: 20px;
 }
 
-.login-modal .goback:hover {
+.singuplogin-modal .goback:hover {
   cursor: pointer;
+}
+
+.singuplogin-modal .modal-content {
+  min-width: 300px;
+  max-width: 360px;
+  border: none;
+  border-radius: 10px;
+  height: 380px;
+  justify-content: center;
 }
 
 /* Tablet */
@@ -159,6 +159,11 @@
     align-items: center;
     position: relative;
     padding-left: 30px;
-    background-color: rgb(242, 242, 242);
+  }
+}
+
+@media (min-width: 1000px) {
+  .Navbar {
+    padding: 0px;
   }
 }

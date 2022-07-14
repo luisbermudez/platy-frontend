@@ -38,6 +38,7 @@ body {
   caret-color: var(--text-color);
   line-height: 1.563;
   font-family: "Lato", sans-serif;
+  width: 100vw;
 }
 
 h1 {

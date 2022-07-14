@@ -34,13 +34,16 @@ function App() {
         <h2 className="mainLoading">Loading ...</h2>
       ) : (
         <>
-          {pathname == "/add-location" ? (
-            <NewPostNavbar />
-          ) : pathname == "/add-location-2" ? (
-            <NewPostNavbar />
-          ) : (
-            <Navbar />
-          )}
+          <div className="navbar-container">
+            {pathname == "/add-location" ? (
+              <NewPostNavbar />
+            ) : pathname == "/add-location-2" ? (
+              <NewPostNavbar />
+            ) : (
+              <Navbar />
+            )}
+          </div>
+
           <div className="app-container">
             <RootNavigation />
           </div>

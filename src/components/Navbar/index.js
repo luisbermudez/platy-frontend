@@ -39,7 +39,12 @@ function Navbar() {
 
   return (
     <nav className="Navbar">
-      <Modal show={show} animation={false} centered className="login-modal">
+      <Modal
+        show={show}
+        animation={false}
+        centered
+        className="small-modal singuplogin-modal"
+      >
         <div>
           <p onClick={switchModal} className="goback">
             x
