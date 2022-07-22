@@ -124,7 +124,7 @@
 
 .Home .videoCard {
   scroll-snap-align: start;
-  max-width: 440px;
+  max-width: 460px;
   min-width: 310px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
@@ -163,7 +163,7 @@
 @media (min-width: 768px) {
   /* Home */
   .Home .VideoPlayer {
-    height: 470px;
+    height: 500px;
   }
 
   /* Searchbar */

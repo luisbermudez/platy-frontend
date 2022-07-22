@@ -7,6 +7,7 @@ import "./Home.css";
 import placeholderPP from "../../Black-Dog-PNG.png";
 import VideoPlayer from "../../components/VideoPlayer";
 import VideoInfoHomeCard from "../../components/VideoInfoHomeCard";
+import $ from "jquery";
 
 function Home() {
   // const [isSearching, setIsSearching] = useState(false);
@@ -73,7 +74,6 @@ function Home() {
   const videolocations = useSelector(
     (state) => state.videolocation.videolocations
   );
-  const hasVerified = useRef(false);
   const [currentVideoPlaying, setCurrentVideoPlaying] = useState(null);
   const [oneVideoPlaying, setOneVideoPlaying] = useState(false);
   const videosGlobalState = [
@@ -84,18 +84,45 @@ function Home() {
   ];
 
   useEffect(() => {
-    if (!hasVerified.current) {
-      dispatch(videolocationsCall());
-      hasVerified.current = true;
-    }
-  });
+    dispatch(videolocationsCall());
+
+    $(window).on("resize", () => {
+      clearTimeout(window.resizedFinished);
+      window.resizedFinished = setTimeout(() => {
+        window.location.reload();
+      }, 250);
+    });
+
+    return () => {
+      $(window).off("resize");
+    };
+  }, []);
+
+  // useEffect(() => {
+  //   let oldScroll = 0;
+
+  //   const playerContainer = document.getElementById("playerContainer");
+  //   playerContainer.addEventListener(
+  //     "scroll",
+  //     () => {
+  //       console.log(scrollUp);
+  //       if (playerContainer.scrollTop > oldScroll) {
+  //         scrollUp = false;
+  //       } else {
+  //         scrollUp = true;
+  //       }
+  //       oldScroll = playerContainer.scrollTop;
+  //     },
+  //     false
+  //   );
+  // }, []);
 
   return (
     <div
       className="Home"
       // onClick={closeSuggestions}
     >
-      <div className="playerContainer">
+      <div className="playerContainer" id="playerContainer">
         {videolocations &&
           videolocations.map((each) => (
             <div className="videoCard" key={each._id}>

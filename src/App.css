@@ -1,5 +1,4 @@
 .app-container {
-  padding-top: 48px;
   margin: 0 auto;
 }
 
@@ -9,8 +8,6 @@
 }
 
 .navbar-container {
-  position: fixed;
-  top: 0px;
   width: 100vw;
   height: 48px;
   background-color: rgb(255, 255, 255);

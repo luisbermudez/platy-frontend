@@ -27,9 +27,14 @@
   font-size: 24px;
 }
 
+.NewPostNavbar > div:first-of-type svg:hover,
+.NewPostNavbar > div:last-of-type p:hover {
+  cursor: pointer;
+}
+
 /* Next */
 .NewPostNavbar > div:last-of-type p {
-    color: var(--pink-focused);
+  color: var(--pink-focused);
 }
 
 /* Share */

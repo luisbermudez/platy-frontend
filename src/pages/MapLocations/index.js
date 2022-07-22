@@ -10,9 +10,6 @@ import PreviewVideoCard from "../../components/PreviewVideoCard";
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 function Map() {
-  // const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  // const [currentlyPlaying, setCurrentlyPlaying] = useState(undefined);
-
   const dispatch = useDispatch();
   const hasVerified = useRef(false);
   const setMarkers = useRef(false);
@@ -24,23 +21,10 @@ function Map() {
   const geolocate = useRef(null);
   const navControl = useRef(null);
   const markers = useRef(null);
-  // const videoRef = useRef(null);
 
   const videolocations = useSelector(
     (state) => state.videolocation.videolocations
   );
-
-  // const videoPlay = (e) => {
-  //   videoRef.current = e.target;
-  //   handlePlay(
-  //     e,
-  //     isVideoPlaying,
-  //     currentlyPlaying,
-  //     setIsVideoPlaying,
-  //     videoRef,
-  //     setCurrentlyPlaying
-  //   );
-  // };
 
   useEffect(() => {
     if (!hasVerified.current) {

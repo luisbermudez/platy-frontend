@@ -1,5 +1,6 @@
 .AddLocationForm .formContainer {
   padding-top: 20px;
+  margin: 0 auto;
 }
 
 input[name="videoFile"] {

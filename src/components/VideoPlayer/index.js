@@ -2,33 +2,68 @@ import { Play, VolumeUp, Pause, VolumeMute } from "react-bootstrap-icons";
 import { useRef, useState, useEffect } from "react";
 import { handlePlay } from "../../utils/generalUtils";
 import placeholderVideo from "../../santafe-low.mp4";
-import placeholderPoster from "../../videoPoster.jpg"
+import placeholderPoster from "../../videoPoster.jpg";
 import "./VideoPlayer.css";
 
 // Detects when element is in viewport
-const useElementOnScreen = (targetRef) => {
+const useElementOnScreen = (targetRef, singleVideo) => {
   const [isVisible, setIsVisible] = useState();
+  const viewportVideoContainer = document.getElementById("playerContainer");
 
   // The entry intersecting gets its state changed to visible
-  const callbackFunction = ([entry]) => {
+  const visibleStateCallback = ([entry]) => {
     setIsVisible(entry.isIntersecting);
   };
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(callbackFunction, {
-      root: null,
-      threshold: 0.7,
+  const calcHeight = () => {
+    const noMargin = {
+      top: 0,
+      bottom: 0,
+    };
+    if (singleVideo) {
+      return noMargin;
+    }
+    const playerContainer = document.getElementById("playerContainer");
+    const viewerHeight = playerContainer.clientHeight;
+    const videoplayerHeight =
+      document.getElementById("VideoPlayer").clientHeight;
+
+    const res = viewerHeight - videoplayerHeight;
+    const topHeight = 80;
+
+    const topAndBottom = {
+      top: -topHeight,
+      bottom: -(res - topHeight),
+    };
+    return res > 0 ? topAndBottom : noMargin;
+  };
+
+  const setObserver = (currentTarget) => {
+    const getMargin = calcHeight();
+
+    const playerObserver = new IntersectionObserver(visibleStateCallback, {
+      root: viewportVideoContainer,
+      threshold: 0.2,
+      rootMargin: `${getMargin.top}px 0px ${getMargin.bottom}px 0px`,
     });
-    const currentTarget = targetRef.current;
 
     if (currentTarget) {
-      observer.observe(currentTarget);
+      playerObserver.observe(currentTarget);
     }
 
+    return playerObserver;
+  };
+
+  useEffect(() => {
+    const currentTarget = targetRef.current;
+    let observerIntersector = setObserver(currentTarget);
+
     return () => {
-      if (currentTarget) observer.unobserve(currentTarget);
+      if (currentTarget) {
+        observerIntersector.unobserve(currentTarget);
+      }
     };
-  }, [targetRef]);
+  }, []);
 
   return isVisible;
 };
@@ -37,7 +72,7 @@ const VideoPlayer = ({ videoInfo, videosGlobalState, singleVideo }) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef(null);
-  const isVisible = useElementOnScreen(videoRef);
+  const isVisible = useElementOnScreen(videoRef, singleVideo);
   const videoPoster = `https://res.cloudinary.com/dqxe9yome/video/upload/so_0/${videoInfo.public_id}.jpg`;
   const handleVideoParams = [videoRef, setIsVideoPlaying, videosGlobalState];
 
@@ -72,7 +107,12 @@ const VideoPlayer = ({ videoInfo, videosGlobalState, singleVideo }) => {
 
   useEffect(() => {
     if (isVisible) {
-      videoRef.current.load();
+      if (videoRef.current.readyState == 4) {
+        return videoReady();
+      } else {
+        videoRef.current.load();
+      }
+
       videoRef.current.addEventListener("loadeddata", () => {
         videoReady();
       });
@@ -80,7 +120,7 @@ const VideoPlayer = ({ videoInfo, videosGlobalState, singleVideo }) => {
   }, [isVisible]);
 
   return (
-    <div className="VideoPlayer">
+    <div className="VideoPlayer" id="VideoPlayer">
       {videoInfo.videoUrl && (
         <video
           ref={videoRef}
