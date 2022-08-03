@@ -1,8 +1,8 @@
 import { Play, VolumeUp, Pause, VolumeMute } from "react-bootstrap-icons";
 import { useRef, useState, useEffect } from "react";
 import { handlePlay } from "../../utils/generalUtils";
-import placeholderVideo from "../../santafe-low.mp4";
-import placeholderPoster from "../../videoPoster.jpg";
+import placeholderVideo from "../../ManhattanCLip1.mp4";
+import placeholderPoster from "../../manhattan1.jpg";
 import "./VideoPlayer.css";
 
 // Detects when element is in viewport
