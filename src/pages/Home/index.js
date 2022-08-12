@@ -1,11 +1,13 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { videolocationsCall } from "../../redux/videolocationSlice";
 import "./Home.css";
 import placeholderPP from "../../Black-Dog-PNG.png";
 import VideoPlayer from "../../components/VideoPlayer";
 import VideoInfoHomeCard from "../../components/VideoInfoHomeCard";
 
 function Home() {
+  const dispatch = useDispatch();
   const videolocations = useSelector(
     (state) => state.videolocation.videolocations
   );
@@ -17,6 +19,10 @@ function Home() {
     oneVideoPlaying,
     setOneVideoPlaying,
   ];
+
+  useEffect(() => {
+    dispatch(videolocationsCall());
+  }, []);
 
   return (
     <div
