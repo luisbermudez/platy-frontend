@@ -1,7 +1,7 @@
 .MapAddLocation > div {
   width: 100vw;
   min-height: calc(100vh - 48px);
-  min-height: fill-available;
+  min-height: stretch;
   min-height: -webkit-fill-available;
 }
 
