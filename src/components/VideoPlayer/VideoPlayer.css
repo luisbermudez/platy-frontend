@@ -4,8 +4,6 @@ video::-webkit-media-controls {
 
 .VideoPlayer {
   position: relative;
-  /* width: 100%;
-  height: 100%; */
   margin: 0;
   display: block;
 }
@@ -22,7 +20,6 @@ video::-webkit-media-controls {
 .volume-toggle {
   color: rgb(231, 231, 231);
   color: white;
-  /* color: black; */
   height: 28px;
   width: 28px;
   line-height: 25px;

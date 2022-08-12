@@ -1,7 +1,7 @@
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { TextInput, PasswordInput } from "../../components";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { loginWs } from "../../services/auth-ws";
 import { useState } from "react";
 import "./LoginForm.css";
@@ -9,7 +9,6 @@ import { ExclamationCircle } from "react-bootstrap-icons";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const { pathname } = useLocation();
   const [loginError, setLoginError] = useState(null);
 
   const handleSubmit = async (values) => {
@@ -17,7 +16,6 @@ const LoginForm = () => {
     try {
       const { errorMessage, status } = await loginWs(values);
       if (status) {
-        // pathname === "/login" ? navigate("/") : window.location.reload(false);
         navigate("/");
       } else {
         setLoginError(errorMessage);

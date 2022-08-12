@@ -47,7 +47,6 @@ const NewPostNavbar = () => {
       const res = await axios.get(
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${coordinates.lng},${coordinates.lat}.json?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`
       );
-      console.log(res.data.features[0].place_name);
       dispatch(setPostLocation(res.data.features[0].place_name));
     } catch (error) {}
     return navigate("/add-location-2");

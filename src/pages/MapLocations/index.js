@@ -71,11 +71,6 @@ function Map() {
         mapContainer.getCanvas().style.cursor = "pointer";
       });
     }
-
-    // locationsMap.current.on("move", () => {
-    //   console.log(locationsMap.current.getCenter().lng);
-    //   console.log(locationsMap.current.getCenter().lat);
-    // });
   });
 
   useEffect(() => {
