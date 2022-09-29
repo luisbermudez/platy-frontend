@@ -127,13 +127,13 @@ const VideoPlayer = ({ videoInfo, videosGlobalState, singleVideo }) => {
           onClick={() => {
             callHandlePlayFunct();
           }}
-          // src={videoInfo.videoUrl}
-          src={placeholderVideo}
+          src={videoInfo.videoUrl}
+          // src={placeholderVideo}
           loop
           playsInline
           muted={true}
-          // poster={videoPoster}
-          poster={placeholderPoster}
+          poster={videoPoster}
+          // poster={placeholderPoster}
           preload="metadata"
         />
       )}

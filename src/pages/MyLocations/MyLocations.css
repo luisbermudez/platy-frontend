@@ -1,69 +1,79 @@
 .MyLocations {
-  padding: 110px 40px 40px;
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto 20px;
+  width: 100%;
 }
 
-.MyLocations h1 {
-  position: fixed;
-  top: 70px;
+.MyLocations h4 {
+  top: 48px;
+  padding: 10px 30px;
+  left: 0;
   width: 100%;
-  padding-top: 30px;
-  background-color: var(--background-color);
-  height: 100px;
+  background: var(--background-color);
+  height: 50px;
   z-index: 2;
+  margin-bottom: 0px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.mylocations-general-container {
-  background-color: rgb(226, 226, 226);
-  margin-bottom: 10px;
+.MyLocations .container-div {
+  padding: 2px 30px;
+  margin-top: 10px;
+}
+
+.MyLocations .mylocations-card {
+  background: rgb(236, 236, 236);
   border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.MyLocations-video-container {
+  margin-bottom: 10px;
   position: relative;
-  height: 150px;
-  width: 150px;
-  margin: 0 30px 0 0;
-  border-right: 1px solid rgb(209, 209, 209);
-}
-
-.MyLocations-video-container video {
-  background-color: transparent;
-  height: 148px;
-  width: 148px;
-}
-
-.MyLocations-videos-container > div {
   display: flex;
-}
-
-.MyLocations-videos-container h6 {
-  width: 260px;
-  margin: 2px 20px 8px 0;
-  font-weight: 400;
-  color: black;
-}
-
-.MyLocations-videos-container p {
-  width: 260px;
-  margin: 0 40px 0 0;
-  font-weight: 300;
-  font-size: 0.9rem;
-  color: rgb(110, 110, 110);
-}
-
-.MyLocation-information-container {
-  position: relative;
+  padding: 20px 14px 14px;
   width: 100%;
-  margin-top: 31px;
 }
 
-.MyLocations-edit-button {
+.MyLocations .mylocations-card .video-container {
+  height: 120px;
+  width: 120px;
+  margin-right: 16px;
+  width: 120px;
+  flex-shrink: 0;
+}
+
+.MyLocations .mylocations-card video {
+  height: 100%;
+  width: 100%;
+}
+
+.MyLocations .mylocations-card .info-container {
+  width: calc(100% - 134px);
+}
+
+.MyLocations .mylocations-card .info-container h6 {
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.MyLocations .mylocations-card .info-container p {
+  font-size: 14px;
+  color: rgb(102, 102, 102);
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+
+.MyLocations .mylocations-card .info-container h6,
+.MyLocations .mylocations-card .info-container p {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.MyLocations .MyLocations-edit-button {
   margin-left: 0;
   position: absolute;
-  bottom: 83px;
-  right: 30px;
+  bottom: 2px;
+  left: 14px;
   display: flex;
   font-size: 0.9rem;
   width: 35px;
@@ -73,13 +83,13 @@
   transition: width 0.15s ease-out;
 }
 
-.MyLocations-edit-button:hover {
-  background-color: rgba(0, 0, 0, 0.075);
+.MyLocations .MyLocations-edit-button:hover {
+  background-color: rgba(0, 0, 0, 0.26);
   width: 74px;
   transition: width 0.25s ease-in;
 }
 
-.MyLocations-edit-button span {
+.MyLocations .MyLocations-edit-button span {
   position: absolute;
   top: 6px;
   left: 10px;
@@ -87,7 +97,7 @@
   transition: color 0.15s ease-out;
 }
 
-.pencil-MyLocations {
+.MyLocations .MyLocations-edit-button svg {
   position: absolute;
   top: 9px;
   left: 6px;
@@ -95,33 +105,49 @@
   transition: left 0.15s ease-out;
 }
 
-.MyLocations-edit-button:hover .pencil-MyLocations {
+.MyLocations .MyLocations-edit-button:hover svg {
   left: 50px;
   transition: left 0.25s ease-in;
 }
 
-.MyLocations-edit-button:hover span {
+.MyLocations .MyLocations-edit-button:hover span {
   color: black;
   transition: color 0.25s ease-in;
 }
 
-.MyLocations-videos-container .date {
-  font-weight: 600;
-  color: rgb(99, 99, 99);
+@media screen and (min-width: 700px) {
+  .MyLocations .mylocations-card .info-container {
+    width: calc(86% - 134px);
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+  }
+
+  .MyLocations .mylocations-card .info-container > div {
+    width: calc(90% / 3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .MyLocations .mylocations-card .info-container > div:nth-of-type(2) {
+    padding: 0 10px;
+  }
+
+  .MyLocations .MyLocations-edit-button {
+    top: auto;
+    left: auto;
+    right: 10px;
+    bottom: 10px;
+  }
 }
 
-.MyLocations-videos-container .date i {
-  font-weight: 300;
-}
+@media screen and (min-width: 1000px) {
+  .MyLocations .container-div {
+    padding: 0;
+  }
 
-.MyLocations-videos-container > div > div {
-  display: flex;
-}
-
-.locationTitle-mylocations {
-  margin-bottom: 4px !important;
-  font-weight: 700 !important;
-  font-size: 0.9rem;
-  margin-top: 0;
-  color: rgb(71, 71, 71) !important;
+  .MyLocations h4 {
+    padding: 10px 0;
+  }
 }

@@ -1,5 +1,5 @@
 .app-container {
-  margin: 0 auto;
+  margin: 48px auto 0;
 }
 
 .mainLoading {
@@ -11,7 +11,8 @@
   width: 100vw;
   background-color: rgb(255, 255, 255);
   border-bottom: 1px solid rgba(223, 223, 223, 0.575);
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 2000;
+  height: 48px;
+  z-index: 1000;
 }

@@ -25,9 +25,7 @@ function Home() {
   }, []);
 
   return (
-    <div
-      className="Home"
-    >
+    <div className="Home">
       <div className="playerContainer" id="playerContainer">
         {videolocations &&
           videolocations.map((each) => (

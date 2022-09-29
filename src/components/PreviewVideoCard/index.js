@@ -1,22 +1,17 @@
-import { useState } from "react";
 import "./PreviewVideoCard.css";
-import { handleDaysCalc } from "../../utils/generalUtils";
-import placeholderVideo from "../../santafe-low.mp4";
 import dogo from "../../Black-Dog-PNG.png";
 import VideoPlayer from "../VideoPlayer";
 
 const PreviewVideoCard = ({ each }) => {
   return (
-    <div
-      key={each._id}
-      className="videocard-container"
-    >
+    <div key={each._id} className="videocard-container">
       <VideoPlayer
         videoInfo={each}
         videosGlobalState={null}
         singleVideo={true}
       />
       <aside>
+        <a href={`/details/${each._id}`} />
         <div className="videocard-avatar-container">
           <img
             // src={each._user.profilePicture}

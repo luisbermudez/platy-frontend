@@ -6,19 +6,23 @@ import { loginWs } from "../../services/auth-ws";
 import { useState } from "react";
 import "./LoginForm.css";
 import { ExclamationCircle } from "react-bootstrap-icons";
+import { setAuthorized } from "../../redux/authSlice";
+import { useDispatch } from "react-redux";
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [loginError, setLoginError] = useState(null);
 
   const handleSubmit = async (values) => {
     setLoginError(null);
     try {
-      const { errorMessage, status } = await loginWs(values);
-      if (status) {
+      const res = await loginWs(values);
+      if (res.status) {
+        dispatch(setAuthorized(res.data.user));
         navigate("/");
       } else {
-        setLoginError(errorMessage);
+        setLoginError(res.errorMessage);
       }
     } catch (error) {
       setLoginError("There has been an internal server error.");

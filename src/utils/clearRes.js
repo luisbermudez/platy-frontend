@@ -1,9 +1,5 @@
 export const serverFailRes = (error) => {
-  if (
-    error.response &&
-    error.response.data &&
-    error.response.data.errorMessage
-  ) {
+  if (error.response?.data?.errorMessage) {
     return {
       status: false,
       errorMessage: error.response.data.errorMessage,

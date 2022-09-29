@@ -4,6 +4,8 @@ import { currentUserVideolocationCall } from "../../redux/videolocationSlice";
 import { useNavigate } from "react-router-dom";
 import "./MyLocations.css";
 import { Pencil } from "react-bootstrap-icons";
+import placeholderVideo from "../../ManhattanCLip1.mp4";
+import placeholderPoster from "../../manhattan1.jpg";
 
 const MyLocations = () => {
   const user = useSelector((state) => state.auth.user);
@@ -23,43 +25,44 @@ const MyLocations = () => {
 
   return (
     <div className="MyLocations">
-      <h1>My Posts</h1>
-      <div className="MyLocations-videos-container">
+      <h4>Manage Posts</h4>
+      <div className="container-div">
         {currentUserVideolocations &&
-          currentUserVideolocations.map((e) => (
-            <div className="mylocations-general-container" key={e._id}>
-              <div className="MyLocations-video-container">
-                <video src={e.videoUrl} />
+          currentUserVideolocations.map((each) => (
+            <div className="mylocations-card" key={each._id}>
+              <div className="video-container">
+                <video
+                  src={each.videoUrl}
+                  // src={placeholderVideo}
+                  // poster={placeholderPoster}
+                  poster={`https://res.cloudinary.com/dqxe9yome/video/upload/so_0/${each.public_id}.jpg`}
+                />
               </div>
-              <div className="MyLocation-information-container">
+              <div className="info-container">
                 <div>
-                  <p className="locationTitle-mylocations">Title:</p>
+                  <h6>Title:</h6>
                   <p>
-                    {e.title.length > 32
-                      ? e.title.slice(0, 32) + "..."
-                      : e.title}
+                    {each.title}
                   </p>
                 </div>
                 <div>
-                  <p className="locationTitle-mylocations">Description:</p>
+                  <h6>Description:</h6>
                   <p>
-                    {e.description.length > 70
-                      ? e.description.slice(0, 70) + "..."
-                      : e.description}
+                    {each.description}
                   </p>
                 </div>
                 <div>
-                  <p className="date">Date:</p>
-                  <p>{new Date(e.createdAt).toString().slice(0, 15)}</p>
+                  <h6>Date posted:</h6>
+                  <p>{new Date(each.createdAt).toString().slice(0, 15)}</p>
                 </div>
-                <button
+              </div>
+              <button
                   className="MyLocations-edit-button"
-                  onClick={() => navigate(`/edit/${e._id}`)}
+                  onClick={() => navigate(`/edit/${each._id}`)}
                 >
                   <span>Edit</span>
                   <Pencil className="pencil-MyLocations" />
                 </button>
-              </div>
             </div>
           ))}
       </div>

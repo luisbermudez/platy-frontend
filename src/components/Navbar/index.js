@@ -20,6 +20,7 @@ import {
   clearVideoForNewPost,
   clearCoordinates,
 } from "../../redux/videolocationSlice";
+import placeholderProfilePic from "../../Black-Dog-PNG.png";
 
 function Navbar() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -44,6 +45,7 @@ function Navbar() {
         animation={false}
         centered
         className="small-modal singuplogin-modal"
+        onHide={() => setShow(false)}
       >
         <div>
           <p onClick={switchModal} className="goback">
@@ -79,9 +81,9 @@ function Navbar() {
             </Dropdown.Item>
           </DropdownButton>
         ) : (
-          <a className="icon-ind-container">
-            <PlusCircle onClick={switchModal} />
-          </a>
+          <Link className="icon-ind-container" to="#">
+            <PlusCircle onClick={() => setShow(true)} />
+          </Link>
         )}
 
         {isLoggedIn ? (
@@ -89,7 +91,8 @@ function Navbar() {
             <img
               className="nav-avatar"
               alt="profile"
-              src={user.profilePicture}
+              // src={user.profilePicture}
+              src={placeholderProfilePic}
             />
           </Link>
         ) : (

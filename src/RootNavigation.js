@@ -10,7 +10,8 @@ function RootNavigation() {
         <Route
           key={route.path}
           path={route.path}
-          element={<CallAuthVerify>{route.element}</CallAuthVerify>}
+          // element={<CallAuthVerify>{route.element}</CallAuthVerify>}
+          element={route.element}
         />
       ))}
 
@@ -29,6 +30,7 @@ function RootNavigation() {
           key={route.path}
           path={route.path}
           element={<IsAnon>{route.element}</IsAnon>}
+          // element={route.element}
         />
       ))}
 

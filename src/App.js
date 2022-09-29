@@ -1,32 +1,49 @@
 import "./App.css";
-import { useDispatch } from "react-redux";
-import { authVerify } from "./redux/authSlice";
 import { useEffect, useState, useRef } from "react";
 import { Navbar, NewPostNavbar } from "./components";
 import RootNavigation from "./RootNavigation";
 import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { authVerify } from "./redux/authSlice";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const hasVerified = useRef(false);
   const dispatch = useDispatch();
   const { pathname } = useLocation();
+  const authenticatedState = useSelector((state) => state.auth.authenticated);
+  const hasAuthenticate = useRef(false);
 
+  // Simulates the loading process of the videolocations but also ** makes it so other pages have
+  // time to load resourcer NEEDS TO BE FIXED
+  // useEffect(() => {
+  //   const id = setTimeout(() => {
+  //     setLoading(false);
+  //   }, 2e3);
+  //   return () => {
+  //     clearTimeout(id);
+  //   };
+  // }, []);
+
+  // Recreate user state on page refresh or navigate after authentication
   useEffect(() => {
-    if (!hasVerified.current) {
-      dispatch(authVerify());
-      hasVerified.current = true;
+    if (!hasAuthenticate.current) {
+      const navType = window.performance.getEntriesByType("navigation")[0].type;
+      const getType =
+        navType === "reload" ? true : navType === "navigate" ? true : false;
+
+      if (getType) {
+        dispatch(authVerify());
+        hasAuthenticate.current = true;
+      }
     }
   });
 
+  // Wait for user authentication
   useEffect(() => {
-    const id = setTimeout(() => {
+    if (authenticatedState) {
       setLoading(false);
-    }, 1e3);
-    return () => {
-      clearTimeout(id);
-    };
-  }, []);
+    }
+  }, [authenticatedState]);
 
   return (
     <div className="App">

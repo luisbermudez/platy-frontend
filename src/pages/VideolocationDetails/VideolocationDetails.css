@@ -1,53 +1,53 @@
 .VideolocationDetails {
-  padding: 40px;
-  display: flex;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.VideolocationDetails > .video {
-  width: 56vw;
-  height: 70vh;
-}
-
-.VideolocationDetails .information {
-  padding: 0;
+.VideolocationDetails .VideoPlayer {
+  height: 64vh;
   width: 100%;
+}
+
+.VideolocationDetails .info-primary {
+  padding: 10px 30px;
   display: flex;
+  background: black;
 }
 
-.VideolocationDetails p {
-  color: rgb(139, 139, 139);
+.VideolocationDetails .info-secondary h6,
+.VideolocationDetails .info-primary h6 {
+  font-weight: bold;
+  color: rgb(205, 205, 205);
 }
 
-.VideolocationDetails > .map {
-  width: 40vw;
-}
-
-.videoDetails-avatar {
-  height: 50px;
-  width: 50px;
+.VideolocationDetails .info-primary > div:first-of-type {
+  position: relative;
+  height: 36px;
+  width: 36px;
+  border: 1px solid rgb(65, 65, 65);
   border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
 }
 
-.VideolocationDetails .information h4 {
-  position: absolute;
-  left: 100px;
-  top: 24px;
-}
-
-.VideolocationDetails .information {
-  position: relative;
-}
-
-.VideolocationDetails .title-views-container {
+.VideolocationDetails .info-primary > div:first-of-type img {
   width: 100%;
+  height: 100%;
 }
 
-.userInformation-Details {
-  position: relative;
+.VideolocationDetails .info-secondary {
+  padding: 12px 10px;
+  background: black;
 }
 
-.userInformation-Details .user-details h4 {
-  position: absolute;
-  top: 10px;
-  left: 70px;
+.VideolocationDetails .info-secondary h6 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.VideolocationDetails .info-secondary p {
+  font-size: 14px;
+  color: var(--gray-500);
+  margin-bottom: 0;
 }

@@ -5,9 +5,10 @@ export const authSlice = createSlice({
   name: "auth",
   initialState: {
     isLoggedIn: false,
-    errorMessage: undefined,
+    errorMessage: null,
     successMessage: undefined,
     user: null,
+    authenticated: false,
   },
   reducers: {
     setError: (state, action) => {
@@ -29,6 +30,9 @@ export const authSlice = createSlice({
     logoutFail: (state, action) => {
       state.errorMessage = action.payload;
     },
+    setAuthenticated: (state) => {
+      state.authenticated = true;
+    },
   },
 });
 
@@ -38,15 +42,21 @@ export const {
   setUnauthorized,
   logoutSuccess,
   logoutFail,
+  setAuthenticated,
 } = authSlice.actions;
 
 export const authVerify = () => async (dispatch) => {
   try {
     const res = await authVerifyWs();
     const { data, errorMessage, status } = res;
-    return status
-      ? dispatch(setAuthorized(data.user))
-      : dispatch(setUnauthorized(errorMessage));
+
+    if (status) {
+      await dispatch(setAuthorized(data.user));
+    } else {
+      await dispatch(setUnauthorized(errorMessage));
+    }
+    dispatch(setAuthenticated());
+    return;
   } catch (error) {
     return dispatch(setUnauthorized(error));
   }

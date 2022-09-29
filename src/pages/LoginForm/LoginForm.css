@@ -42,6 +42,6 @@
 .SignupForm,
 .LoginForm {
   min-height: calc(100vh - 48px);
-  min-height: stretch;
-  min-height: -webkit-fill-available;
+  /* min-height: stretch;
+  min-height: -webkit-fill-available; */
 }

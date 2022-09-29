@@ -8,8 +8,9 @@ import VideoPlayer from "../../components/VideoPlayer";
 import { useParams } from "react-router-dom";
 import "./VideolocationDetails.css";
 import MapForVideoDetails from "../../components/MapForVideoDetails";
-import { handleDaysCalc } from "../../utils/generalUtils";
+import { handleDaysCalc, handleViews } from "../../utils/generalUtils";
 import { addOneViewWs } from "../../services/videolocation-ws";
+import placeholderProfilePic from "../../Black-Dog-PNG.png";
 
 const VideolocationDetails = () => {
   const videolocationDetails = useSelector(
@@ -20,6 +21,7 @@ const VideolocationDetails = () => {
   const [daysAgo, setDaysAgo] = useState(null);
   const { _id } = useParams();
 
+  // Calls server to get video info
   useEffect(() => {
     if (!hasVerified.current) {
       dispatch(videolocationDetailsProcess(_id));
@@ -27,17 +29,29 @@ const VideolocationDetails = () => {
     }
   });
 
-  useEffect(() => {
-    return () => {
-      dispatch(clearVideolocationDetails());
-      addOneViewWs({ _id });
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     dispatch(clearVideolocationDetails());
+  //     addOneViewWs({ _id });
+  //   };
+  // }, []);
 
   return (
     <div className="VideolocationDetails">
       {videolocationDetails && (
         <>
+          <div className="info-primary">
+            <div>
+              <img
+                alt={videolocationDetails._user.name}
+                // src={videolocationDetails._user.profilePicture}
+                src={placeholderProfilePic}
+              />
+            </div>
+            <div>
+              <h6>{videolocationDetails._user.username}</h6>
+            </div>
+          </div>
           <div
             onLoadStart={() =>
               handleDaysCalc(videolocationDetails.createdAt, setDaysAgo)
@@ -45,41 +59,17 @@ const VideolocationDetails = () => {
             className="video"
           >
             <VideoPlayer
-              videoUrl={videolocationDetails.videoUrl}
-              controls={true}
-              muted={false}
+              videoInfo={videolocationDetails}
+              videosGlobalState={null}
+              singleVideo={true}
             />
-            <div className="information">
-              <div className="title-views-container">
-                <h5>
-                  {videolocationDetails.title.length > 160
-                    ? videolocationDetails.title.slice(0, 160) + "..."
-                    : videolocationDetails.title}
-                </h5>
-                <p>
-                  {videolocationDetails.views} views • {daysAgo}
-                </p>
-                <div className="userInformation-Details">
-                  <img
-                    className="videoDetails-avatar"
-                    alt={videolocationDetails._user.name}
-                    src={videolocationDetails._user.profilePicture}
-                  />
-                  <div className="user-details">
-                    <h4>{videolocationDetails._user.name}</h4>
-                  </div>
-                </div>
-                <hr />
-                {videolocationDetails.location.name && (
-                  <>
-                    <h6>Location name</h6>
-                    <p>{videolocationDetails.location.name}</p>
-                  </>
-                )}
-                <h6>Description</h6>
-                <p>{videolocationDetails.description}</p>
-              </div>
-            </div>
+          </div>
+          <div className="info-secondary">
+            <h6>{videolocationDetails.title}</h6>
+            <p>
+              {handleViews(videolocationDetails.views)} •{" "}
+              {handleDaysCalc(videolocationDetails.createdAt)}
+            </p>
           </div>
           <div className="map">
             <MapForVideoDetails

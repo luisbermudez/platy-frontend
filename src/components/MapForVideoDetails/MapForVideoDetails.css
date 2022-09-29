@@ -1,6 +1,8 @@
 .locationmap-container-videoDetails {
   width: 100%;
-  min-height: calc(100vh - 48px);
-  min-height: stretch;
-  min-height: -webkit-fill-available;
+  min-height: 400px;
+}
+
+.locationmap-container-videoDetails .mapboxgl-ctrl-top-right {
+  display: block !important;
 }

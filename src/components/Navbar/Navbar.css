@@ -7,7 +7,7 @@
   max-width: 1000px;
   min-width: 375px;
   margin: 0 auto;
-  height: 48px;
+  height: 100%;
   display: flex;
   justify-content: space-between;
   background-color: white;
@@ -99,7 +99,7 @@
 
 .Navbar .dropdown-menu {
   border: none;
-  border: 0.064rem solid rgb(239, 239, 239);
+  border: 0.064rem solid rgb(198, 198, 198);
   background-color: rgb(255, 255, 255);
   outline: none;
   padding: 0px;
@@ -163,5 +163,11 @@
 @media (min-width: 1000px) {
   .Navbar {
     padding: 0px;
+  }
+}
+
+@media (min-width: 1084px) {
+  .Navbar .dropdown-menu {
+    transform: translate3d(-33px, 42px, 0px) !important;
   }
 }

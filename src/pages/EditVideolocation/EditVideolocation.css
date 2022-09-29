@@ -1,9 +1,27 @@
 .EditVideolocation {
-  padding: 40px;
+  padding: 20px 30px;
+  width: 100vw;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.EditVideolocation .editMainContainer {
+  width: 100%;
 }
 
 .form-control:focus {
   box-shadow: none;
+}
+
+.EditVideolocation .edit-formcontainer {
+  padding: 0;
+  width: 100%;
+}
+
+.EditVideolocation .edit-formcontainer textarea {
+  width: 100%;
+  max-width: 100%;
 }
 
 .TrashFill {
@@ -18,90 +36,9 @@
   cursor: pointer;
 }
 
-.PencilSquare {
-  margin-left: 50px;
-}
-
-.editSection {
-  display: flex;
-}
-
-.editMainContainer {
-  display: flex;
-  justify-content: space-between;
-}
-
-.CopyIcon {
-  font-size: 1.5rem;
-  margin: 0 20px;
-  color: rgb(95, 95, 95);
-}
-
-.CopyIcon:hover {
-  color: black;
-  cursor: pointer;
-}
-.tooltipEdit {
-  position: relative;
-  display: inline-block;
-}
-
-.tooltipEdit span {
-  font-size: 12px;
-}
-
-.tooltipEdit .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: rgba(49, 49, 49, 0.877);
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 2px;
-  position: absolute;
-  z-index: 1;
-  bottom: 120%;
-  left: 70%;
-  margin-left: -75px;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.tooltipEdit:hover .tooltiptext {
-  visibility: visible;
-  opacity: 1;
-}
-
-.urlHT {
-  font-size: 15px;
-  font-weight: 300;
-}
-
-.thumbnail-container {
-  background-color: rgb(230, 230, 230);
-  border-radius: 10px;
-  position: relative;
-  height: 150px;
-  width: 150px;
-  position: absolute;
-  left: 222px;
-  top: 180px;
-}
-
 .EditVideolocation .VideoPlayer {
   width: 100%;
-  height: 400px;
-}
-
-.thumbnail-container video {
-  width: 100%;
-  margin: 0;
-}
-
-.edit-formcontainer {
-  padding-top: 0px;
-  padding-left: 0px;
-  width: 500px;
+  height: 600px;
 }
 
 .successMessage {
@@ -115,4 +52,31 @@
 
 .successMessage strong:hover {
   cursor: pointer;
+}
+
+@media screen and (min-width: 700px) {
+  .EditVideolocation .editMainContainer {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .EditVideolocation .VideoPlayer {
+    width: 40vw;
+    max-width: 500px;
+    height: 40vw;
+    max-height: 500px;
+    margin-top: 50px;
+    margin-left: 20px;
+  }
+
+  .EditVideolocation .edit-formcontainer {
+    padding: 0;
+    width: 100vw;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .EditVideolocation {
+    padding: 20px 0;
+  }
 }

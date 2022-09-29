@@ -43,6 +43,21 @@ video::-webkit-media-controls {
   padding: 15px;
   height: 95px;
   transition: height 0.15s ease-out;
+  position: relative;
+}
+
+.videocard-container aside:hover {
+  cursor: pointer;
+}
+
+.videocard-container aside a::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
 }
 
 .videocard-container .VideoPlayer:hover + aside {

@@ -85,7 +85,7 @@ const EditVideolocation = () => {
 
   return (
     <div className="EditVideolocation">
-      <h1>Edit post</h1>
+      <h4>Edit post</h4>
       {errorMessage && <h5>{errorMessage}</h5>}
       {videolocationDetails && (
         <div className="editMainContainer">
