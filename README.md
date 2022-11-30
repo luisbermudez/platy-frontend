@@ -7,7 +7,6 @@
 
 Platy is a MERN Fullstack Application where you can find places to go rollerblading. You can also watch clips from people around the world rollerblading. If you know a cool spot and want to share it with the community you can sing up, then go to **Share your flow**, drop a pin and attach to it a clip of you rollerblaing. [Take a look](https://www.platy.lapbermudez.com).
 
-![Platy landing page](./public/mapAndVideoPreview.png)
 <br>
 <br>
 <br>
